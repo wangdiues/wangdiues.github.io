@@ -4,7 +4,7 @@ status: "under-review"
 year: 2026
 date: 2026-04-15
 venue: "Forest Ecology and Management (submitted)"
-authors: "Wangdi Wangdi, Laxmi Sagar, Sangay Chedup, Sangay Dorjee & Tashi Waiba Norbu"
+authors: "Wangdi, Laxmi Sagar, Sangay Chedup, Sangay Dorjee & Tashi Waiba Norbu"
 pdf: "/publications/forest-gradient-bhutan-main.pdf"
 rightsLicense: "Author-owned submitted manuscript (preprint)"
 tags:

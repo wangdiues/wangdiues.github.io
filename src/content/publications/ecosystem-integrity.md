@@ -4,7 +4,7 @@ status: "under-review"
 year: 2026
 date: 2026-04-06
 venue: "Ecology & Evolution (submitted)"
-authors: "Wangdi Wangdi & Tashi Choden"
+authors: "Wangdi & Tashi Choden"
 pdf: "/publications/ecosystem-integrity.pdf"
 rightsLicense: "Author-owned submitted manuscript (preprint)"
 tags:

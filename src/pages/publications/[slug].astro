@@ -42,7 +42,7 @@ const jsonld = JSON.stringify({
 });
 ---
 
-<BaseLayout title={`${pub.data.title} | Wangdi Wangdi`} description={pub.body?.slice(0, 155)}>
+<BaseLayout title={`${pub.data.title} | Wangdi`} description={pub.body?.slice(0, 155)}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={jsonld} />
   </Fragment>

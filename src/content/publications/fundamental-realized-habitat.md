@@ -4,7 +4,7 @@ status: "under-review"
 year: 2026
 date: 2026-04-17
 venue: "Venue to be confirmed (submitted)"
-authors: "Wangdi Wangdi, Tshering Dorji, Jigme Tenzin & Tashi Choden"
+authors: "Wangdi, Tshering Dorji, Jigme Tenzin & Tashi Choden"
 pdf: "/publications/fundamental-realized-habitat.pdf"
 rightsLicense: "Author-owned submitted manuscript (preprint)"
 rightsNote: "Current manuscript version identified from internal evidence; see docs/RIGHTS.md."

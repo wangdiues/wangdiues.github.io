@@ -173,7 +173,7 @@ textBlock(
   17,
   { color: palette.paper }
 );
-textLine(page1, 'TEAM LEADER  /  WANGDI WANGDI', 48, 756, 8.5, 'F2', palette.moss);
+textLine(page1, 'TEAM LEADER  /  WANGDI', 48, 756, 8.5, 'F2', palette.moss);
 
 const page2 = [];
 fillRect(page2, 0, 0, PAGE_WIDTH, PAGE_HEIGHT, palette.white);
@@ -278,7 +278,7 @@ textLine(page3, 'Role', 48, top, 8.5, 'F2', palette.muted);
 textLine(page3, 'Team Leader', 138, top, 9.5, 'F1', palette.text);
 top += 15;
 textLine(page3, 'Team', 48, top, 8.5, 'F2', palette.muted);
-top = textBlock(page3, 'Wangdi Wangdi, Sangay Chedup, Wangchuk Blon and Tashi Choden', 138, top, 426, 9.5, 14, { color: palette.text });
+top = textBlock(page3, 'Wangdi, Sangay Chedup, Wangchuk Blon and Tashi Choden', 138, top, 426, 9.5, 14, { color: palette.text });
 top += 2;
 textLine(page3, 'Recognition', 48, top, 8.5, 'F2', palette.muted);
 top = textBlock(page3, 'Conservation Leadership Programme - Future Conservationist Award 2026', 138, top, 426, 9.5, 14, { color: palette.text });
@@ -331,7 +331,7 @@ for (const [index, stream] of pageStreams.entries()) {
 objects[2] = Buffer.from(`<< /Type /Pages /Kids [${pageIds.map((id) => `${id} 0 R`).join(' ')}] /Count ${pageIds.length} >>`, 'ascii');
 const infoId = objects.length;
 objects[infoId] = Buffer.from(
-  "<< /Title (Connected Skies - Public Project Brief) /Author (Wangdi Wangdi) /Subject (Great hornbill conservation in Biological Corridor 03, Bhutan) /Creator (Wangdi Wangdi portfolio) >>",
+  "<< /Title (Connected Skies - Public Project Brief) /Author (Wangdi) /Subject (Great hornbill conservation in Biological Corridor 03, Bhutan) /Creator (Wangdi portfolio) >>",
   'ascii'
 );
 

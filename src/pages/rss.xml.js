@@ -8,7 +8,7 @@ export async function GET(context) {
   );
 
   return rss({
-    title: "Wangdi Wangdi — Research outputs",
+    title: "Wangdi — Research outputs",
     description:
       "Publications, manuscripts, management plans, and conservation strategies from a Bhutanese forestry and conservation researcher.",
     site: context.site,

@@ -13,7 +13,7 @@ project:
   year: 2026
   role: Team Leader
   team:
-    - Wangdi Wangdi
+    - Wangdi
     - Sangay Chedup
     - Wangchuk Blon
     - Tashi Choden
