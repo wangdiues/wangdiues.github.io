@@ -13,8 +13,8 @@ Wiley self-archiving terms, BJNRD editorial policies, International Journal of E
    openly distributed public documents; hosted at the owner's direction).
 3. Manuscripts in preparation are hosted **as author-owned drafts**, clearly labelled.
 4. Any single hosted PDF defaults to ≤ 2 MB; named exceptions in
-   `scripts/check-budgets.mjs` cover author submissions and public institutional documents.
-   Directory total ≤ 60 MB (CI-enforced).
+   `src/data/publication-assets.json` cover author submissions and public institutional
+   documents. Every hosted filename must be present in that manifest; directory total ≤ 60 MB.
 5. **Map layers remain gated by DoFPS clearance** — see `docs/GEODATA.md`. Document hosting
    no longer waits on that clearance.
 

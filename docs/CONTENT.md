@@ -30,9 +30,11 @@ tags:
 The body (below `---`) is the abstract/description shown on the detail page. Write it as a
 factual summary with concrete numbers where available.
 
-**Rights check before adding any PDF:** confirm the entry against `docs/RIGHTS.md`.
-Publisher-version PDFs of subscription journals are never committed. Files must be ≤ 2 MB
-(`npm run budgets` enforces).
+**Rights check before adding any PDF:** confirm the entry against `docs/RIGHTS.md`, then add
+the approved filename, rights basis, reference, and byte limit to
+`src/data/publication-assets.json`. Unlisted public files fail the build. Publisher-version
+PDFs of subscription journals are never committed (`npm run budgets` enforces both approval
+and size limits).
 
 ## Narrative template for case studies
 

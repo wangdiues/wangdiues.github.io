@@ -18,7 +18,7 @@ const layersJson = JSON.stringify(LAYERS);
     <SectionHeading
       eyebrow="GIS explorer"
       title="Research map."
-      lede="Spatial context for the research on this site. Layers follow the disclosure policy in docs/GEODATA.md — occurrence-level data is never published; sensitive layers appear only as aggregated extents after written clearance."
+      lede="Spatial context for the research on this site. Occurrence-level data is never published; sensitive layers appear only as aggregated extents after written clearance."
     />
     <div class="mt-6 flex flex-wrap gap-2">
       <TagPill label="Protected areas & corridors: full resolution (public)" />
@@ -26,6 +26,7 @@ const layersJson = JSON.stringify(LAYERS);
       <TagPill label="Occurrences: aggregated or withheld" />
     </div>
 
+    <p id="map-status" class="sr-only" aria-live="polite"></p>
     <div class="mt-10 grid gap-6 lg:grid-cols-[280px_1fr]">
       <aside>
         <h2 class="mb-3 text-sm font-medium tracking-wider text-paper-50 uppercase">Layers</h2>
@@ -42,10 +43,10 @@ const layersJson = JSON.stringify(LAYERS);
         </fieldset>
         <details class="mt-6 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-4">
           <summary class="cursor-pointer text-sm font-medium text-moss-400">View layer data as table</summary>
-          <div id="layer-tables" class="mt-4 space-y-4 text-sm">
+          <div id="layer-tables" class="mt-4 space-y-6 text-sm">
             <p class="text-[var(--color-text-muted)]">
-              Every map layer is also available as a data table here — the same information without
-              the canvas, for screen readers, keyboard-only use, and print.
+              Every approved map attribute is available in paginated tables for screen readers
+              and keyboard-only use.
             </p>
           </div>
         </details>
@@ -54,8 +55,8 @@ const layersJson = JSON.stringify(LAYERS);
         <div id="map" class="absolute inset-0" role="application" aria-label="Interactive research map of Bhutan"></div>
         <noscript>
           <p class="p-6 text-sm text-[var(--color-text-muted)]">
-            The interactive map requires JavaScript. Layer data remains available as text tables
-            above; a static map image will accompany future layer releases.
+            The interactive map requires JavaScript. Approved layer attributes remain available
+            as text tables above.
           </p>
         </noscript>
       </div>
@@ -65,76 +66,212 @@ const layersJson = JSON.stringify(LAYERS);
 </BaseLayout>
 
 <script>
-  const init = async () => {
-    const panel = document.getElementById('layer-panel');
-    const layers: { id: string; label: string; file: string; description: string }[] = JSON.parse(
-      panel?.dataset.layers ?? '[]'
+  import { displayValue, pageBounds, waitForMapLoad } from '../lib/map-runtime';
+
+  type PublicField = { key: string; label: string };
+  type Layer = {
+    id: string;
+    label: string;
+    file: string;
+    description: string;
+    attribution: string;
+    geometry: 'polygon' | 'line' | 'point';
+    publicFields: PublicField[];
+  };
+  type Feature = {
+    type: 'Feature';
+    properties: Record<string, unknown>;
+    geometry: { type: string; coordinates: unknown };
+  };
+  type FeatureCollection = { type: 'FeatureCollection'; features: Feature[] };
+  type LoadedLayer = { layer: Layer; geojson: FeatureCollection; checkbox: HTMLInputElement };
+
+  const PAGE_SIZE = 50;
+
+  function text<Tag extends keyof HTMLElementTagNameMap>(tag: Tag, value: string, className?: string) {
+    const element = document.createElement(tag);
+    element.textContent = value;
+    if (className) element.className = className;
+    return element;
+  }
+
+  function renderTable(layer: Layer, geojson: FeatureCollection) {
+    const host = document.getElementById('layer-tables');
+    if (!host) return;
+
+    const section = document.createElement('section');
+    section.setAttribute('aria-labelledby', `${layer.id}-table-title`);
+    const heading = text('h3', layer.label, 'font-medium text-paper-50');
+    heading.id = `${layer.id}-table-title`;
+    section.append(
+      heading,
+      text('p', layer.description, 'mt-1 text-xs text-[var(--color-text-muted)]'),
+      text('p', `Source: ${layer.attribution}`, 'mt-1 text-xs text-[var(--color-text-muted)]')
     );
 
-    const maplibre = await import('maplibre-gl');
-    await import('maplibre-gl/dist/maplibre-gl.css');
+    if (geojson.features.length === 0) {
+      section.append(text('p', 'This approved layer contains no features.', 'mt-3 text-[var(--color-text-muted)]'));
+      host.append(section);
+      return;
+    }
 
-    const map = new maplibre.Map({
-      container: 'map',
-      style: 'https://demotiles.maplibre.org/style.json',
-      center: [90.4, 27.4],
-      zoom: 5.6,
-    });
-    map.addControl(new maplibre.NavigationControl({ showCompass: false }));
+    const wrapper = document.createElement('div');
+    wrapper.className = 'mt-3 overflow-x-auto';
+    const table = document.createElement('table');
+    table.className = 'w-full border-collapse text-left';
+    const caption = text('caption', `${layer.label}: ${geojson.features.length} feature records`, 'sr-only');
+    const head = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    for (const field of layer.publicFields) {
+      const cell = text('th', field.label, 'border-b border-white/20 px-2 py-1 font-medium text-paper-50');
+      cell.scope = 'col';
+      headerRow.append(cell);
+    }
+    head.append(headerRow);
+    const body = document.createElement('tbody');
+    table.append(caption, head, body);
+    wrapper.append(table);
+    section.append(wrapper);
 
-    for (const layer of layers) {
-      const res = await fetch(`/geo/${layer.file}`);
-      const geojson = await res.json();
+    const controls = document.createElement('div');
+    controls.className = 'mt-3 flex items-center justify-between gap-3';
+    const count = text('p', '', 'text-xs text-[var(--color-text-muted)]');
+    const buttons = document.createElement('div');
+    buttons.className = 'flex gap-2';
+    const previous = text('button', 'Previous', 'rounded border border-[var(--color-border-subtle)] px-2 py-1 disabled:opacity-40');
+    previous.type = 'button';
+    const next = text('button', 'Next', 'rounded border border-[var(--color-border-subtle)] px-2 py-1 disabled:opacity-40');
+    next.type = 'button';
+    buttons.append(previous, next);
+    controls.append(count, buttons);
+    section.append(controls);
 
-      map.on('load', () => {
-        map.addSource(layer.id, { type: 'geojson', data: geojson });
-        map.addLayer({
-          id: `${layer.id}-fill`,
-          type: 'fill',
-          source: layer.id,
-          paint: { 'fill-color': '#63b385', 'fill-opacity': 0.25 },
-        });
-        map.addLayer({
-          id: `${layer.id}-line`,
-          type: 'line',
-          source: layer.id,
-          paint: { 'line-color': '#8ccaa4', 'line-width': 1.5 },
-        });
-      });
-
-      const label = document.createElement('label');
-      label.className = 'flex items-center gap-2 text-sm';
-      const box = document.createElement('input');
-      box.type = 'checkbox';
-      box.checked = true;
-      box.addEventListener('change', () => {
-        const visibility = box.checked ? 'visible' : 'none';
-        for (const suffix of ['-fill', '-line']) {
-          map.setLayoutProperty(`${layer.id}${suffix}`, 'visibility', visibility);
+    let page = 0;
+    const renderPage = () => {
+      body.replaceChildren();
+      const { start, end } = pageBounds(page, geojson.features.length, PAGE_SIZE);
+      for (const feature of geojson.features.slice(start, end)) {
+        const row = document.createElement('tr');
+        for (const field of layer.publicFields) {
+          row.append(text('td', displayValue(feature.properties?.[field.key]), 'border-b border-white/10 px-2 py-1 align-top'));
         }
-      });
-      label.append(box, document.createTextNode(layer.label));
-      panel?.appendChild(label);
+        body.append(row);
+      }
+      count.textContent = `Showing ${start + 1}–${end} of ${geojson.features.length}`;
+      previous.disabled = page === 0;
+      next.disabled = end >= geojson.features.length;
+    };
+    previous.addEventListener('click', () => {
+      page -= 1;
+      renderPage();
+    });
+    next.addEventListener('click', () => {
+      page += 1;
+      renderPage();
+    });
+    renderPage();
+    host.append(section);
+  }
 
-      const table = document.createElement('div');
-      const rows = (geojson.features ?? [])
-        .slice(0, 50)
-        .map((f: { properties?: Record<string, unknown> }) => {
-          const p = f.properties ?? {};
-          return `<tr>${Object.values(p)
-            .slice(0, 4)
-            .map((v) => `<td class="border-b border-white/10 px-2 py-1">${String(v)}</td>`)
-            .join('')}</tr>`;
-        })
-        .join('');
-      table.innerHTML = `<p class="mb-1 text-xs text-[var(--color-text-muted)]">${layer.description}</p>
-        <table><tbody>${rows}</tbody></table>`;
-      document.getElementById('layer-tables')?.appendChild(table);
+  function layerStyleIds(layer: Layer) {
+    if (layer.geometry === 'polygon') return [`${layer.id}-fill`, `${layer.id}-line`];
+    return [`${layer.id}-${layer.geometry}`];
+  }
+
+  const init = async () => {
+    const panel = document.getElementById('layer-panel');
+    const status = document.getElementById('map-status');
+    const layers: Layer[] = JSON.parse(panel?.dataset.layers ?? '[]');
+    const loaded: LoadedLayer[] = [];
+
+    status!.textContent = layers.length === 0 ? 'No map layers are published.' : 'Loading approved map layers.';
+
+    await Promise.all(
+      layers.map(async (layer) => {
+        const label = document.createElement('label');
+        label.className = 'flex items-center gap-2 text-sm';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = true;
+        checkbox.disabled = true;
+        label.append(checkbox, document.createTextNode(layer.label));
+        panel?.append(label);
+
+        try {
+          const response = await fetch(`/geo/${encodeURIComponent(layer.file)}`);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const geojson = (await response.json()) as FeatureCollection;
+          if (geojson.type !== 'FeatureCollection' || !Array.isArray(geojson.features)) {
+            throw new Error('invalid FeatureCollection');
+          }
+          renderTable(layer, geojson);
+          loaded.push({ layer, geojson, checkbox });
+        } catch (error) {
+          label.append(text('span', 'Unavailable', 'text-xs text-red-300'));
+          status!.textContent = `${layer.label} failed to load: ${error instanceof Error ? error.message : 'unknown error'}`;
+        }
+      })
+    );
+
+    try {
+      const maplibre = await import('maplibre-gl');
+      await import('maplibre-gl/dist/maplibre-gl.css');
+      const map = new maplibre.Map({
+        container: 'map',
+        style: 'https://demotiles.maplibre.org/style.json',
+        center: [90.4, 27.4],
+        zoom: 5.6,
+      });
+      map.addControl(new maplibre.NavigationControl({ showCompass: false }));
+      await waitForMapLoad(map);
+
+      for (const { layer, geojson, checkbox } of loaded) {
+        map.addSource(layer.id, { type: 'geojson', data: geojson });
+        if (layer.geometry === 'polygon') {
+          map.addLayer({
+            id: `${layer.id}-fill`,
+            type: 'fill',
+            source: layer.id,
+            paint: { 'fill-color': '#63b385', 'fill-opacity': 0.25 },
+          });
+          map.addLayer({
+            id: `${layer.id}-line`,
+            type: 'line',
+            source: layer.id,
+            paint: { 'line-color': '#8ccaa4', 'line-width': 1.5 },
+          });
+        } else if (layer.geometry === 'line') {
+          map.addLayer({
+            id: `${layer.id}-line`,
+            type: 'line',
+            source: layer.id,
+            paint: { 'line-color': '#8ccaa4', 'line-width': 2 },
+          });
+        } else {
+          map.addLayer({
+            id: `${layer.id}-point`,
+            type: 'circle',
+            source: layer.id,
+            paint: { 'circle-color': '#63b385', 'circle-radius': 5 },
+          });
+        }
+        checkbox.disabled = false;
+        checkbox.addEventListener('change', () => {
+          const visibility = checkbox.checked ? 'visible' : 'none';
+          for (const id of layerStyleIds(layer)) map.setLayoutProperty(id, 'visibility', visibility);
+        });
+      }
+      status!.textContent = loaded.length === 0 ? 'Base map loaded; no data layers are published.' : `${loaded.length} approved map layer(s) loaded.`;
+    } catch (error) {
+      const mapElement = document.getElementById('map');
+      if (mapElement) {
+        mapElement.replaceChildren(
+          text('p', 'Map failed to load. Approved layer tables remain available.', 'p-6 text-sm text-[var(--color-text-muted)]')
+        );
+      }
+      status!.textContent = `Interactive map failed to load: ${error instanceof Error ? error.message : 'unknown error'}`;
     }
   };
 
-  init().catch(() => {
-    const el = document.getElementById('map');
-    if (el) el.innerHTML = '<p class="p-6 text-sm text-[var(--color-text-muted)]">Map failed to load. Data tables above carry the same information.</p>';
-  });
+  void init();
 </script>

@@ -11,8 +11,12 @@
     "preview": "astro preview",
     "tokens": "node scripts/build-tokens.mjs",
     "budgets": "node scripts/check-budgets.mjs",
+    "check:geo": "node scripts/check-geo.mjs",
     "check:routes": "node scripts/check-routes.mjs",
-    "prebuild": "npm run tokens",
+    "test": "node --test tests/*.test.mjs",
+    "prebuild": "npm run tokens && npm run budgets && npm run check:geo",
+    "postbuild": "node scripts/write-legacy-redirects.mjs",
+    "verify": "npm test && npm run build && npm run check:routes",
     "astro": "astro",
     "orcid": "node scripts/sync-orcid.mjs"
   },

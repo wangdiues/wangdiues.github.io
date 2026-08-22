@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { basename, join } from "node:path";
 
 const DIR = "public/publications";
@@ -65,6 +65,8 @@ if (!Array.isArray(manifest.files)) {
     }
     if (typeof asset.approvalRef !== "string" || asset.approvalRef.trim() === "") {
       failures.push(`${asset.file}: approvalRef is required`);
+    } else if (!existsSync(asset.approvalRef.split("#")[0])) {
+      failures.push(`${asset.file}: approvalRef does not point to an existing file`);
     }
     if (!Number.isInteger(asset.maxBytes) || asset.maxBytes <= 0) {
       failures.push(`${asset.file}: maxBytes must be a positive integer`);

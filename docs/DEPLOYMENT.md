@@ -3,7 +3,9 @@
 ## How it works
 
 Push to `main` → GitHub Actions (`.github/workflows/deploy-pages.yml`):
-`npm ci → tokens → build → budgets` → artifact upload → Pages deploy.
+`npm ci → npm run verify` → artifact upload → Pages deploy. Verification runs unit tests,
+PDF rights/budget checks, GeoJSON disclosure checks, the Astro build, legacy redirect
+generation, and route validation before the artifact can upload.
 Live at **https://wangdiues.github.io** (user site; repo was renamed from
 `Wangdi-portfolio-v8`, old URLs redirect automatically at the GitHub level).
 

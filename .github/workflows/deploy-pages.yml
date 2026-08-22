@@ -24,10 +24,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run tokens
-      - run: npm run build
-      - run: npm run check:routes
-      - run: npm run budgets
+      - run: npm run verify
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
