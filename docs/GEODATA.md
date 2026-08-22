@@ -1,6 +1,9 @@
 # Geospatial Data Disclosure Policy (Decision D1)
 
 _Status: policy adopted 2026-08-22. Clearance conversations with DoFPS not yet held._
+_V2.1 status: the `/explore` map shell is live with an **empty layer registry** — no layer
+ships until its file lands in `src/data/geo/` with clearance satisfied (see that folder's README).
+Draft clearance request ready in `docs/DRAFT_DOFPS_REQUEST.md`._
 
 Fine-resolution occurrence data for tigers and elephants must not be openly published: the
 poaching-facilitation pathway from published occurrence records is documented in the

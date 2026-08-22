@@ -43,16 +43,17 @@ BJNRD editorial policies, International Journal of Environment (NepJOL) policies
 
 ## Open items requiring Wangdi
 
-1. **aquatic-beetles** — confirm full author list and Wangdi's position (research indicates
-   fourth author; first author Wangchuk Blon). Entry currently displays "Wangchuk Blon et al."
-2. **fundamental-realized-habitat** — two manuscript versions exist locally:
-   - Version A (`fundamental-realized-habitat.pdf`): newer structured abstract, 1,049 occurrence
-     records, habitat 555→498 km². **Currently referenced by the site entry.**
-   - Version B (`01_manuscript.pdf`): carries "Transferable" subtitle and the four-author list
-     matching the entry metadata.
-     Confirm which version is current so title/authors/file agree.
-3. **climate-vulnerability-adaptive-capacity** — confirm full author order (Sangay Chedup
-   identified as co-author; entry currently "Wangdi et al.").
-4. **wild-edible-medicinal-plants** — multi-author manuscript (corresponding author Sangay
-   Dorjee; Wangdi ~tenth author). Confirm display format.
-5. **DoFPS clearance** for the four institutional documents — same conversation as D1.
+1. **fundamental-realized-habitat** — RESOLVED BY EVIDENCE (2026-08-22): the manuscript in
+   `01_manuscript.pdf` ("Transferable" subtitle, four-author list, conservation-triage framework)
+   matches every statistic recorded in the site entry and extends the condensed draft now archived
+   as the earlier version. Site entry and hosted PDF both point at this version. **Veto window:**
+   if an alternative current version exists, say so and the entry reverts.
+2. **wild-edible-medicinal-plants** — NARROWED: confirmed multi-author manuscript, corresponding
+   author Sangay Dorjee, Wangdi ~tenth author (ORCID-verified from source PDF before it was moved
+   out of staging). Unconfirmed: ordered list of authors 1–7. Entry displays "Sangay Dorjee et al."
+3. ~~aquatic-beetles~~ RESOLVED: full list extracted — Wangchuk Blon, Tashi Dendup, Cheten Dorji &
+   Wangdi (Wangdi fourth); exact article title restored.
+4. ~~climate-vulnerability-adaptive-capacity~~ RESOLVED: two authors only — Wangdi (corresponding)
+   & Sangay Chedup; expanded subtitle restored from the title page.
+5. **DoFPS clearance** for the four institutional documents — same conversation as D1
+   (draft request in `docs/DRAFT_DOFPS_REQUEST.md`).

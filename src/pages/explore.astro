@@ -1,0 +1,140 @@
+---
+import { LAYERS } from '../data/geo/layers';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import TagPill from '../components/ui/TagPill.astro';
+
+const layersJson = JSON.stringify(LAYERS);
+---
+
+<BaseLayout
+  title="Research Map | Wangdi Wangdi"
+  description="Interactive research map — protected-area connectivity, habitat modelling outputs, and survey footprints, published under DoFPS data-disclosure rules."
+>
+  <Nav />
+  <main id="main" class="mx-auto max-w-5xl px-6 pt-28 pb-20">
+    <SectionHeading
+      eyebrow="GIS explorer"
+      title="Research map."
+      lede="Spatial context for the research on this site. Layers follow the disclosure policy in docs/GEODATA.md — occurrence-level data is never published; sensitive layers appear only as aggregated extents after written clearance."
+    />
+    <div class="mt-6 flex flex-wrap gap-2">
+      <TagPill label="Protected areas & corridors: full resolution (public)" />
+      <TagPill label="SDM surfaces: model outputs only" />
+      <TagPill label="Occurrences: aggregated or withheld" />
+    </div>
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-[280px_1fr]">
+      <aside>
+        <h2 class="mb-3 text-sm font-medium tracking-wider text-paper-50 uppercase">Layers</h2>
+        <fieldset id="layer-panel" class="space-y-2" data-layers={layersJson}>
+          <legend class="sr-only">Toggle map layers</legend>
+          {
+            LAYERS.length === 0 && (
+              <p class="rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-4 text-sm text-[var(--color-text-muted)]">
+                No layers published yet. Data preparation is under DoFPS disclosure review —
+                cleared layers will appear here with full source notes.
+              </p>
+            )
+          }
+        </fieldset>
+        <details class="mt-6 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-4">
+          <summary class="cursor-pointer text-sm font-medium text-moss-400">View layer data as table</summary>
+          <div id="layer-tables" class="mt-4 space-y-4 text-sm">
+            <p class="text-[var(--color-text-muted)]">
+              Every map layer is also available as a data table here — the same information without
+              the canvas, for screen readers, keyboard-only use, and print.
+            </p>
+          </div>
+        </details>
+      </aside>
+      <div class="relative min-h-[420px] overflow-hidden rounded-lg border border-[var(--color-border-subtle)]">
+        <div id="map" class="absolute inset-0" role="application" aria-label="Interactive research map of Bhutan"></div>
+        <noscript>
+          <p class="p-6 text-sm text-[var(--color-text-muted)]">
+            The interactive map requires JavaScript. Layer data remains available as text tables
+            above; a static map image will accompany future layer releases.
+          </p>
+        </noscript>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  const init = async () => {
+    const panel = document.getElementById('layer-panel');
+    const layers: { id: string; label: string; file: string; description: string }[] = JSON.parse(
+      panel?.dataset.layers ?? '[]'
+    );
+
+    const maplibre = await import('maplibre-gl');
+    await import('maplibre-gl/dist/maplibre-gl.css');
+
+    const map = new maplibre.Map({
+      container: 'map',
+      style: 'https://demotiles.maplibre.org/style.json',
+      center: [90.4, 27.4],
+      zoom: 5.6,
+    });
+    map.addControl(new maplibre.NavigationControl({ showCompass: false }));
+
+    for (const layer of layers) {
+      const res = await fetch(`/geo/${layer.file}`);
+      const geojson = await res.json();
+
+      map.on('load', () => {
+        map.addSource(layer.id, { type: 'geojson', data: geojson });
+        map.addLayer({
+          id: `${layer.id}-fill`,
+          type: 'fill',
+          source: layer.id,
+          paint: { 'fill-color': '#63b385', 'fill-opacity': 0.25 },
+        });
+        map.addLayer({
+          id: `${layer.id}-line`,
+          type: 'line',
+          source: layer.id,
+          paint: { 'line-color': '#8ccaa4', 'line-width': 1.5 },
+        });
+      });
+
+      const label = document.createElement('label');
+      label.className = 'flex items-center gap-2 text-sm';
+      const box = document.createElement('input');
+      box.type = 'checkbox';
+      box.checked = true;
+      box.addEventListener('change', () => {
+        const visibility = box.checked ? 'visible' : 'none';
+        for (const suffix of ['-fill', '-line']) {
+          map.setLayoutProperty(`${layer.id}${suffix}`, 'visibility', visibility);
+        }
+      });
+      label.append(box, document.createTextNode(layer.label));
+      panel?.appendChild(label);
+
+      const table = document.createElement('div');
+      const rows = (geojson.features ?? [])
+        .slice(0, 50)
+        .map((f: { properties?: Record<string, unknown> }) => {
+          const p = f.properties ?? {};
+          return `<tr>${Object.values(p)
+            .slice(0, 4)
+            .map((v) => `<td class="border-b border-white/10 px-2 py-1">${String(v)}</td>`)
+            .join('')}</tr>`;
+        })
+        .join('');
+      table.innerHTML = `<p class="mb-1 text-xs text-[var(--color-text-muted)]">${layer.description}</p>
+        <table><tbody>${rows}</tbody></table>`;
+      document.getElementById('layer-tables')?.appendChild(table);
+    }
+  };
+
+  init().catch(() => {
+    const el = document.getElementById('map');
+    if (el) el.innerHTML = '<p class="p-6 text-sm text-[var(--color-text-muted)]">Map failed to load. Data tables above carry the same information.</p>';
+  });
+</script>

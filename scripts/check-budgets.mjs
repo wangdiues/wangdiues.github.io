@@ -6,7 +6,7 @@ const MAX_FILE = 2_000_000;
 const MAX_TOTAL = 10_000_000;
 const EXCEPTIONS = {
   "forest-gradient-bhutan-main.pdf": 2_300_000,
-  "fundamental-realized-habitat.pdf": 2_300_000,
+  "fundamental-realized-habitat.pdf": 2_450_000,
 };
 
 const failures = [];
