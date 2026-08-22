@@ -5,26 +5,34 @@ import { SOCIAL } from '../../config';
 
 <section id="contact" class="scroll-mt-20 border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]/40 py-24">
   <div class="mx-auto grid max-w-5xl gap-10 px-6 lg:grid-cols-[1.1fr_0.9fr]">
-    <SectionHeading
-      eyebrow="Contact"
-      title="Open to research collaboration, conservation planning, and technical exchange."
-    />
-    <ul class="space-y-4 self-center text-lg">
+    <div class="lg:sticky lg:top-28 lg:self-start">
+      <SectionHeading
+        eyebrow="Contact"
+        title="Open to research collaboration, conservation planning, and technical exchange."
+      />
+    </div>
+    <dl
+      class="self-center divide-y divide-[var(--color-border-subtle)] border-y border-[var(--color-border-subtle)]"
+    >
       {
         SOCIAL.map((s) => (
-          <li>
-            <a
-              href={s.href}
-              target={s.href.startsWith('http') ? '_blank' : undefined}
-              rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              class="inline-flex items-center gap-3 text-paper-50 transition-colors hover:text-moss-400"
-            >
-              <span class="h-1.5 w-1.5 rounded-full bg-moss-400" aria-hidden="true" />
-              {s.label}: <span class="text-[var(--color-text-muted)]">{s.value}</span>
-            </a>
-          </li>
+          <div class="grid grid-cols-[5.5rem_1fr] items-baseline gap-4 py-4">
+            <dt class="text-xs font-medium tracking-wider text-[var(--color-text-muted)] uppercase">
+              {s.label}
+            </dt>
+            <dd class="min-w-0">
+              <a
+                href={s.href}
+                target={s.href.startsWith('http') ? '_blank' : undefined}
+                rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="break-words text-paper-50 underline-offset-4 transition-colors hover:text-moss-400 hover:underline"
+              >
+                {s.value}
+              </a>
+            </dd>
+          </div>
         ))
       }
-    </ul>
+    </dl>
   </div>
 </section>
