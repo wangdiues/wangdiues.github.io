@@ -141,3 +141,13 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Astro
+.astro/
+
+# Impeccable (ephemeral design-review artifacts)
+.impeccable/config.local.json
+.impeccable/*.png
+.impeccable/live/sessions/
+.impeccable/live/previews/
+.impeccable/live/cache/

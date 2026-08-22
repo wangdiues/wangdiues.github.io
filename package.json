@@ -1,0 +1,24 @@
+{
+  "name": "wangdi-portfolio-v8",
+  "description": "Research portfolio of Wangdi Wangdi — biodiversity, climate science, GIS, remote sensing, conservation, and forest governance.",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "tokens": "node scripts/build-tokens.mjs",
+    "prebuild": "npm run tokens",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.0",
+    "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}
