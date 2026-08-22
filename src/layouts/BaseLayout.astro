@@ -20,6 +20,7 @@ const { title, description = 'Research portfolio of Wangdi Wangdi — biodiversi
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <slot name="head" />
   </head>
   <body class="min-h-screen antialiased">
     <a

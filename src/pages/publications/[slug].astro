@@ -1,0 +1,160 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import StatusBadge from '../../components/ui/StatusBadge.astro';
+import TagPill from '../../components/ui/TagPill.astro';
+import { formatCitation, splitAuthors, relatedCaseStudies } from '../../lib/citation';
+
+export async function getStaticPaths() {
+  const publications = await getCollection('publications');
+  return publications.map((pub) => ({
+    params: { slug: pub.id },
+    props: { pub },
+  }));
+}
+
+const { pub } = Astro.props;
+const { Content } = await render(pub);
+const citation = formatCitation(pub);
+
+const allStudies = await getCollection('case-studies');
+const related = relatedCaseStudies(pub, allStudies);
+
+const statusLabel = {
+  published: 'Published',
+  'under-review': 'Under review',
+  'in-preparation': 'In preparation',
+  report: 'Report',
+} as const;
+
+const jsonld = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  headline: pub.data.title,
+  author: splitAuthors(pub.data.authors).map((name) => ({ '@type': 'Person', name })),
+  datePublished: String(pub.data.year),
+  isPartOf: pub.data.venue,
+  url: pub.data.doi ? `https://doi.org/${pub.data.doi}` : `https://wangdiues.github.io/publications/${pub.id}/`,
+  identifier: pub.data.doi,
+});
+---
+
+<BaseLayout title={`${pub.data.title} | Wangdi Wangdi`} description={pub.body?.slice(0, 155)}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={jsonld} />
+  </Fragment>
+  <Nav />
+  <main id="main" class="mx-auto max-w-3xl px-6 pt-28 pb-20">
+    <a href="/publications" class="text-sm text-moss-400 underline-offset-4 hover:underline">← All publications</a>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <StatusBadge status={pub.data.status} />
+      <span class="text-xs text-[var(--color-text-muted)]">{statusLabel[pub.data.status]} · {pub.data.year}</span>
+    </div>
+    <h1 class="mt-4 text-h2 leading-tight text-paper-50">{pub.data.title}</h1>
+    <p class="mt-3 text-lg text-[var(--color-text-muted)]">{pub.data.authors}</p>
+    <p class="mt-1 text-sm text-[var(--color-text-muted)] italic">{pub.data.venue}</p>
+
+    <div class="prose mt-10 max-w-none text-[var(--color-text-muted)] [&_p]:mb-4">
+      <Content />
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-4 text-sm">
+      {
+        pub.data.doi && (
+          <a
+            href={`https://doi.org/${pub.data.doi}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-full bg-moss-400 px-5 py-2 font-medium text-ink-900"
+          >
+            View at publisher (DOI)
+          </a>
+        )
+      }
+      {
+        pub.data.pdf && (
+          <a
+            href={pub.data.pdf}
+            class="rounded-full border border-moss-400 px-5 py-2 font-medium text-moss-400"
+          >
+            Download PDF
+          </a>
+        )
+      }
+    </div>
+
+    {
+      pub.data.rightsNote && (
+        <p class="mt-6 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-4 text-sm text-[var(--color-text-muted)]">
+          {pub.data.rightsNote}
+        </p>
+      )
+    }
+
+    <div class="mt-10 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-5">
+      <h2 class="text-xs font-medium tracking-wider text-paper-50 uppercase">Citation</h2>
+      <p id="citation-text" class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{citation}</p>
+      <button
+        id="copy-citation"
+        type="button"
+        class="mt-3 text-sm text-moss-400 underline-offset-4 hover:underline"
+        data-citation={citation}
+      >
+        Copy citation
+      </button>
+    </div>
+
+    {
+      pub.data.tags.length > 0 && (
+        <div class="mt-8 flex flex-wrap gap-2">
+          {pub.data.tags.map((t) => (
+            <TagPill label={t} />
+          ))}
+        </div>
+      )
+    }
+
+    {
+      related.length > 0 && (
+        <div class="mt-12 border-t border-[var(--color-border-subtle)] pt-8">
+          <h2 class="mb-4 text-sm font-medium tracking-wider text-paper-50 uppercase">Related field work</h2>
+          <ul class="space-y-3">
+            {related.map((study) => (
+              <li>
+                <a
+                  href={`/case-studies/${study.id}/`}
+                  class="text-moss-400 underline-offset-4 hover:underline"
+                >
+                  {study.data.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  document.getElementById('copy-citation')?.addEventListener('click', async function () {
+    const text = this.dataset.citation ?? '';
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    const original = this.textContent;
+    this.textContent = 'Copied ✓';
+    setTimeout(() => (this.textContent = original), 2000);
+  });
+</script>
