@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface GalleryItem {
+  image: ImageMetadata;
+  alt: string;
+  caption: string;
+}
+
+interface Props {
+  items: GalleryItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section aria-labelledby="project-gallery-title" class="border-t border-[var(--color-border-subtle)] py-20">
+  <div class="mx-auto max-w-5xl px-6">
+    <p class="text-sm font-medium tracking-widest text-moss-400 uppercase">Species, landscape and community context</p>
+    <h2 id="project-gallery-title" class="mt-2 text-h2 text-paper-50">Project gallery</h2>
+    <p class="mt-3 max-w-2xl text-[var(--color-text-muted)]">
+      Great hornbills, Biological Corridor 03 field settings, and earlier community engagement that inform the Connected Skies programme.
+    </p>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map(({ image, alt, caption }, index) => (
+          <figure class:list={[
+            'overflow-hidden rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]',
+            index === 0 && 'sm:col-span-2 lg:col-span-2',
+          ]}>
+            <div class:list={['overflow-hidden', index === 0 ? 'aspect-[16/9]' : 'aspect-[4/3]']}>
+              <Image
+                src={image}
+                alt={alt}
+                widths={[480, 720, 960, 1280]}
+                sizes={index === 0 ? '(min-width: 1024px) 66vw, 100vw' : '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'}
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.02]"
+              />
+            </div>
+            <figcaption class="px-4 py-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+              {caption}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

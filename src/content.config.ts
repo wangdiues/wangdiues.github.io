@@ -35,6 +35,53 @@ const caseStudies = defineCollection({
     focus: z.string(),
     impact: z.string(),
     methods: z.array(z.string()).default([]),
+    project: z
+      .object({
+        year: z.coerce.number(),
+        role: z.string(),
+        team: z.array(z.string()).min(1),
+        categories: z.array(z.string()).min(1),
+        summary: z.string(),
+        assetGroup: z.string(),
+        hero: z.object({
+          asset: z.string(),
+          alt: z.string(),
+        }),
+        award: z.object({
+          organization: z.string(),
+          name: z.string(),
+          year: z.coerce.number(),
+          url: z.string().url(),
+        }),
+        approaches: z
+          .array(
+            z.object({
+              title: z.string(),
+              description: z.string(),
+              points: z.array(z.string()).min(1),
+            })
+          )
+          .min(1),
+        community: z.object({
+          description: z.string(),
+          points: z.array(z.string()).min(1),
+        }),
+        outputs: z.array(z.string()).min(1),
+        gallery: z
+          .array(
+            z.object({
+              asset: z.string(),
+              alt: z.string(),
+              caption: z.string(),
+            })
+          )
+          .min(1),
+        document: z.object({
+          href: z.string().regex(/^\/CLP\/.+\.pdf$/i),
+          label: z.string(),
+        }),
+      })
+      .optional(),
   }),
 });
 

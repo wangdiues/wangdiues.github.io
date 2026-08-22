@@ -1,6 +1,6 @@
 # Publication Rights Register (Decision D3)
 
-_Last reviewed: 2026-08-22 (rev 3 — adds image rights). Sources: Elsevier sharing policy,
+_Last reviewed: 2026-08-22 (rev 4 — adds Connected Skies project assets). Sources: Elsevier sharing policy,
 Wiley self-archiving terms, BJNRD editorial policies, International Journal of Environment
 (NepJOL) policies, and owner direction on public RGoB documents._
 
@@ -54,6 +54,23 @@ manifest in `src/data/gallery.ts`, so they must not be renamed without updating 
 
 Before adding any photograph taken by a colleague or supplied by DoFPS, record it here
 with its photographer and permission basis first.
+
+## Case-study assets
+
+### Connected Skies
+
+- **Public project brief:** `public/CLP/Application-20636_CLP_Final.pdf` is a new,
+  author-created public summary based only on the public project facts supplied by the
+  portfolio owner and the official Conservation Leadership Programme project page. The
+  confidential CLP application is not copied to `public/`, is not embedded in the PDF, and
+  remains local-only. Public hosting and use of the requested download label were explicitly
+  approved by the portfolio owner on 2026-08-22.
+- **Project photographs:** `GH1.jpeg`, `GH2.jpeg`, `GH3.jpeg`, `GH4.jpeg`, `GH6.jpeg`,
+  `WB1.jpeg`, `SC3.jpeg`, `W1.jpg`, and `W2.jpg` were supplied by the portfolio owner with
+  an explicit direction to publish them on this project page on 2026-08-22. They are stored
+  under `src/assets/projects/connected-skies/` and processed by Astro rather than copied to
+  the public tree. Source filenames do not establish the identities of pictured people, so
+  captions and alt text remain non-identifying.
 
 ## Post-acceptance rules (apply when acceptances arrive)
 

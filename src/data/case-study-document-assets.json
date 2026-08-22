@@ -1,0 +1,12 @@
+{
+  "totalMaxBytes": 1500000,
+  "files": [
+    {
+      "file": "Application-20636_CLP_Final.pdf",
+      "caseStudy": "connected-skies-great-hornbills",
+      "rightsBasis": "Author-created public project brief approved by the portfolio owner; confidential source application excluded",
+      "approvalRef": "docs/RIGHTS.md#case-study-assets",
+      "maxBytes": 1000000
+    }
+  ]
+}

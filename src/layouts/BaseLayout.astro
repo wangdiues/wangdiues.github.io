@@ -6,14 +6,15 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title,
   description = 'Research portfolio of Wangdi Wangdi — biodiversity, climate science, GIS, and forest governance in Bhutan.',
+  image = '/og.png',
 } = Astro.props;
 
-const ogImage = '/og.png';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
 const analyticsDomain = import.meta.env.PUBLIC_ANALYTICS_DOMAIN;
@@ -31,7 +32,7 @@ const analyticsDomain = import.meta.env.PUBLIC_ANALYTICS_DOMAIN;
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
