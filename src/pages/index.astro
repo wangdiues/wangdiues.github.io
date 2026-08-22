@@ -1,36 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import Metrics from '../components/sections/Metrics.astro';
+import About from '../components/sections/About.astro';
+import Experience from '../components/sections/Experience.astro';
+import CaseStudies from '../components/sections/CaseStudies.astro';
+import Contact from '../components/sections/Contact.astro';
 ---
 
-<BaseLayout title="Wangdi Wangdi | Conservation Ecology & Forest Governance">
-  <main id="main" class="mx-auto flex min-h-screen max-w-3xl flex-col justify-center px-6 py-24">
-    <p class="mb-4 text-sm tracking-widest text-[var(--color-text-muted)] uppercase">
-      Research portfolio · in development
-    </p>
-    <h1 class="text-5xl font-bold text-[var(--color-paper-50)]">Wangdi Wangdi</h1>
-    <p class="mt-4 max-w-xl text-lg leading-relaxed text-[var(--color-text-muted)]">
-      Senior Forestry Officer and conservation researcher — biodiversity, climate science,
-      GIS and remote sensing, and forest governance across Bhutan.
-    </p>
-    <div class="mt-8 flex flex-wrap gap-4">
-      <a
-        href="mailto:wangdiues@gmail.com"
-        class="rounded-full bg-[var(--color-accent)] px-6 py-2.5 font-medium text-[var(--color-ink-900)]"
-      >
-        Contact
-      </a>
-      <a
-        href="https://orcid.org/0009-0007-7726-1742"
-        rel="noopener noreferrer"
-        target="_blank"
-        class="rounded-full border border-[var(--color-moss-400)] px-6 py-2.5 font-medium text-[var(--color-moss-400)]"
-      >
-        ORCID
-      </a>
-    </div>
-    <p class="mt-16 border-t border-[var(--color-moss-400)]/20 pt-6 text-sm text-[var(--color-text-muted)]">
-      Milestone 1 foundation build — content and pages land in Milestones 3–6. See
-      <code>V2_DEVELOPMENT_PLAN.md</code>.
-    </p>
+<BaseLayout>
+  <Nav />
+  <main id="main">
+    <Hero />
+    <Metrics />
+    <About />
+    <Experience />
+    <CaseStudies />
+    <Contact />
   </main>
+  <Footer />
 </BaseLayout>

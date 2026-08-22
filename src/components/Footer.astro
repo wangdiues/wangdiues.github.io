@@ -1,0 +1,27 @@
+---
+import { SOCIAL } from '../config';
+---
+
+<footer class="border-t border-[var(--color-border-subtle)] py-10">
+  <div class="mx-auto flex max-w-5xl flex-col items-center gap-6 px-6 sm:flex-row sm:justify-between">
+    <p class="text-sm text-[var(--color-text-muted)]">
+      © {new Date().getFullYear()} Wangdi Wangdi · Biodiversity science & forest governance, Bhutan
+    </p>
+    <ul class="flex gap-6 text-sm" aria-label="Social links">
+      {
+        SOCIAL.map((s) => (
+          <li>
+            <a
+              href={s.href}
+              target={s.href.startsWith('http') ? '_blank' : undefined}
+              rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="text-[var(--color-text-muted)] transition-colors hover:text-moss-400"
+            >
+              {s.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>

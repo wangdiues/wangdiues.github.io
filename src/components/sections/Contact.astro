@@ -1,0 +1,30 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { SOCIAL } from '../../config';
+---
+
+<section id="contact" class="scroll-mt-20 border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]/40 py-24">
+  <div class="mx-auto grid max-w-5xl gap-10 px-6 lg:grid-cols-[1.1fr_0.9fr]">
+    <SectionHeading
+      eyebrow="Contact"
+      title="Open to research collaboration, conservation planning, and technical exchange."
+    />
+    <ul class="space-y-4 self-center text-lg">
+      {
+        SOCIAL.map((s) => (
+          <li>
+            <a
+              href={s.href}
+              target={s.href.startsWith('http') ? '_blank' : undefined}
+              rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="inline-flex items-center gap-3 text-paper-50 transition-colors hover:text-moss-400"
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-moss-400" aria-hidden="true" />
+              {s.label}: <span class="text-[var(--color-text-muted)]">{s.value}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

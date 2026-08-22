@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+
+const pubs = await getCollection('publications');
+const underReview = pubs.filter((p) => p.data.status === 'under-review').length;
+const reports = pubs.filter((p) => p.data.status === 'report').length;
+
+const metrics = [
+  { value: String(pubs.length), label: 'Publications, plans & strategies' },
+  { value: String(underReview), label: 'Manuscripts under review' },
+  { value: String(reports), label: 'Management plans & strategies delivered' },
+  { value: '100+', label: 'Species documented through camera-trap monitoring' },
+];
+---
+
+<section class="border-y border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]/60" aria-label="Research output at a glance">
+  <div class="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-6 py-10 lg:grid-cols-4">
+    {
+      metrics.map((m) => (
+        <div>
+          <p class="font-heading text-4xl font-semibold text-moss-400 tabular-nums">{m.value}</p>
+          <p class="mt-2 text-sm leading-snug text-[var(--color-text-muted)]">{m.label}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

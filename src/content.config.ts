@@ -51,4 +51,8 @@ const experience = defineCollection({
   }),
 });
 
-export const collections = { publications, caseStudies, experience };
+export const collections = {
+  publications,
+  "case-studies": caseStudies,
+  experience,
+};

@@ -1,0 +1,57 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import TagPill from '../ui/TagPill.astro';
+
+const fieldMethods = [
+  'Camera-trap surveys',
+  'Occupancy modelling',
+  'Species distribution modelling',
+  'Forest inventory',
+  'Climate vulnerability assessment',
+  'Human–wildlife coexistence planning',
+];
+
+const platforms = [
+  'R',
+  'Python',
+  'QGIS',
+  'ArcGIS',
+  'Google Earth Engine',
+  'MaxEnt',
+  'MODIS / Sentinel',
+  'GEDI',
+];
+---
+
+<section id="about" class="scroll-mt-20 py-24">
+  <div class="mx-auto grid max-w-5xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr]">
+    <SectionHeading
+      eyebrow="About"
+      title="Ecological evidence for practical conservation decisions."
+    />
+    <div class="space-y-5 text-[var(--color-text-muted)]">
+      <p>
+        I work within Bhutan's forest governance system, combining field implementation, ecological
+        analysis, geospatial modelling, protected-area planning, and policy-linked conservation delivery.
+      </p>
+      <p>
+        My portfolio connects biodiversity monitoring, species distribution modelling, climate
+        vulnerability assessment, human–wildlife coexistence planning, and non-wood forest product
+        governance — built for collaborators, institutions, and reviewers who need a clear view of
+        technical depth and applied impact.
+      </p>
+      <div class="pt-2">
+        <p class="mb-3 text-sm font-medium tracking-wider text-paper-50 uppercase">Field & analytical methods</p>
+        <div class="flex flex-wrap gap-2">
+          {fieldMethods.map((m) => <TagPill label={m} />)}
+        </div>
+      </div>
+      <div>
+        <p class="mb-3 text-sm font-medium tracking-wider text-paper-50 uppercase">Software & platforms</p>
+        <div class="flex flex-wrap gap-2">
+          {platforms.map((m) => <TagPill label={m} />)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
