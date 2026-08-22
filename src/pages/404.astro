@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<BaseLayout title="Page not found | Wangdi Wangdi">
+  <main id="main" class="mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center px-6 text-center">
+    <p class="font-heading text-7xl font-semibold text-moss-400">404</p>
+    <h1 class="mt-4 text-h3 text-paper-50">This page has moved or never existed.</h1>
+    <p class="mt-4 text-[var(--color-text-muted)]">
+      The portfolio was recently rebuilt — try the home page, publications index, or search the sitemap.
+    </p>
+    <div class="mt-8 flex gap-4">
+      <Button href="/">Home</Button>
+      <Button href="/publications" variant="secondary">Publications</Button>
+    </div>
+  </main>
+</BaseLayout>

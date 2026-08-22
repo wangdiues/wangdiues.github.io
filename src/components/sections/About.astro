@@ -1,26 +1,7 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
 import TagPill from '../ui/TagPill.astro';
-
-const fieldMethods = [
-  'Camera-trap surveys',
-  'Occupancy modelling',
-  'Species distribution modelling',
-  'Forest inventory',
-  'Climate vulnerability assessment',
-  'Human–wildlife coexistence planning',
-];
-
-const platforms = [
-  'R',
-  'Python',
-  'QGIS',
-  'ArcGIS',
-  'Google Earth Engine',
-  'MaxEnt',
-  'MODIS / Sentinel',
-  'GEDI',
-];
+import { FIELD_METHODS, PLATFORMS } from '../../config';
 ---
 
 <section id="about" class="scroll-mt-20 py-24">
@@ -43,13 +24,13 @@ const platforms = [
       <div class="pt-2">
         <p class="mb-3 text-sm font-medium tracking-wider text-paper-50 uppercase">Field & analytical methods</p>
         <div class="flex flex-wrap gap-2">
-          {fieldMethods.map((m) => <TagPill label={m} />)}
+          {FIELD_METHODS.map((m) => <TagPill label={m} />)}
         </div>
       </div>
       <div>
         <p class="mb-3 text-sm font-medium tracking-wider text-paper-50 uppercase">Software & platforms</p>
         <div class="flex flex-wrap gap-2">
-          {platforms.map((m) => <TagPill label={m} />)}
+          {PLATFORMS.map((m) => <TagPill label={m} />)}
         </div>
       </div>
     </div>

@@ -1,0 +1,162 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SOCIAL, FIELD_METHODS, PLATFORMS } from '../config';
+
+const jobs = (await getCollection('experience')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const publications = (await getCollection('publications')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const published = publications.filter((p) => p.data.status === 'published');
+const underReview = publications.filter((p) => p.data.status === 'under-review');
+const inPrep = publications.filter((p) => p.data.status === 'in-preparation');
+const reports = publications.filter((p) => p.data.status === 'report');
+
+const group = (label: string, items: typeof publications) => ({
+  label,
+  items,
+});
+const groups = [
+  group('Published', published),
+  group('Manuscripts under review', underReview),
+  group('In preparation', inPrep),
+  group('Management plans & strategies', reports),
+];
+---
+
+<BaseLayout title="Curriculum Vitae | Wangdi Wangdi" description="Curriculum vitae of Wangdi Wangdi — forestry, biodiversity research, GIS, and forest governance.">
+  <main id="main" class="mx-auto max-w-3xl px-6 py-16 cv">
+    <header class="border-b-2 border-moss-400 pb-6">
+      <h1 class="font-heading text-4xl font-semibold text-paper-50">Wangdi Wangdi</h1>
+      <p class="mt-2 text-lg text-[var(--color-text-muted)]">Senior Forestry Officer · Conservation Researcher</p>
+      <p class="mt-1 text-sm text-[var(--color-text-muted)]">
+        Department of Forests &amp; Park Services, Bhutan ·
+        <a href={`https://orcid.org/0009-0007-7726-1742`} class="text-moss-400 underline-offset-4 hover:underline">ORCID 0009-0007-7726-1742</a>
+      </p>
+      <p class="mt-1 text-sm">
+        {
+          SOCIAL.map((s, i) => (
+            <>
+              <a href={s.href} class="text-moss-400 underline-offset-4 hover:underline">{s.value}</a>
+              {i < SOCIAL.length - 1 && ' · '}
+            </>
+          ))
+        }
+      </p>
+    </header>
+
+    <section class="cv-section">
+      <h2>Experience</h2>
+      {
+        jobs.map((job) => (
+          <div class="mb-5">
+            <p class="font-semibold">{job.data.title} — {job.data.company}</p>
+            <p class="text-sm opacity-80">
+              {job.data.location} · {job.data.range}
+            </p>
+            <ul>
+              {job.body
+                .split('\n')
+                .filter((line) => line.trim().startsWith('- '))
+                .map((line) => (
+                  <li>{line.trim().slice(2)}</li>
+                ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <section class="cv-section">
+      <h2>Selected outputs</h2>
+      {
+        groups.map(({ label, items }) => (
+          <>
+            <h3>{label}</h3>
+            <ul class="pub-list">
+              {items.map((p) => (
+                <li>
+                  {p.data.authors} ({p.data.year}). {p.data.title}.{' '}
+                  <em>{p.data.venue}</em>.
+                  {p.data.doi && (
+                    <span> https://doi.org/{p.data.doi}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </>
+        ))
+      }
+    </section>
+
+    <section class="cv-section">
+      <h2>Methods &amp; platforms</h2>
+      <p class="text-sm">{FIELD_METHODS.join(' · ')}</p>
+      <p class="text-sm">{PLATFORMS.join(' · ')}</p>
+    </section>
+
+    <footer class="no-print mt-12 border-t border-[var(--color-border-subtle)] pt-6">
+      <button
+        type="button"
+        onclick="window.print()"
+        class="rounded-full bg-moss-400 px-6 py-2.5 font-medium text-ink-900"
+      >
+        Print / Save as PDF
+      </button>
+      <a href="/" class="ml-4 text-sm text-moss-400 underline-offset-4 hover:underline">← Back to portfolio</a>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  @media print {
+    :global(body) {
+      background: #fff !important;
+    }
+    :global(nav),
+    :global(footer.no-print ~ footer),
+    .no-print {
+      display: none !important;
+    }
+    .cv,
+    .cv :global(*) {
+      color: #111 !important;
+      background: transparent !important;
+    }
+    .cv-section {
+      break-inside: avoid;
+    }
+    .pub-list li {
+      margin-bottom: 0.4rem;
+    }
+  }
+
+  .cv-section {
+    margin-top: 2.5rem;
+  }
+  .cv-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--type-h3);
+    margin-bottom: 1rem;
+    color: var(--color-paper-50);
+  }
+  .cv-section h3 {
+    font-size: var(--type-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 1rem 0 0.5rem;
+  }
+  .pub-list {
+    list-style: none;
+    padding: 0;
+  }
+  ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+</style>

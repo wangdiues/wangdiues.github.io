@@ -15,3 +15,23 @@ export const SOCIAL = [
     href: "https://orcid.org/0009-0007-7726-1742",
   },
 ];
+
+export const FIELD_METHODS = [
+  "Camera-trap surveys",
+  "Occupancy modelling",
+  "Species distribution modelling",
+  "Forest inventory",
+  "Climate vulnerability assessment",
+  "Human–wildlife coexistence planning",
+];
+
+export const PLATFORMS = [
+  "R",
+  "Python",
+  "QGIS",
+  "ArcGIS",
+  "Google Earth Engine",
+  "MaxEnt",
+  "MODIS / Sentinel",
+  "GEDI",
+];

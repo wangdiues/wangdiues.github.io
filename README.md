@@ -29,8 +29,12 @@ No hardcoded colours, spacing, or type sizes outside `tokens/`.
 | File                     | Purpose                                                    |
 | ------------------------ | ---------------------------------------------------------- |
 | `V2_DEVELOPMENT_PLAN.md` | Strategy, decisions D1–D3, roadmap, budgets, risk register |
-| `docs/architecture.md`   | ADRs (planned, M6)                                         |
-| `docs/CONTENT.md`        | How to add a publication (planned, M3)                     |
+| `docs/architecture.md`   | ADRs: Astro, tokens pipeline, hosting, rights policy       |
+| `docs/CONTENT.md`        | How to add a publication / case study (schemas, checks)    |
+| `docs/DEPLOYMENT.md`     | Pages workflow, analytics opt-in, rollback, releases       |
+| `docs/MAINTENANCE.md`    | Routine tasks, known debt, design-system rules             |
+| `docs/RIGHTS.md`         | Per-item PDF rights verdicts and open items                |
+| `docs/GEODATA.md`        | Map-layer disclosure policy (D1) for V2.1                  |
 
 ## Deployment
 
