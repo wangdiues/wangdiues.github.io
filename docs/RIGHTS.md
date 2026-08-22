@@ -43,9 +43,15 @@ Wiley self-archiving terms, BJNRD editorial policies, International Journal of E
 
 ## Image rights
 
-The 34 field photographs in `src/assets/gallery/` are **Wangdi's own work**, confirmed
-2026-08-22. No attribution or licence notice is required, and no third-party or
-institutional images are included.
+The 16 field photographs in `src/assets/gallery/` and the portrait at
+`src/assets/wangdi-dfo-sarpang.jpg` are **Wangdi's own work**, confirmed 2026-08-22.
+No attribution or licence notice is required, and no third-party or institutional
+images are included.
+
+Curated 2026-08-22 from an original set of 34: duplicates, a Facebook collage template,
+and frames off-topic for a conservation portfolio (streets, a football team) were removed.
+Six files carried letterbox bands baked in by Facebook's story export; those bands were
+cropped off with sharp. Originals remain in git history.
 
 The `FB_IMG_*` and `IMG-*-WA*` filenames are an artefact of the originals being
 re-downloaded from Wangdi's own Facebook and WhatsApp posts — they are **not** evidence

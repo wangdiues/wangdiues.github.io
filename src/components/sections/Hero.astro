@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Button from '../ui/Button.astro';
 import TagPill from '../ui/TagPill.astro';
-import profile from '../../assets/profile.jpg';
+import portrait from '../../assets/wangdi-dfo-sarpang.jpg';
 ---
 
 <section class="relative overflow-hidden pt-32 pb-20">
@@ -41,15 +41,21 @@ import profile from '../../assets/profile.jpg';
         <Button href="/#work" variant="secondary">Explore work</Button>
       </div>
     </div>
-    <div class="mx-auto w-full max-w-xs">
+    <div class="relative mx-auto w-full max-w-xs">
       <Image
-        src={profile}
-        alt="Portrait of Wangdi"
-        widths={[320, 480]}
+        src={portrait}
+        alt="Wangdi in Department of Forests and Park Services uniform at the gate of the Divisional Forest Office, Sarpang"
+        widths={[320, 480, 640]}
         sizes="(min-width: 1024px) 320px, 80vw"
-        class="rounded-lg border border-[var(--color-border-subtle)] shadow-card"
+        class="rounded-lg border border-[var(--color-border-subtle)] shadow-card [filter:saturate(0.8)_contrast(0.95)_brightness(0.96)]"
         loading="eager"
       />
+      <div
+        class="pointer-events-none absolute inset-0 rounded-lg"
+        style="background: linear-gradient(to top, color-mix(in srgb, var(--color-bg-base) 92%, transparent) 0%, color-mix(in srgb, var(--color-bg-base) 30%, transparent) 10%, transparent 30%)"
+        aria-hidden="true"
+      >
+      </div>
     </div>
   </div>
 </section>

@@ -12,38 +12,52 @@
 export type GalleryEntry = { alt: string; caption?: string };
 
 export const galleryMeta: Record<string, GalleryEntry> = {
-  "FB_IMG_1343123537148313029.jpg": { alt: "" },
-  "FB_IMG_1717953694678933410.jpg": { alt: "" },
-  "FB_IMG_1767277303216.jpg": { alt: "" },
-  "FB_IMG_1772460282070.jpg": { alt: "" },
-  "FB_IMG_1772460352159.jpg": { alt: "" },
-  "FB_IMG_1772460986741.jpg": { alt: "" },
-  "FB_IMG_1772460995282.jpg": { alt: "" },
-  "FB_IMG_1772461002598.jpg": { alt: "" },
-  "FB_IMG_1772461012364.jpg": { alt: "" },
-  "FB_IMG_1772461029670.jpg": { alt: "" },
-  "FB_IMG_1772461032955.jpg": { alt: "" },
-  "FB_IMG_1772461042319.jpg": { alt: "" },
-  "FB_IMG_1772461050325.jpg": { alt: "" },
-  "FB_IMG_1772461052947.jpg": { alt: "" },
-  "FB_IMG_1772461061605.jpg": { alt: "" },
-  "FB_IMG_1772461071812.jpg": { alt: "" },
-  "FB_IMG_2992331926967076181.jpg": { alt: "" },
-  "FB_IMG_3129677369276556777.jpg": { alt: "" },
-  "FB_IMG_3349306116838487353.jpg": { alt: "" },
-  "FB_IMG_5147352463128233676.jpg": { alt: "" },
-  "FB_IMG_5709250295833179563.jpg": { alt: "" },
-  "FB_IMG_5816322693780937056.jpg": { alt: "" },
-  "FB_IMG_6175297709211037040.jpg": { alt: "" },
-  "FB_IMG_7334813338938230187.jpg": { alt: "" },
-  "FB_IMG_7407087828112269316.jpg": { alt: "" },
-  "FB_IMG_7444807213143393354.jpg": { alt: "" },
-  "FB_IMG_7913367842923587300.jpg": { alt: "" },
-  "FB_IMG_7966588469327882744.jpg": { alt: "" },
-  "FB_IMG_8037715989370687531.jpg": { alt: "" },
-  "FB_IMG_8461036346354499884.jpg": { alt: "" },
-  "IMG-20251018-WA0006.jpg": { alt: "" },
-  "IMG-20260103-WA0016.jpg": { alt: "" },
-  "IMG-20260103-WA0018.jpg": { alt: "" },
-  "W2_-1-.jpg": { alt: "" },
+  "FB_IMG_1717953694678933410.jpg": {
+    alt: "Nine forestry officers in uniform standing on a dry braided riverbed, forested foothills rising behind them",
+  },
+  "FB_IMG_1767277303216.jpg": {
+    alt: "Forestry officers in dress uniform at night outside a building with painted Bhutanese eaves",
+  },
+  "FB_IMG_1772460282070.jpg": {
+    alt: "Schoolchildren in gho and kira seated with forestry staff during a conservation outreach session in a community hall",
+  },
+  "FB_IMG_1772460986741.jpg": {
+    alt: "Mist breaking over forested ridges above a valley settlement",
+  },
+  "FB_IMG_1772461012364.jpg": {
+    alt: "Cloud rolling across a broadleaf forest ridge, a track cut into the slope below",
+  },
+  "FB_IMG_1772461029670.jpg": {
+    alt: "View from a ridge across forested foothills to a braided river on the plains beyond",
+  },
+  "FB_IMG_1772461032955.jpg": {
+    alt: "Forest canopy lit by a spotlight at night, two figures silhouetted at the edge of the beam",
+  },
+  "FB_IMG_1772461071812.jpg": {
+    alt: "Clear water running through a rocky gorge below steep forested cliffs",
+  },
+  "FB_IMG_5147352463128233676.jpg": {
+    alt: "Timber field camp raised on stilts beside a gravel riverbed, chairs and a washing line outside",
+  },
+  "FB_IMG_5816322693780937056.jpg": {
+    alt: "Suspension footbridge strung with prayer flags crossing a wide river",
+  },
+  "FB_IMG_6175297709211037040.jpg": {
+    alt: "Around forty forestry officers in dress uniform with service medals assembled before an ornate painted facade",
+  },
+  "FB_IMG_7334813338938230187.jpg": {
+    alt: "Forest patrol team assembled on an airstrip under heavy cloud",
+  },
+  "FB_IMG_7913367842923587300.jpg": {
+    alt: "The stilted field camp under moonlight, a tree silhouetted against cloud",
+  },
+  "FB_IMG_7966588469327882744.jpg": {
+    alt: "Two foresters in wet-weather gear during a survey in dripping broadleaf forest",
+  },
+  "FB_IMG_8461036346354499884.jpg": {
+    alt: "A forest patrol working along a rocky streambed in dense forest",
+  },
+  "IMG-20251018-WA0006.jpg": {
+    alt: "Divisional forestry staff assembled outside the divisional forest office",
+  },
 };
