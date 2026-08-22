@@ -1,27 +1,19 @@
-# Geo layer drop-in (V2.1)
+# Approved map-layer publication
 
-Layers activate in three steps — no code changes elsewhere:
+Only disclosure-cleared, generalized GeoJSON may be published. Raw coordinates, candidate
+layers, and files awaiting review must remain outside this public repository.
 
-1. **Add the file** to this folder as GeoJSON (`WGS84`, EPSG:4326), respecting the
-   resolution rules in `docs/GEODATA.md`. Sensitive layers (camera-trap grids, telemetry)
-   additionally require DoFPS written clearance — see `docs/DRAFT_DOFPS_REQUEST.md`.
-2. **Register it** in `layers.ts`:
+To publish a layer:
 
-```ts
-export interface GeoLayer {
-  id: string; // unique
-  label: string; // shown in the layer panel
-  file: string; // e.g. 'protected-areas.geojson'
-  description: string; // shown in the data table caption
-  clearance: "none" | "dofps";
-}
-```
+1. Confirm its permitted resolution and clearance under `docs/GEODATA.md`.
+2. Remove every property that is not approved for public release.
+3. Put the final RFC 7946 WGS84 file in `public/geo/`.
+4. Add its approved metadata to `layers.json`. `publicFields` is an allowlist: CI rejects
+   a GeoJSON feature containing any other property.
+5. Run `npm run verify`.
 
-3. **Rebuild.** The layer appears as a toggle on `/explore`, and its properties render in
-   the accessible data-table view automatically.
+`clearance.requirement: "dofps"` requires both an approval reference and approval date.
+Entries with no institutional requirement use `"none"` and document their public-data basis.
+An unregistered file in `public/geo/` fails the build.
 
-## Current registry
-
-Empty by design: no layer ships until its file exists here and its clearance column is
-satisfied. Protected-area boundaries and Wangdi's own SDM surfaces need no clearance;
-everything occurrence-based does.
+The registry is empty by design until the first layer completes this process.

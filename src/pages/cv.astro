@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SOCIAL, FIELD_METHODS, PLATFORMS } from '../config';
+import { SOCIAL, FIELD_METHODS, PLATFORMS, REPOSITORIES, GITHUB_PROFILE } from '../config';
 
 const jobs = (await getCollection('experience')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -136,6 +136,27 @@ const groups = [
       <h2>Methods &amp; platforms</h2>
       <p class="text-sm">{FIELD_METHODS.join(' · ')}</p>
       <p class="text-sm">{PLATFORMS.join(' · ')}</p>
+    </section>
+
+    <section class="cv-section">
+      <h2>Code &amp; data repositories</h2>
+      <p class="mb-3 text-sm opacity-80">
+        Reproducible analysis pipelines on
+        <a href={GITHUB_PROFILE} target="_blank" rel="noopener noreferrer">GitHub (@wangdiues)</a>:
+      </p>
+      <ul>
+        {
+          REPOSITORIES.map((repo) => (
+            <li>
+              <a href={`${GITHUB_PROFILE}/${repo.name}`} target="_blank" rel="noopener noreferrer">
+                {repo.name}
+              </a>{' '}
+              — {repo.description}
+              {repo.language && ` (${repo.language})`}
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
     <footer class="no-print mt-12 border-t border-[var(--color-border-subtle)] pt-6">

@@ -1,11 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { galleryMeta } from '../../data/gallery';
 
 const images = Object.entries(
   import.meta.glob<{ default: ImageMetadata }>('../../assets/gallery/*.jpg', { eager: true })
 )
-  .map(([path, mod]) => ({ path, image: mod.default }))
+  .map(([path, mod]) => {
+    const file = path.split('/').pop() as string;
+    return { path, image: mod.default, meta: galleryMeta[file] };
+  })
   .sort((a, b) => a.path.localeCompare(b.path));
 ---
 
@@ -19,18 +23,23 @@ const images = Object.entries(
     </p>
     <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
       {
-        images.map(({ image }, i) => (
+        images.map(({ image, meta }, i) => (
           <figure class="overflow-hidden rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]">
             <div class="aspect-[4/3]">
               <Image
                 src={image}
-                alt={`Field photograph ${i + 1} from Wangdi's conservation work in Bhutan`}
+                alt={meta?.alt || `Field photograph ${i + 1} from Wangdi's conservation work in Bhutan`}
                 widths={[320, 480, 640]}
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                 loading="lazy"
                 class="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.03]"
               />
             </div>
+            {meta?.caption && (
+              <figcaption class="px-3 py-2 text-xs text-[var(--color-text-muted)]">
+                {meta.caption}
+              </figcaption>
+            )}
           </figure>
         ))
       }

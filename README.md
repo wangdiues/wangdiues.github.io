@@ -19,7 +19,7 @@ npm run preview   # serve the production build locally
 ```
 tokens/tokens.json ─► scripts/build-tokens.mjs ─► src/styles/tokens.css ─► Tailwind 4 theme
 src/content/        publications · case-studies · experience (MDX, Zod-validated)
-src/data/geo/       map layers (V2.1, disclosure-cleared only — see plan D1)
+src/data/geo/       approved map-layer manifest (V2.1 — see plan D1)
 ```
 
 No hardcoded colours, spacing, or type sizes outside `tokens/`.

@@ -4,11 +4,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import TagPill from '../../components/ui/TagPill.astro';
+import { contentSlug } from '../../lib/content-id';
 
 export async function getStaticPaths() {
   const studies = await getCollection('case-studies');
   return studies.map((study) => ({
-    params: { slug: study.id },
+    params: { slug: contentSlug(study.id) },
     props: { study },
   }));
 }

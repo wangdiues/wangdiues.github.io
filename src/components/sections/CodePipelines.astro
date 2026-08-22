@@ -1,0 +1,64 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { GITHUB_PROFILE, REPOSITORIES } from '../../config';
+
+const LANG_COLORS: Record<string, string> = {
+  Python: '#3572A5',
+  R: '#198CE7',
+  HTML: '#E34C26',
+  JavaScript: '#F1E05A',
+  TypeScript: '#3178C6',
+};
+---
+
+<section id="code" class="scroll-mt-20 py-24" aria-label="Open research code and pipelines">
+  <div class="mx-auto max-w-5xl px-6">
+    <SectionHeading
+      eyebrow="Code & pipelines"
+      title="Reproducible analysis, in the open."
+    />
+    <p class="mt-4 max-w-2xl text-[var(--color-text-muted)]">
+      The analytical pipelines behind my publications and assessments are public — camera-trap
+      ecology, movement modelling, SDMs, forest carbon, bioclimatics, and vegetation analysis.
+      Browse everything on
+      <a
+        href={GITHUB_PROFILE}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-moss-400 underline-offset-4 hover:underline">GitHub</a
+      >.
+    </p>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      {
+        REPOSITORIES.map((repo) => (
+          <a
+            href={`${GITHUB_PROFILE}/${repo.name}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex flex-col justify-between rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]/40 p-5 transition-colors hover:border-moss-400/60 hover:bg-[var(--color-bg-raised)]/70"
+          >
+            <div>
+              <p class="font-mono text-sm font-semibold text-paper-50 group-hover:text-moss-400">
+                {repo.name}
+                <span aria-hidden="true" class="ml-1 inline-block opacity-0 transition-opacity group-hover:opacity-100">↗</span>
+              </p>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{repo.description}</p>
+            </div>
+            <p class="mt-4 flex items-center gap-2 text-xs text-[var(--color-text-muted)]">
+              {repo.language && (
+                <>
+                  <span
+                    aria-hidden="true"
+                    class="inline-block h-2.5 w-2.5 rounded-full"
+                    style={`background: ${LANG_COLORS[repo.language] ?? 'var(--color-text-muted)'}`}
+                  />
+                  {repo.language}
+                </>
+              )}
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

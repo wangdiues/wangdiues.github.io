@@ -6,11 +6,12 @@ import Footer from '../../components/Footer.astro';
 import StatusBadge from '../../components/ui/StatusBadge.astro';
 import TagPill from '../../components/ui/TagPill.astro';
 import { formatCitation, splitAuthors, relatedCaseStudies } from '../../lib/citation';
+import { contentSlug } from '../../lib/content-id';
 
 export async function getStaticPaths() {
   const publications = await getCollection('publications');
   return publications.map((pub) => ({
-    params: { slug: pub.id },
+    params: { slug: contentSlug(pub.id) },
     props: { pub },
   }));
 }
@@ -36,7 +37,7 @@ const jsonld = JSON.stringify({
   author: splitAuthors(pub.data.authors).map((name) => ({ '@type': 'Person', name })),
   datePublished: String(pub.data.year),
   isPartOf: pub.data.venue,
-  url: pub.data.doi ? `https://doi.org/${pub.data.doi}` : `https://wangdiues.github.io/publications/${pub.id}/`,
+  url: pub.data.doi ? `https://doi.org/${pub.data.doi}` : `https://wangdiues.github.io/publications/${contentSlug(pub.id)}/`,
   identifier: pub.data.doi,
 });
 ---
@@ -125,7 +126,7 @@ const jsonld = JSON.stringify({
             {related.map((study) => (
               <li>
                 <a
-                  href={`/case-studies/${study.id}/`}
+                  href={`/case-studies/${contentSlug(study.id)}/`}
                   class="text-moss-400 underline-offset-4 hover:underline"
                 >
                   {study.data.title}

@@ -1,6 +1,6 @@
 # Publication Rights Register (Decision D3)
 
-_Last reviewed: 2026-08-22 (rev 2 — full-hosting update). Sources: Elsevier sharing policy,
+_Last reviewed: 2026-08-22 (rev 3 — adds image rights). Sources: Elsevier sharing policy,
 Wiley self-archiving terms, BJNRD editorial policies, International Journal of Environment
 (NepJOL) policies, and owner direction on public RGoB documents._
 
@@ -40,6 +40,20 @@ Wiley self-archiving terms, BJNRD editorial policies, International Journal of E
 | elephant-seasonal-search-dynamics       | In preparation                               | Author-owned draft                             | Yes                                                                                                                       | elephant-seasonal-search-dynamics.pdf                          |
 | forest-carbon-sequestration-cmip6       | In preparation                               | Author-owned draft                             | Yes                                                                                                                       | forest-carbon-sequestration-cmip6.pdf                          |
 | risk-partitioning                       | In preparation                               | Author-owned draft                             | Yes                                                                                                                       | tiger-risk-partitioning.pdf                                    |
+
+## Image rights
+
+The 34 field photographs in `src/assets/gallery/` are **Wangdi's own work**, confirmed
+2026-08-22. No attribution or licence notice is required, and no third-party or
+institutional images are included.
+
+The `FB_IMG_*` and `IMG-*-WA*` filenames are an artefact of the originals being
+re-downloaded from Wangdi's own Facebook and WhatsApp posts — they are **not** evidence
+of third-party sourcing. Filenames are load-bearing: they key the alt-text and caption
+manifest in `src/data/gallery.ts`, so they must not be renamed without updating it.
+
+Before adding any photograph taken by a colleague or supplied by DoFPS, record it here
+with its photographer and permission basis first.
 
 ## Post-acceptance rules (apply when acceptances arrive)
 

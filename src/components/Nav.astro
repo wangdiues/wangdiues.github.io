@@ -22,6 +22,7 @@
       <li><a href="/#about" class="text-[var(--color-text-muted)] transition-colors hover:text-moss-400" data-nav-link>About</a></li>
       <li><a href="/#experience" class="text-[var(--color-text-muted)] transition-colors hover:text-moss-400" data-nav-link>Experience</a></li>
       <li><a href="/#work" class="text-[var(--color-text-muted)] transition-colors hover:text-moss-400" data-nav-link>Field work</a></li>
+      <li><a href="/#code" class="text-[var(--color-text-muted)] transition-colors hover:text-moss-400" data-nav-link>Code</a></li>
       <li><a href="/publications" class="text-[var(--color-text-muted)] transition-colors hover:text-moss-400" data-nav-link>Publications</a></li>
       <li><a href="/explore" class="text-[var(--color-text-muted)] transition-colors hover:text-moss-400" data-nav-link>Map</a></li>
       <li><a href="/#contact" class="text-[var(--color-text-muted)] transition-colors hover:text-moss-400" data-nav-link>Contact</a></li>
@@ -51,7 +52,7 @@
     }
   });
 
-  const sections = ['about', 'experience', 'work'].map((id) => document.getElementById(id));
+  const sections = ['about', 'experience', 'work', 'code'].map((id) => document.getElementById(id));
   const navLinks = [...document.querySelectorAll<HTMLAnchorElement>('a[data-nav-link]')];
 
   const observer = new IntersectionObserver(
