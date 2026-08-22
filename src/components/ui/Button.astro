@@ -10,15 +10,15 @@ interface Props {
 
 const { href, variant = 'primary', size = 'md', external = false, download, class: className = '' } = Astro.props;
 
-const base = 'inline-flex items-center gap-2 rounded-full font-medium transition-colors duration-200';
+const base = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-full border font-medium transition duration-200 active:translate-y-px';
 const sizes = {
   sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-2.5',
+  md: 'px-6 py-2.5 text-sm sm:text-base',
 } as const;
 const variants = {
-  primary: 'bg-moss-400 text-ink-900 hover:bg-moss-300',
-  secondary: 'border border-moss-400 text-moss-400 hover:bg-moss-400/10',
-  ghost: 'text-slate-400 hover:text-paper-50 underline-offset-4 hover:underline',
+  primary: 'border-moss-400 bg-moss-400 text-ink-950 shadow-[0_10px_30px_rgba(120,201,154,0.18)] hover:-translate-y-0.5 hover:border-moss-300 hover:bg-moss-300',
+  secondary: 'border-[var(--color-border-subtle)] bg-paper-50/[0.03] text-paper-50 hover:-translate-y-0.5 hover:border-moss-400 hover:text-moss-300',
+  ghost: 'border-transparent px-2 text-[var(--color-text-muted)] underline-offset-4 hover:text-paper-50 hover:underline',
 } as const;
 ---
 

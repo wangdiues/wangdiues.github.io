@@ -4,16 +4,19 @@ import TagPill from '../ui/TagPill.astro';
 import { FIELD_METHODS, PLATFORMS } from '../../config';
 ---
 
-<section id="about" class="scroll-mt-20 py-24">
-  <div class="mx-auto grid max-w-5xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr]">
-    <div class="lg:sticky lg:top-28 lg:self-start">
+<section id="about" class="section-space scroll-mt-24">
+  <div class="site-shell grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
+    <div class="lg:sticky lg:top-32 lg:self-start">
       <SectionHeading
         eyebrow="About"
         title="Ecological evidence for practical conservation decisions."
       />
+      <p class="mt-8 hidden max-w-xs border-l border-moss-400/40 pl-5 text-sm leading-relaxed text-[var(--color-text-muted)] lg:block">
+        Field observation, spatial analysis, and public institutions treated as one connected conservation practice.
+      </p>
     </div>
-    <div class="space-y-5 text-[var(--color-text-muted)]">
-      <p>
+    <div class="space-y-6 text-[var(--color-text-muted)]">
+      <p class="font-heading text-2xl leading-snug text-paper-100">
         I work within Bhutan's forest governance system, combining field implementation, ecological
         analysis, geospatial modelling, protected-area planning, and policy-linked conservation delivery.
       </p>
@@ -29,14 +32,14 @@ import { FIELD_METHODS, PLATFORMS } from '../../config';
         governance — built for collaborators, institutions, and reviewers who need a clear view of
         technical depth and applied impact.
       </p>
-      <div class="pt-2">
-        <p class="mb-3 text-sm font-medium tracking-wider text-paper-50 uppercase">Field & analytical methods</p>
+      <div class="border-t border-[var(--color-border-subtle)] pt-6">
+        <p class="mb-4 text-xs font-semibold tracking-[0.16em] text-paper-50 uppercase">Field & analytical methods</p>
         <div class="flex flex-wrap gap-2">
           {FIELD_METHODS.map((m) => <TagPill label={m} />)}
         </div>
       </div>
-      <div>
-        <p class="mb-3 text-sm font-medium tracking-wider text-paper-50 uppercase">Software & platforms</p>
+      <div class="border-t border-[var(--color-border-subtle)] pt-6">
+        <p class="mb-4 text-xs font-semibold tracking-[0.16em] text-paper-50 uppercase">Software & platforms</p>
         <div class="flex flex-wrap gap-2">
           {PLATFORMS.map((m) => <TagPill label={m} />)}
         </div>

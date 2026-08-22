@@ -2,6 +2,7 @@
 @import "./tokens.css";
 
 @theme inline {
+  --color-ink-950: var(--color-ink-950);
   --color-ink-900: var(--color-ink-900);
   --color-ink-800: var(--color-ink-800);
   --color-ink-700: var(--color-ink-700);
@@ -11,6 +12,7 @@
   --color-amber-500: var(--color-amber-500);
   --color-slate-400: var(--color-slate-400);
   --color-paper-50: var(--color-paper-50);
+  --color-paper-100: var(--color-paper-100);
 
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
@@ -29,6 +31,37 @@ html {
   color: var(--color-text-primary);
   font-family: var(--font-body);
   line-height: var(--leading-relaxed);
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(120, 201, 154, 0.11), transparent 30rem),
+    radial-gradient(circle at 0% 46%, rgba(216, 170, 95, 0.05), transparent 26rem),
+    var(--color-bg-base);
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: '';
+  opacity: 0.16;
+  background-image:
+    linear-gradient(rgba(245, 242, 233, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 242, 233, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+::selection {
+  background: var(--color-moss-400);
+  color: var(--color-ink-950);
 }
 
 h1,
@@ -40,9 +73,102 @@ h4 {
   font-weight: 600;
 }
 
+p,
+li {
+  text-wrap: pretty;
+}
+
+a,
+code,
+#citation-text {
+  overflow-wrap: anywhere;
+}
+
+a,
+button,
+summary {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+a,
+button {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+button,
+summary,
+a[href] {
+  cursor: pointer;
+}
+
 :focus-visible {
-  outline: 2px solid var(--color-focus-ring);
-  outline-offset: 2px;
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 3px;
+}
+
+.site-shell {
+  width: min(calc(100% - 2rem), 72rem);
+  margin-inline: auto;
+}
+
+.reading-shell {
+  width: min(calc(100% - 2rem), 46rem);
+  margin-inline: auto;
+}
+
+.section-space {
+  padding-block: clamp(5.5rem, 9vw, 8.5rem);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.hairline {
+  border-color: var(--color-border-subtle);
+}
+
+.surface-panel {
+  border: 1px solid var(--color-border-subtle);
+  background: color-mix(in srgb, var(--color-bg-raised) 88%, transparent);
+  box-shadow: var(--shadow-card);
+}
+
+.link-arrow::after {
+  display: inline-block;
+  margin-left: 0.35em;
+  content: '↗';
+  transition: transform 180ms ease;
+}
+
+.link-arrow:hover::after,
+.link-arrow:focus-visible::after {
+  transform: translate(2px, -2px);
+}
+
+.hero-enter {
+  animation: hero-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-enter-delay {
+  animation-delay: 90ms;
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .field {
@@ -60,10 +186,25 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .site-shell {
+    width: min(calc(100% - 3rem), 72rem);
+  }
+
+  .reading-shell {
+    width: min(calc(100% - 3rem), 46rem);
   }
 }

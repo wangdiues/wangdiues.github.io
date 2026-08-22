@@ -16,17 +16,20 @@ const { items } = Astro.props;
 ---
 
 <section aria-labelledby="project-gallery-title" class="border-t border-[var(--color-border-subtle)] py-20">
-  <div class="mx-auto max-w-5xl px-6">
-    <p class="text-sm font-medium tracking-widest text-moss-400 uppercase">Species, landscape and community context</p>
-    <h2 id="project-gallery-title" class="mt-2 text-h2 text-paper-50">Project gallery</h2>
-    <p class="mt-3 max-w-2xl text-[var(--color-text-muted)]">
+  <div class="site-shell">
+    <div class="mb-4 flex items-center gap-4">
+      <span class="h-px w-9 bg-moss-400" aria-hidden="true"></span>
+      <p class="text-xs font-semibold tracking-[0.2em] text-moss-300 uppercase">Species, landscape and community context</p>
+    </div>
+    <h2 id="project-gallery-title" class="text-h2 tracking-[-0.025em] text-paper-50">Project gallery</h2>
+    <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]">
       Great hornbills, Biological Corridor 03 field settings, and earlier community engagement that inform the Connected Skies programme.
     </p>
     <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
         items.map(({ image, alt, caption }, index) => (
           <figure class:list={[
-            'overflow-hidden rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]',
+            'group overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]',
             index === 0 && 'sm:col-span-2 lg:col-span-2',
           ]}>
             <div class:list={['overflow-hidden', index === 0 ? 'aspect-[16/9]' : 'aspect-[4/3]']}>
@@ -36,7 +39,7 @@ const { items } = Astro.props;
                 widths={[480, 720, 960, 1280]}
                 sizes={index === 0 ? '(min-width: 1024px) 66vw, 100vw' : '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'}
                 loading="lazy"
-                class="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.02]"
+                class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
               />
             </div>
             <figcaption class="px-4 py-3 text-sm leading-relaxed text-[var(--color-text-muted)]">

@@ -47,29 +47,31 @@ const jsonld = JSON.stringify({
     <script is:inline type="application/ld+json" set:html={jsonld} />
   </Fragment>
   <Nav />
-  <main id="main" class="mx-auto max-w-3xl px-6 pt-28 pb-20">
-    <a href="/publications" class="text-sm text-moss-400 underline-offset-4 hover:underline">← All publications</a>
+  <main id="main" class="reading-shell pb-24 pt-36 sm:pt-40">
+    <a href="/publications" class="inline-flex min-h-11 items-center text-sm font-medium text-moss-300 underline-offset-4 hover:underline">← All publications</a>
 
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <StatusBadge status={pub.data.status} />
-      <span class="text-xs text-[var(--color-text-muted)]">{statusLabel[pub.data.status]} · {pub.data.year}</span>
-    </div>
-    <h1 class="mt-4 text-h2 leading-tight text-paper-50">{pub.data.title}</h1>
-    <p class="mt-3 text-lg text-[var(--color-text-muted)]">{pub.data.authors}</p>
-    <p class="mt-1 text-sm text-[var(--color-text-muted)] italic">{pub.data.venue}</p>
+    <header class="mt-8 border-b border-[var(--color-border-subtle)] pb-10">
+      <div class="flex flex-wrap items-center gap-3">
+        <StatusBadge status={pub.data.status} />
+        <span class="text-xs tracking-wide text-[var(--color-text-muted)]">{statusLabel[pub.data.status]} · {pub.data.year}</span>
+      </div>
+      <h1 class="text-balance mt-5 text-h1 leading-tight tracking-[-0.03em] text-paper-50">{pub.data.title}</h1>
+      <p class="mt-5 text-lg text-[var(--color-text-muted)]">{pub.data.authors}</p>
+      <p class="mt-2 text-sm text-moss-300 italic">{pub.data.venue}</p>
+    </header>
 
-    <div class="prose mt-10 max-w-none text-[var(--color-text-muted)] [&_p]:mb-4">
+    <div class="prose mt-10 max-w-none text-[var(--color-text-muted)] [&_p]:mb-5 [&_p]:text-[1.05rem] [&_p]:leading-8">
       <Content />
     </div>
 
-    <div class="mt-10 flex flex-wrap gap-4 text-sm">
+    <div class="mt-10 flex flex-wrap gap-3 text-sm">
       {
         pub.data.doi && (
           <a
             href={`https://doi.org/${pub.data.doi}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="rounded-full bg-moss-400 px-5 py-2 font-medium text-ink-900"
+            class="inline-flex min-h-11 items-center rounded-full border border-moss-400 bg-moss-400 px-5 py-2 font-medium text-ink-950 hover:-translate-y-0.5 hover:bg-moss-300"
           >
             View at publisher (DOI)
           </a>
@@ -79,7 +81,7 @@ const jsonld = JSON.stringify({
         pub.data.pdf && (
           <a
             href={pub.data.pdf}
-            class="rounded-full border border-moss-400 px-5 py-2 font-medium text-moss-400"
+            class="inline-flex min-h-11 items-center rounded-full border border-[var(--color-border-subtle)] bg-paper-50/[0.03] px-5 py-2 font-medium text-paper-50 hover:-translate-y-0.5 hover:border-moss-400 hover:text-moss-300"
           >
             Download PDF
           </a>
@@ -89,19 +91,19 @@ const jsonld = JSON.stringify({
 
     {
       pub.data.rightsNote && (
-        <p class="mt-6 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-4 text-sm text-[var(--color-text-muted)]">
+        <p class="mt-8 rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-5 text-sm text-[var(--color-text-muted)]">
           {pub.data.rightsNote}
         </p>
       )
     }
 
-    <div class="mt-10 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-5">
+    <div class="surface-panel mt-10 rounded-[var(--radius-lg)] p-6">
       <h2 class="text-xs font-medium tracking-wider text-paper-50 uppercase">Citation</h2>
       <p id="citation-text" class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{citation}</p>
       <button
         id="copy-citation"
         type="button"
-        class="mt-3 text-sm text-moss-400 underline-offset-4 hover:underline"
+        class="mt-4 min-h-11 text-sm font-medium text-moss-300 underline-offset-4 hover:underline"
         data-citation={citation}
       >
         Copy citation

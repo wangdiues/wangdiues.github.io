@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 import { SOCIAL, FIELD_METHODS, PLATFORMS, REPOSITORIES, GITHUB_PROFILE } from '../config';
 
 const jobs = (await getCollection('experience')).sort(
@@ -29,9 +31,14 @@ const groups = [
 ---
 
 <BaseLayout title="Curriculum Vitae | Wangdi" description="Curriculum vitae of Wangdi — forestry, biodiversity research, GIS, and forest governance.">
-  <main id="main" class="mx-auto max-w-3xl px-6 py-16 cv">
-    <header class="border-b-2 border-moss-400 pb-6">
-      <h1 class="font-heading text-4xl font-semibold text-paper-50">Wangdi</h1>
+  <Nav />
+  <main id="main" class="reading-shell cv pb-24 pt-36 sm:pt-40">
+    <header class="border-b border-[var(--color-border-subtle)] pb-8">
+      <div class="mb-6 flex items-center gap-4">
+        <span class="h-px w-9 bg-moss-400" aria-hidden="true"></span>
+        <p class="text-xs font-semibold tracking-[0.2em] text-moss-300 uppercase">Curriculum vitae</p>
+      </div>
+      <h1 class="font-heading text-h1 font-semibold tracking-[-0.04em] text-paper-50">Wangdi</h1>
       <p class="mt-2 text-lg text-[var(--color-text-muted)]">Senior Forestry Officer · Conservation Researcher</p>
       <p class="mt-1 text-sm text-[var(--color-text-muted)]">
         Department of Forests &amp; Park Services, Bhutan ·
@@ -159,23 +166,24 @@ const groups = [
       </ul>
     </section>
 
-    <footer class="no-print mt-12 border-t border-[var(--color-border-subtle)] pt-6">
+    <footer class="no-print mt-12 flex flex-wrap gap-3 border-t border-[var(--color-border-subtle)] pt-8">
       <button
         type="button"
         onclick="window.print()"
-        class="rounded-full bg-moss-400 px-6 py-2.5 font-medium text-ink-900"
+        class="min-h-11 rounded-full border border-moss-400 bg-moss-400 px-6 py-2.5 font-medium text-ink-950 hover:bg-moss-300"
       >
         Print / Save as PDF
       </button>
       <a
         href="/Wangdi_CV_2026.pdf"
-        class="ml-4 rounded-full border border-moss-400 px-6 py-2.5 text-sm font-medium text-moss-400 underline-offset-4 hover:bg-moss-400/10"
+        class="inline-flex min-h-11 items-center rounded-full border border-[var(--color-border-subtle)] px-6 py-2.5 text-sm font-medium text-paper-50 underline-offset-4 hover:border-moss-400 hover:text-moss-300"
       >
         Download CV (PDF)
       </a>
-      <a href="/" class="ml-4 text-sm text-moss-400 underline-offset-4 hover:underline">← Back to portfolio</a>
+      <a href="/" class="inline-flex min-h-11 items-center text-sm text-moss-300 underline-offset-4 hover:underline">← Back to portfolio</a>
     </footer>
   </main>
+  <Footer />
 </BaseLayout>
 
 <style>
@@ -183,8 +191,8 @@ const groups = [
     :global(body) {
       background: #fff !important;
     }
-    :global(nav),
-    :global(footer.no-print ~ footer),
+    :global(body > header),
+    :global(body > footer),
     .no-print {
       display: none !important;
     }
@@ -202,7 +210,8 @@ const groups = [
   }
 
   .cv-section {
-    margin-top: 2.5rem;
+    margin-top: 3.25rem;
+    padding-top: 0.25rem;
   }
   .cv-section h2 {
     font-family: var(--font-heading);

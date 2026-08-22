@@ -11,13 +11,13 @@ const LANG_COLORS: Record<string, string> = {
 };
 ---
 
-<section id="code" class="scroll-mt-20 py-24" aria-label="Open research code and pipelines">
-  <div class="mx-auto max-w-5xl px-6">
+<section id="code" class="section-space scroll-mt-24 border-y border-[var(--color-border-subtle)] bg-ink-950/38" aria-label="Open research code and pipelines">
+  <div class="site-shell">
     <SectionHeading
       eyebrow="Code & pipelines"
       title="Reproducible analysis, in the open."
     />
-    <p class="mt-4 max-w-2xl text-[var(--color-text-muted)]">
+    <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]">
       The analytical pipelines behind my publications and assessments are public — camera-trap
       ecology, movement modelling, SDMs, forest carbon, bioclimatics, and vegetation analysis.
       Browse everything on
@@ -25,26 +25,26 @@ const LANG_COLORS: Record<string, string> = {
         href={GITHUB_PROFILE}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-moss-400 underline-offset-4 hover:underline">GitHub</a
+        class="link-arrow text-moss-300 underline-offset-4 hover:underline">GitHub</a
       >.
     </p>
-    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+    <div class="mt-12 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] bg-[var(--color-border-subtle)] sm:grid-cols-2">
       {
         REPOSITORIES.map((repo) => (
           <a
             href={`${GITHUB_PROFILE}/${repo.name}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex flex-col justify-between rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]/40 p-5 transition-colors hover:border-moss-400/60 hover:bg-[var(--color-bg-raised)]/70"
+            class="group flex min-h-48 flex-col justify-between bg-ink-900 p-6 hover:bg-ink-800"
           >
             <div>
-              <p class="font-mono text-sm font-semibold text-paper-50 group-hover:text-moss-400">
+              <p class="font-mono text-sm font-semibold text-paper-50 group-hover:text-moss-300">
                 {repo.name}
                 <span aria-hidden="true" class="ml-1 inline-block opacity-0 transition-opacity group-hover:opacity-100">↗</span>
               </p>
-              <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{repo.description}</p>
+              <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">{repo.description}</p>
             </div>
-            <p class="mt-4 flex items-center gap-2 text-xs text-[var(--color-text-muted)]">
+            <p class="mt-6 flex items-center gap-2 border-t border-[var(--color-border-subtle)] pt-4 text-xs text-[var(--color-text-muted)]">
               {repo.language && (
                 <>
                   <span

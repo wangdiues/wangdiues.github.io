@@ -13,30 +13,36 @@ const images = Object.entries(
   .sort((a, b) => a.path.localeCompare(b.path));
 ---
 
-<section id="gallery" class="scroll-mt-20 py-24" aria-label="Field gallery">
-  <div class="mx-auto max-w-5xl px-6">
-    <p class="text-sm font-medium tracking-widest text-moss-400 uppercase">Gallery</p>
-    <h2 class="mt-2 font-heading text-3xl font-semibold text-paper-50">From the field.</h2>
-    <p class="mt-3 max-w-xl text-[var(--color-text-muted)]">
+<section id="gallery" class="section-space scroll-mt-24" aria-label="Field gallery">
+  <div class="site-shell">
+    <div class="mb-4 flex items-center gap-4">
+      <span class="h-px w-9 bg-moss-400" aria-hidden="true"></span>
+      <p class="text-xs font-semibold tracking-[0.2em] text-moss-300 uppercase">Field notes</p>
+    </div>
+    <h2 class="text-balance font-heading text-h2 font-semibold tracking-[-0.025em] text-paper-50">The landscapes behind the evidence.</h2>
+    <p class="mt-5 max-w-2xl text-lead text-[var(--color-text-muted)]">
       Patrol and survey teams, field camps, and the forest landscapes of south-central Bhutan
       where the work in this portfolio is carried out.
     </p>
-    <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+    <div class="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
       {
         images.map(({ image, meta }, i) => (
-          <figure class="overflow-hidden rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]">
-            <div class="aspect-[4/3]">
+          <figure class:list={[
+            'group overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]',
+            i % 9 === 0 && 'col-span-2 row-span-2',
+          ]}>
+            <div class:list={[i % 9 === 0 ? 'aspect-square' : 'aspect-[4/3]']}>
               <Image
                 src={image}
                 alt={meta?.alt || `Field photograph ${i + 1} from Wangdi's conservation work in Bhutan`}
                 widths={[320, 480, 640]}
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                 loading="lazy"
-                class="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.03]"
+                class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
               />
             </div>
             {meta?.caption && (
-              <figcaption class="px-3 py-2 text-xs text-[var(--color-text-muted)]">
+              <figcaption class="border-t border-[var(--color-border-subtle)] px-3 py-2.5 text-xs text-[var(--color-text-muted)]">
                 {meta.caption}
               </figcaption>
             )}

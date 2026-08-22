@@ -50,12 +50,12 @@ const galleryItems = project
   {
     project && heroImage ? (
       <main id="main">
-        <header class="mx-auto max-w-5xl px-6 pt-28 pb-16">
-          <a href="/#work" class="text-sm text-moss-400 underline-offset-4 hover:underline">
+        <header class="site-shell pb-20 pt-36 sm:pt-40">
+          <a href="/#work" class="inline-flex min-h-11 items-center text-sm font-medium text-moss-300 underline-offset-4 hover:underline">
             ← All field work
           </a>
 
-          <div class="mt-8 overflow-hidden rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]">
+          <div class="mt-8 overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] shadow-card">
             <div class="aspect-[16/9] overflow-hidden sm:aspect-[2/1]">
               <Image
                 src={heroImage}
@@ -74,17 +74,17 @@ const galleryItems = project
               href={project.award.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center rounded-full border border-moss-400/60 bg-moss-400/10 px-4 py-2 text-xs font-medium tracking-wider text-moss-300 uppercase hover:bg-moss-400/15"
+              class="inline-flex min-h-11 items-center rounded-full border border-moss-400/45 bg-moss-400/10 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-moss-300 uppercase hover:bg-moss-400/15"
             >
               {project.award.name} {project.award.year}
               <span class="sr-only"> (opens in a new tab)</span>
             </a>
             <p class="mt-7 text-xs tracking-widest text-moss-400 uppercase">{study.data.region}</p>
-            <h1 class="mt-3 text-h1 text-paper-50">{study.data.title}</h1>
+            <h1 class="text-balance mt-4 text-h1 tracking-[-0.03em] text-paper-50">{study.data.title}</h1>
             <p class="mt-5 max-w-3xl text-lead text-[var(--color-text-muted)]">{study.data.focus}</p>
           </div>
 
-          <dl class="mt-10 grid gap-px overflow-hidden rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-border-subtle)] sm:grid-cols-2 lg:grid-cols-4">
+          <dl class="mt-12 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] bg-[var(--color-border-subtle)] sm:grid-cols-2 lg:grid-cols-4">
             <div class="bg-[var(--color-bg-raised)] p-5">
               <dt class="text-xs tracking-widest text-moss-400 uppercase">Year</dt>
               <dd class="mt-2 text-paper-50">{project.year}</dd>
@@ -111,14 +111,14 @@ const galleryItems = project
         </header>
 
         <div class="border-y border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]/40">
-          <div class="mx-auto grid max-w-5xl gap-10 px-6 py-20 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
+          <div class="site-shell grid gap-10 py-20 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
             <section aria-labelledby="project-overview-title">
               <p class="text-sm font-medium tracking-widest text-moss-400 uppercase">Conservation challenge</p>
               <h2 id="project-overview-title" class="mt-2 text-h2 text-paper-50">Project Overview</h2>
               <p class="mt-6 text-lg leading-relaxed text-[var(--color-text-muted)]">{project.summary}</p>
             </section>
 
-            <aside class="rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-6" aria-labelledby="project-team-title">
+            <aside class="surface-panel rounded-[var(--radius-lg)] p-6" aria-labelledby="project-team-title">
               <h2 id="project-team-title" class="text-sm font-medium tracking-wider text-paper-50 uppercase">Project team</h2>
               <ul class="mt-5 space-y-3 text-[var(--color-text-muted)]">
                 {project.team.map((member) => <li>{member}</li>)}
@@ -130,12 +130,12 @@ const galleryItems = project
           </div>
         </div>
 
-        <section aria-labelledby="research-approach-title" class="mx-auto max-w-5xl px-6 py-20">
+        <section aria-labelledby="research-approach-title" class="site-shell py-20">
           <p class="text-sm font-medium tracking-widest text-moss-400 uppercase">Integrated field science</p>
           <h2 id="research-approach-title" class="mt-2 text-h2 text-paper-50">Research Approach</h2>
           <div class="mt-10 grid gap-6 lg:grid-cols-3">
             {project.approaches.map((approach, index) => (
-              <article class="rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-6">
+              <article class="surface-panel rounded-[var(--radius-lg)] p-6">
                 <p class="text-xs font-medium tracking-widest text-moss-400">0{index + 1}</p>
                 <h3 class="mt-4 text-h3 text-paper-50">{approach.title}</h3>
                 <p class="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">{approach.description}</p>
@@ -150,7 +150,7 @@ const galleryItems = project
         </section>
 
         <section aria-labelledby="community-title" class="border-y border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]/40">
-          <div class="mx-auto grid max-w-5xl gap-10 px-6 py-20 lg:grid-cols-[1.2fr_1fr] lg:items-start lg:gap-16">
+          <div class="site-shell grid gap-10 py-20 lg:grid-cols-[1.2fr_1fr] lg:items-start lg:gap-16">
             <div>
               <p class="text-sm font-medium tracking-widest text-moss-400 uppercase">Local stewardship</p>
               <h2 id="community-title" class="mt-2 text-h2 text-paper-50">Community Conservation</h2>
@@ -158,7 +158,7 @@ const galleryItems = project
             </div>
             <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {project.community.points.map((point) => (
-                <li class="rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] px-5 py-4 text-paper-50">
+                <li class="rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] px-5 py-4 text-paper-50">
                   <span class="mr-3 text-moss-400" aria-hidden="true">✓</span>{point}
                 </li>
               ))}
@@ -166,12 +166,12 @@ const galleryItems = project
           </div>
         </section>
 
-        <section aria-labelledby="outputs-title" class="mx-auto max-w-5xl px-6 py-20">
+        <section aria-labelledby="outputs-title" class="site-shell py-20">
           <p class="text-sm font-medium tracking-widest text-moss-400 uppercase">Planned deliverables</p>
           <h2 id="outputs-title" class="mt-2 text-h2 text-paper-50">Expected Outputs</h2>
           <div class="mt-10 grid gap-4 sm:grid-cols-2">
             {project.outputs.map((output, index) => (
-              <article class="flex gap-5 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-6">
+              <article class="surface-panel flex gap-5 rounded-[var(--radius-lg)] p-6">
                 <span class="font-heading text-2xl text-moss-400" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <h3 class="text-lg text-paper-50">{output}</h3>
               </article>
@@ -181,8 +181,8 @@ const galleryItems = project
 
         <ProjectGallery items={galleryItems} />
 
-        <section aria-labelledby="recognition-title" class="mx-auto max-w-5xl px-6 py-20">
-          <div class="rounded-lg border border-moss-400/40 bg-moss-400/10 p-8 sm:p-10">
+        <section aria-labelledby="recognition-title" class="site-shell py-20">
+          <div class="rounded-[var(--radius-lg)] border border-moss-400/35 bg-gradient-to-br from-moss-400/12 to-ink-800 p-8 shadow-card sm:p-10">
             <p class="text-sm font-medium tracking-widest text-moss-300 uppercase">External recognition</p>
             <h2 id="recognition-title" class="mt-3 text-h2 text-paper-50">{project.award.organization}</h2>
             <p class="mt-4 text-lg text-[var(--color-text-muted)]">{project.award.name} {project.award.year}</p>
@@ -199,13 +199,13 @@ const galleryItems = project
         </section>
       </main>
     ) : (
-      <main id="main" class="mx-auto max-w-3xl px-6 pt-28 pb-20">
-        <a href="/#work" class="text-sm text-moss-400 underline-offset-4 hover:underline">← All field work</a>
+      <main id="main" class="reading-shell pb-24 pt-36 sm:pt-40">
+        <a href="/#work" class="inline-flex min-h-11 items-center text-sm font-medium text-moss-300 underline-offset-4 hover:underline">← All field work</a>
         <p class="mt-8 text-xs tracking-widest text-moss-400 uppercase">{study.data.region}</p>
         <h1 class="mt-3 text-h1 text-paper-50">{study.data.title}</h1>
         <p class="mt-4 text-lead text-[var(--color-text-muted)]">{study.data.focus}</p>
 
-        <div class="mt-10 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-6">
+        <div class="surface-panel mt-10 rounded-[var(--radius-lg)] p-6">
           <h2 class="text-sm font-medium tracking-wider text-paper-50 uppercase">Conservation impact</h2>
           <p class="mt-2 text-[var(--color-text-muted)]">{study.data.impact}</p>
         </div>

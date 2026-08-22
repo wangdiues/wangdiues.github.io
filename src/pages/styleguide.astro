@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 import Button from '../components/ui/Button.astro';
 import Card from '../components/ui/Card.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
@@ -7,24 +9,25 @@ import StatusBadge from '../components/ui/StatusBadge.astro';
 import TagPill from '../components/ui/TagPill.astro';
 
 const colours = [
-  { name: 'ink-900', hex: '#0d1b16', token: 'bg-base', bg: true },
-  { name: 'ink-800', hex: '#12241d', token: 'bg-raised', bg: true },
-  { name: 'ink-700', hex: '#1a3328', token: 'surfaces', bg: true },
-  { name: 'moss-500', hex: '#4a9d6e', token: 'status-published-bg', bg: false },
-  { name: 'moss-400', hex: '#63b385', token: 'accent', bg: false },
-  { name: 'moss-300', hex: '#8ccaa4', token: 'accent-hover / focus-ring', bg: false },
-  { name: 'amber-500', hex: '#d9a441', token: 'status-under-review', bg: false },
-  { name: 'slate-400', hex: '#7c8f88', token: 'text-muted / status-in-preparation', bg: false },
-  { name: 'paper-50', hex: '#f4f7f5', token: 'text-primary', bg: false },
+  { name: 'ink-950', hex: '#06110d', token: 'deep surface', bg: true },
+  { name: 'ink-900', hex: '#081511', token: 'bg-base', bg: true },
+  { name: 'ink-800', hex: '#10251e', token: 'bg-raised', bg: true },
+  { name: 'ink-700', hex: '#173129', token: 'surfaces', bg: true },
+  { name: 'moss-500', hex: '#4fa774', token: 'status-published-bg', bg: false },
+  { name: 'moss-400', hex: '#78c99a', token: 'accent', bg: false },
+  { name: 'moss-300', hex: '#a1deba', token: 'accent-hover / focus-ring', bg: false },
+  { name: 'amber-500', hex: '#d8aa5f', token: 'status-under-review', bg: false },
+  { name: 'slate-400', hex: '#a9b9b1', token: 'text-muted / status-in-preparation', bg: false },
+  { name: 'paper-50', hex: '#f5f2e9', token: 'text-primary', bg: false },
 ];
 
 const contrast = [
-  { fg: 'paper-50 on ink-900', ratio: '16.4:1', level: 'AAA' },
-  { fg: 'moss-400 on ink-900', ratio: '7.0:1', level: 'AAA' },
-  { fg: 'amber-500 on ink-900', ratio: '7.9:1', level: 'AAA' },
-  { fg: 'slate-400 on ink-900', ratio: '5.2:1', level: 'AA' },
-  { fg: 'ink-900 on moss-400 (primary button)', ratio: '7.0:1', level: 'AAA' },
-  { fg: 'ink-900 on moss-500 (published badge)', ratio: '5.3:1', level: 'AA' },
+  { fg: 'paper-50 on ink-900', ratio: '16.67:1', level: 'AAA' },
+  { fg: 'moss-400 on ink-900', ratio: '9.43:1', level: 'AAA' },
+  { fg: 'amber-500 on ink-900', ratio: '8.74:1', level: 'AAA' },
+  { fg: 'slate-400 on ink-900', ratio: '9.12:1', level: 'AAA' },
+  { fg: 'ink-900 on moss-400 (primary button)', ratio: '9.43:1', level: 'AAA' },
+  { fg: 'ink-900 on moss-500 (published badge)', ratio: '6.32:1', level: 'AA' },
 ];
 
 const typeScale = [
@@ -39,7 +42,8 @@ const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96];
 ---
 
 <BaseLayout title="Styleguide | Wangdi Portfolio" description="Living design system reference for the Wangdi portfolio site.">
-  <main id="main" class="mx-auto max-w-4xl px-6 py-16">
+  <Nav />
+  <main id="main" class="site-shell pb-24 pt-36 sm:pt-40">
     <header class="mb-16">
       <p class="text-sm tracking-widest text-moss-400 uppercase">Design system</p>
       <h1 class="mt-2 text-h1 text-paper-50">Styleguide</h1>
@@ -213,4 +217,5 @@ const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96];
       </p>
     </footer>
   </main>
+  <Footer />
 </BaseLayout>

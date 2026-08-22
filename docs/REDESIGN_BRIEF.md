@@ -1,6 +1,12 @@
 # Front-end redesign brief
 
-**Status:** approved direction, not yet built. Written 2026-08-22 for the next session.
+**Status:** superseded. Written 2026-08-22 as the plan for the next session; a
+different direction (conservation-editorial, Swiss-modernist) was chosen and shipped
+instead — see `design-system/wangdi-portfolio/MASTER.md` for the design system that is
+actually live. This document is kept because the elevation-figure research below (the
+one part of it still true) is worth having on hand if a future pass wants to use
+altitude as a device — e.g. a literal elevation plot on `/publications`, which the real
+per-study ranges would support.
 
 This is a **redesign, not a refinement**. The owner previously chose "refine, don't
 redesign" and that decision has been reversed — the old look is evidence and

@@ -14,35 +14,35 @@ const layersJson = JSON.stringify(LAYERS);
   description="Interactive research map — protected-area connectivity, habitat modelling outputs, and survey footprints, published under DoFPS data-disclosure rules."
 >
   <Nav />
-  <main id="main" class="mx-auto max-w-5xl px-6 pt-28 pb-20">
+  <main id="main" class="site-shell pb-24 pt-36 sm:pt-40">
     <SectionHeading
       eyebrow="GIS explorer"
       title="Research map."
       lede="Spatial context for the research on this site. Occurrence-level data is never published; sensitive layers appear only as aggregated extents after written clearance."
     />
-    <div class="mt-6 flex flex-wrap gap-2">
+    <div class="mt-8 flex flex-wrap gap-2">
       <TagPill label="Protected areas & corridors: full resolution (public)" />
       <TagPill label="SDM surfaces: model outputs only" />
       <TagPill label="Occurrences: aggregated or withheld" />
     </div>
 
     <p id="map-status" class="sr-only" aria-live="polite"></p>
-    <div class="mt-10 grid gap-6 lg:grid-cols-[280px_1fr]">
-      <aside>
-        <h2 class="mb-3 text-sm font-medium tracking-wider text-paper-50 uppercase">Layers</h2>
+    <div class="mt-12 grid gap-6 lg:grid-cols-[300px_1fr]">
+      <aside class="surface-panel h-fit rounded-[var(--radius-lg)] p-5 lg:sticky lg:top-28">
+        <h2 class="mb-4 text-xs font-semibold tracking-[0.16em] text-paper-50 uppercase">Layers</h2>
         <fieldset id="layer-panel" class="space-y-2" data-layers={layersJson}>
           <legend class="sr-only">Toggle map layers</legend>
           {
             LAYERS.length === 0 && (
-              <p class="rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-4 text-sm text-[var(--color-text-muted)]">
+              <p class="rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-ink-900 p-4 text-sm text-[var(--color-text-muted)]">
                 No layers published yet. Data preparation is under DoFPS disclosure review —
                 cleared layers will appear here with full source notes.
               </p>
             )
           }
         </fieldset>
-        <details class="mt-6 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-4">
-          <summary class="cursor-pointer text-sm font-medium text-moss-400">View layer data as table</summary>
+        <details class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-ink-900 p-4">
+          <summary class="min-h-11 text-sm font-medium text-moss-300">View layer data as table</summary>
           <div id="layer-tables" class="mt-4 space-y-6 text-sm">
             <p class="text-[var(--color-text-muted)]">
               Every approved map attribute is available in paginated tables for screen readers
@@ -51,7 +51,7 @@ const layersJson = JSON.stringify(LAYERS);
           </div>
         </details>
       </aside>
-      <div class="relative min-h-[420px] overflow-hidden rounded-lg border border-[var(--color-border-subtle)]">
+      <div class="relative min-h-[34rem] overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] bg-ink-800 shadow-card">
         <div id="map" class="absolute inset-0" role="application" aria-label="Interactive research map of Bhutan"></div>
         <noscript>
           <p class="p-6 text-sm text-[var(--color-text-muted)]">
@@ -138,9 +138,9 @@ const layersJson = JSON.stringify(LAYERS);
     const count = text('p', '', 'text-xs text-[var(--color-text-muted)]');
     const buttons = document.createElement('div');
     buttons.className = 'flex gap-2';
-    const previous = text('button', 'Previous', 'rounded border border-[var(--color-border-subtle)] px-2 py-1 disabled:opacity-40');
+    const previous = text('button', 'Previous', 'min-h-11 rounded border border-[var(--color-border-subtle)] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-40');
     previous.type = 'button';
-    const next = text('button', 'Next', 'rounded border border-[var(--color-border-subtle)] px-2 py-1 disabled:opacity-40');
+    const next = text('button', 'Next', 'min-h-11 rounded border border-[var(--color-border-subtle)] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-40');
     next.type = 'button';
     buttons.append(previous, next);
     controls.append(count, buttons);
@@ -189,7 +189,7 @@ const layersJson = JSON.stringify(LAYERS);
     await Promise.all(
       layers.map(async (layer) => {
         const label = document.createElement('label');
-        label.className = 'flex items-center gap-2 text-sm';
+        label.className = 'flex min-h-11 cursor-pointer items-center gap-2 text-sm';
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.checked = true;

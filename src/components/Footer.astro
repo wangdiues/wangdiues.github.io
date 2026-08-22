@@ -2,12 +2,18 @@
 import { SOCIAL } from '../config';
 ---
 
-<footer class="border-t border-[var(--color-border-subtle)] py-10">
-  <div class="mx-auto flex max-w-5xl flex-col items-center gap-6 px-6 sm:flex-row sm:justify-between">
-    <p class="text-sm text-[var(--color-text-muted)]">
-      © {new Date().getFullYear()} Wangdi · Biodiversity science & forest governance, Bhutan
-    </p>
-    <ul class="flex gap-6 text-sm" aria-label="Social links">
+<footer class="border-t border-[var(--color-border-subtle)] bg-ink-950/55 py-10">
+  <div class="site-shell grid gap-8 sm:grid-cols-[1.3fr_0.7fr] sm:items-end">
+    <div>
+      <a href="/" class="font-heading text-2xl font-semibold tracking-tight text-paper-50">Wangdi</a>
+      <p class="mt-2 max-w-lg text-sm text-[var(--color-text-muted)]">
+        Biodiversity science, spatial ecology, and public forest governance from Bhutan.
+      </p>
+      <p class="mt-5 text-xs tracking-wider text-[var(--color-text-muted)] uppercase">
+        © {new Date().getFullYear()} · Built for evidence, access, and conservation action
+      </p>
+    </div>
+    <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm sm:justify-end" aria-label="Social links">
       {
         SOCIAL.map((s) => (
           <li>
@@ -15,7 +21,7 @@ import { SOCIAL } from '../config';
               href={s.href}
               target={s.href.startsWith('http') ? '_blank' : undefined}
               rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              class="text-[var(--color-text-muted)] transition-colors hover:text-moss-400"
+              class="link-arrow text-[var(--color-text-muted)] hover:text-moss-300"
             >
               {s.label}
             </a>
