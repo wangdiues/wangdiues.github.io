@@ -6,8 +6,9 @@ year: 2025
 date: 2025-01-02
 venue: "Divisional Forest Office, Sarpang"
 authors: "Wangdi et al."
+pdf: "/publications/coexistence-strategy-dekiling.pdf"
 rightsLicense: "Institutional document (RGoB)"
-rightsNote: "Not hosted — DoFPS clearance required (docs/RIGHTS.md)."
+rightsNote: "Public RGoB document — openly distributed by DoFPS; hosted at owner's direction."
 tags:
   - Human-elephant conflict
   - Coexistence strategy

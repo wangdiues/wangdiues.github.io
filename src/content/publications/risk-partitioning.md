@@ -5,7 +5,8 @@ year: 2026
 date: 2026-04-04
 venue: "Manuscript in preparation"
 authors: "Wangdi & Rupesh Subedi"
-rightsNote: "Draft manuscript — not hosted."
+pdf: "/publications/tiger-risk-partitioning.pdf"
+rightsNote: "Author-owned draft manuscript."
 geo: "camera-trap-stations"
 tags:
   - Spatiotemporal ecology

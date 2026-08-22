@@ -3,10 +3,20 @@ import { join } from "node:path";
 
 const DIR = "public/publications";
 const MAX_FILE = 2_000_000;
-const MAX_TOTAL = 10_000_000;
+const MAX_TOTAL = 60_000_000;
+// Per-file allowances above the 2 MB default. Oversized entries are either
+// author-owned submissions (FRH, forest-gradient) or public RGoB documents
+// openly distributed by DoFPS (plans, strategies, supplementary material).
 const EXCEPTIONS = {
-  "forest-gradient-bhutan-main.pdf": 2_300_000,
-  "fundamental-realized-habitat.pdf": 2_450_000,
+  "sarpang-forest-division-management-plan.pdf": 13_000_000,
+  "climate-refugia-asian-elephants-supplementary.pdf": 4_800_000,
+  "coexistence-strategy-gakiling.pdf": 4_500_000,
+  "coexistence-strategy-dekiling.pdf": 4_300_000,
+  "bc03-conservation-management-plan.pdf": 3_200_000,
+  "fundamental-realized-habitat.pdf": 2_600_000,
+  "forest-gradient-bhutan-fem-submission.pdf": 2_300_000,
+  "forest-gradient-bhutan-main.pdf": 2_250_000,
+  "community-assembly-disturbance-climate-gradient.pdf": 2_200_000,
 };
 
 const failures = [];
@@ -39,5 +49,5 @@ if (failures.length > 0) {
 console.log(
   `Publication PDFs OK: ${readdirSync(DIR).length} files, ${(
     total / 1e6
-  ).toFixed(2)} MB / 10 MB`
+  ).toFixed(2)} MB / ${MAX_TOTAL / 1e6} MB`
 );

@@ -6,8 +6,9 @@ year: 2024
 date: 2024-01-02
 venue: "Department of Forests & Park Services"
 authors: "Wangdi et al."
+pdf: "/publications/sarpang-forest-division-management-plan.pdf"
 rightsLicense: "Institutional document (RGoB)"
-rightsNote: "Not hosted — DoFPS clearance required (docs/RIGHTS.md)."
+rightsNote: "Public RGoB document — openly distributed by DoFPS; hosted at owner's direction."
 tags:
   - Sarpang Forest Division
   - Forest management

@@ -15,3 +15,5 @@ tags:
 ---
 
 Integrated 107,876 vegetation records across 2,185 species from 1,942 National Forest Inventory plots with environmental rasters and MODIS EVI trends from 2000–2024. Shows that biodiversity, structural complexity, and canopy greenness are only weakly coupled across Bhutan's mountain forest gradient, making satellite greenness an incomplete proxy for floristic or structural change. Argues for multi-indicator national monitoring that combines NFI ground data with remote sensing rather than canopy-greenness surrogates alone.
+
+Also available: [supplementary material (PDF)](/publications/forest-gradient-bhutan-supplementary.pdf) and the [FEM-formatted submission compilation (PDF)](/publications/forest-gradient-bhutan-fem-submission.pdf).

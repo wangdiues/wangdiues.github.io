@@ -5,7 +5,8 @@ year: 2026
 date: 2026-04-11
 venue: "Manuscript in preparation"
 authors: "Wangdi et al."
-rightsNote: "Draft manuscript — not hosted."
+pdf: "/publications/elephant-seasonal-search-dynamics.pdf"
+rightsNote: "Author-owned draft manuscript."
 geo: "elephant-telemetry"
 tags:
   - Asian elephants

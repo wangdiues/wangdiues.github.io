@@ -6,8 +6,9 @@ year: 2023
 date: 2023-02-01
 venue: "Department of Forests & Park Services"
 authors: "Wangdi et al."
+pdf: "/publications/bc03-conservation-management-plan.pdf"
 rightsLicense: "Institutional document (RGoB)"
-rightsNote: "Not hosted — DoFPS clearance required (docs/RIGHTS.md, docs/GEODATA.md)."
+rightsNote: "Public RGoB document — openly distributed by DoFPS; hosted at owner's direction."
 tags:
   - Biological Corridor 03
   - Corridor planning

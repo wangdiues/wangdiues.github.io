@@ -1,36 +1,45 @@
 # Publication Rights Register (Decision D3)
 
-_Last reviewed: 2026-08-22. Sources: Elsevier sharing policy, Wiley self-archiving terms,
-BJNRD editorial policies, International Journal of Environment (NepJOL) policies._
+_Last reviewed: 2026-08-22 (rev 2 — full-hosting update). Sources: Elsevier sharing policy,
+Wiley self-archiving terms, BJNRD editorial policies, International Journal of Environment
+(NepJOL) policies, and owner direction on public RGoB documents._
 
 ## Policy summary
 
 1. Every publication links to its **DOI** as the primary destination once one exists.
-2. Self-hosted files are limited to: CC-licensed publisher versions, and **author-owned
-   submitted manuscripts (preprints)** of works under review. Preprint hosting is permitted
-   by Elsevier and Wiley prior to acceptance.
-3. Institutional documents (DoFPS / RGoB) are **not** personal property and are not hosted
-   without written departmental clearance.
-4. Manuscripts in preparation are not hosted (drafts, not yet citable).
-5. Any single hosted PDF ≤ 2 MB; hosted PDF directory total ≤ 10 MB (CI-enforced).
-   Files above budget are compressed (qpdf) or linked-out.
+2. Self-hosted files are limited to: CC-licensed publisher versions, **author-owned
+   submitted/draft manuscripts** (preprints — permitted by Elsevier and Wiley prior to
+   acceptance), and **public RGoB institutional documents** (DoFPS plans and strategies are
+   openly distributed public documents; hosted at the owner's direction).
+3. Manuscripts in preparation are hosted **as author-owned drafts**, clearly labelled.
+4. Any single hosted PDF defaults to ≤ 2 MB; named exceptions in
+   `scripts/check-budgets.mjs` cover author submissions and public institutional documents.
+   Directory total ≤ 60 MB (CI-enforced).
+5. **Map layers remain gated by DoFPS clearance** — see `docs/GEODATA.md`. Document hosting
+   no longer waits on that clearance.
 
 ## Per-item verdicts
 
-| Item                                    | Venue                                        | Rights basis                           | Hosted?                                                  | File                                           |
-| --------------------------------------- | -------------------------------------------- | -------------------------------------- | -------------------------------------------------------- | ---------------------------------------------- |
-| salt-licks                              | BJNRD 9(2), 2022                             | CC BY 4.0 publisher version            | Yes                                                      | salt-licks.pdf                                 |
-| aquatic-beetles                         | Int. J. Environment 12(1), 2023              | CC BY-NC publisher version             | Yes                                                      | aquatic-beetles.pdf                            |
-| forest-gradient-bhutan                  | Forest Ecology and Management (under review) | Author-owned submitted manuscript      | Yes (main + supplement)                                  | forest-gradient-bhutan-main/-supplementary.pdf |
-| vegetation-community                    | Journal of Vegetation Science (under review) | Author-owned submitted manuscript      | Yes                                                      | vegetation-community-main.pdf                  |
-| ecosystem-integrity                     | Ecology & Evolution (under review)           | Author-owned submitted manuscript      | Yes                                                      | ecosystem-integrity.pdf                        |
-| climate-habitat-elephants               | Ecology & Evolution (under review)           | Author-owned submitted manuscript      | Main only (supplement 4.4 MB > 2 MB budget — on request) | climate-refugia-asian-elephants-main.pdf       |
-| fundamental-realized-habitat            | Venue TBD (under review)                     | Author-owned submitted manuscript      | Yes                                                      | fundamental-realized-habitat.pdf               |
-| bc03-conservation-management-plan       | DoFPS                                        | **Institutional — clearance required** | No                                                       | —                                              |
-| sarpang-forest-division-management-plan | DoFPS                                        | **Institutional — clearance required** | No                                                       | —                                              |
-| coexistence-strategy-dekiling           | DoFPS                                        | **Institutional — clearance required** | No                                                       | —                                              |
-| coexistence-strategy-gakiling           | DoFPS                                        | **Institutional — clearance required** | No                                                       | —                                              |
-| All 7 in-preparation manuscripts        | —                                            | Drafts                                 | No                                                       | —                                              |
+| Item                                    | Venue                                        | Rights basis                                   | Hosted?                                                                                                                   | File(s)                                                        |
+| --------------------------------------- | -------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| salt-licks                              | BJNRD 9(2), 2022                             | CC BY 4.0 publisher version                    | Yes                                                                                                                       | salt-licks.pdf                                                 |
+| aquatic-beetles                         | Int. J. Environment 12(1), 2023              | CC BY-NC publisher version                     | Yes                                                                                                                       | aquatic-beetles.pdf                                            |
+| wild-edible-medicinal-plants            | BJNRD 13(1), 14–36, 2026 — **PUBLISHED**     | Open access (BJNRD), DOI 10.17102/cnr.2026.111 | Yes (publisher version)                                                                                                   | wild-edible-medicinal-plants.pdf                               |
+| forest-gradient-bhutan                  | Forest Ecology and Management (under review) | Author-owned submitted manuscript              | Yes (main + supplement + FEM compilation)                                                                                 | forest-gradient-bhutan-main/-supplementary/-fem-submission.pdf |
+| vegetation-community                    | Journal of Vegetation Science (under review) | Author-owned submitted manuscript              | Yes                                                                                                                       | vegetation-community-main.pdf (= 01_manuscript_jvs.pdf)        |
+| ecosystem-integrity                     | Ecology & Evolution (under review)           | Author-owned submitted manuscript              | Yes (revised version)                                                                                                     | ecosystem-integrity.pdf (= Manuscript_revised_MAIN.pdf)        |
+| climate-habitat-elephants               | Ecology & Evolution (under review)           | Author-owned submitted manuscript              | Yes (main + supplement + CMIP6-titled compilation)                                                                        | climate-refugia-asian-elephants-main/-supplementary/-cmip6.pdf |
+| fundamental-realized-habitat            | Venue TBD (under review)                     | Author-owned submitted manuscript              | Yes — **now the 01_manuscript.pdf version** (four-author, "Transferable" subtitle) per the 2026-08-22 evidence resolution | fundamental-realized-habitat.pdf                               |
+| bc03-conservation-management-plan       | DoFPS, 2023                                  | Public RGoB document                           | Yes                                                                                                                       | bc03-conservation-management-plan.pdf                          |
+| sarpang-forest-division-management-plan | DoFPS, 2024                                  | Public RGoB document                           | Yes                                                                                                                       | sarpang-forest-division-management-plan.pdf                    |
+| coexistence-strategy-dekiling           | DFO Sarpang, 2025                            | Public RGoB document                           | Yes                                                                                                                       | coexistence-strategy-dekiling.pdf                              |
+| coexistence-strategy-gakiling           | DFO Sarpang, 2025                            | Public RGoB document                           | Yes                                                                                                                       | coexistence-strategy-gakiling.pdf                              |
+| climate-vulnerability-adaptive-capacity | In preparation                               | Author-owned draft                             | Yes                                                                                                                       | climate-vulnerability-adaptive-capacity-bhutan.pdf             |
+| community-assembly                      | In preparation                               | Author-owned draft                             | Yes                                                                                                                       | community-assembly-disturbance-climate-gradient.pdf            |
+| elephant-movement-habitat-selection     | In preparation                               | Author-owned draft                             | Yes                                                                                                                       | elephant-movement-habitat-selection.pdf                        |
+| elephant-seasonal-search-dynamics       | In preparation                               | Author-owned draft                             | Yes                                                                                                                       | elephant-seasonal-search-dynamics.pdf                          |
+| forest-carbon-sequestration-cmip6       | In preparation                               | Author-owned draft                             | Yes                                                                                                                       | forest-carbon-sequestration-cmip6.pdf                          |
+| risk-partitioning                       | In preparation                               | Author-owned draft                             | Yes                                                                                                                       | tiger-risk-partitioning.pdf                                    |
 
 ## Post-acceptance rules (apply when acceptances arrive)
 
@@ -43,17 +52,14 @@ BJNRD editorial policies, International Journal of Environment (NepJOL) policies
 
 ## Open items requiring Wangdi
 
-1. **fundamental-realized-habitat** — RESOLVED BY EVIDENCE (2026-08-22): the manuscript in
-   `01_manuscript.pdf` ("Transferable" subtitle, four-author list, conservation-triage framework)
-   matches every statistic recorded in the site entry and extends the condensed draft now archived
-   as the earlier version. Site entry and hosted PDF both point at this version. **Veto window:**
-   if an alternative current version exists, say so and the entry reverts.
-2. **wild-edible-medicinal-plants** — NARROWED: confirmed multi-author manuscript, corresponding
-   author Sangay Dorjee, Wangdi ~tenth author (ORCID-verified from source PDF before it was moved
-   out of staging). Unconfirmed: ordered list of authors 1–7. Entry displays "Sangay Dorjee et al."
-3. ~~aquatic-beetles~~ RESOLVED: full list extracted — Wangchuk Blon, Tashi Dendup, Cheten Dorji &
-   Wangdi (Wangdi fourth); exact article title restored.
-4. ~~climate-vulnerability-adaptive-capacity~~ RESOLVED: two authors only — Wangdi (corresponding)
-   & Sangay Chedup; expanded subtitle restored from the title page.
-5. **DoFPS clearance** for the four institutional documents — same conversation as D1
-   (draft request in `docs/DRAFT_DOFPS_REQUEST.md`).
+1. ~~wild-edible-medicinal-plants~~ **RESOLVED (2026-08-22)**: published — Orong, K., Dorjee, S.
+   & Wangdi (2026). _BJNRD_ 13(1), 14–36. DOI 10.17102/cnr.2026.111. Wangdi is the **third and
+   final author**; corresponding author Sangay Dorjee. Entry updated to `published` with full
+   metadata; publisher PDF hosted.
+2. ~~DoFPS clearance for document hosting~~ **RESOLVED by owner direction (2026-08-22)**: the
+   four plans/strategies are public RGoB documents and are hosted. DoFPS clearance remains
+   required **only for map layers** (`docs/GEODATA.md`, draft request in
+   `docs/DRAFT_DOFPS_REQUEST.md`).
+3. **fundamental-realized-habitat** — hosted PDF now matches `01_manuscript.pdf` byte-for-byte
+   (the evidence-resolved version). **Veto window remains open**: if a different current version
+   exists, say so and the entry reverts.

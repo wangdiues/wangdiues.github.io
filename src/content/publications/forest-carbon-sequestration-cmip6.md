@@ -5,7 +5,8 @@ year: 2026
 date: 2026-04-10
 venue: "Manuscript in preparation"
 authors: "Wangdi et al."
-rightsNote: "Draft manuscript — not hosted."
+pdf: "/publications/forest-carbon-sequestration-cmip6.pdf"
+rightsNote: "Author-owned draft manuscript."
 tags:
   - Forest carbon
   - CMIP6

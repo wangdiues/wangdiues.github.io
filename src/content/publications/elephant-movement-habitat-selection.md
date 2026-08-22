@@ -5,7 +5,8 @@ year: 2026
 date: 2026-04-12
 venue: "Manuscript in preparation"
 authors: "Wangdi et al."
-rightsNote: "Draft manuscript — not hosted."
+pdf: "/publications/elephant-movement-habitat-selection.pdf"
+rightsNote: "Author-owned draft manuscript."
 geo: "elephant-telemetry"
 tags:
   - Asian elephants

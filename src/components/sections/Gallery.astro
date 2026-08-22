@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const images = Object.entries(
+  import.meta.glob<{ default: ImageMetadata }>('../../assets/gallery/*.jpg', { eager: true })
+)
+  .map(([path, mod]) => ({ path, image: mod.default }))
+  .sort((a, b) => a.path.localeCompare(b.path));
+---
+
+<section id="gallery" class="scroll-mt-20 py-24" aria-label="Field gallery">
+  <div class="mx-auto max-w-5xl px-6">
+    <p class="text-sm font-medium tracking-widest text-moss-400 uppercase">Gallery</p>
+    <h2 class="mt-2 font-heading text-3xl font-semibold text-paper-50">From the field.</h2>
+    <p class="mt-3 max-w-xl text-[var(--color-text-muted)]">
+      Camera-trap deployments, forest inventory, telemetry work, and landscape monitoring across
+      Bhutan's conservation landscapes.
+    </p>
+    <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      {
+        images.map(({ image }, i) => (
+          <figure class="overflow-hidden rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]">
+            <div class="aspect-[4/3]">
+              <Image
+                src={image}
+                alt={`Field photograph ${i + 1} from Wangdi's conservation work in Bhutan`}
+                widths={[320, 480, 640]}
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.03]"
+              />
+            </div>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
