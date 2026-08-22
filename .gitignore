@@ -145,6 +145,11 @@ vite.config.ts.timestamp-*
 # Astro
 .astro/
 
+# Local-only archives and V1 staging folders (gated PDFs live here)
+_archive/
+/content/
+/static/
+
 # Impeccable (ephemeral design-review artifacts)
 .impeccable/config.local.json
 .impeccable/*.png

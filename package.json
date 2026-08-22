@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "tokens": "node scripts/build-tokens.mjs",
+    "budgets": "node scripts/check-budgets.mjs",
     "prebuild": "npm run tokens",
     "astro": "astro"
   },
