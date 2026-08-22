@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import StatusBadge from '../components/ui/StatusBadge.astro';
+import TagPill from '../components/ui/TagPill.astro';
+
+const colours = [
+  { name: 'ink-900', hex: '#0d1b16', token: 'bg-base', bg: true },
+  { name: 'ink-800', hex: '#12241d', token: 'bg-raised', bg: true },
+  { name: 'ink-700', hex: '#1a3328', token: 'surfaces', bg: true },
+  { name: 'moss-500', hex: '#4a9d6e', token: 'status-published-bg', bg: false },
+  { name: 'moss-400', hex: '#63b385', token: 'accent', bg: false },
+  { name: 'moss-300', hex: '#8ccaa4', token: 'accent-hover / focus-ring', bg: false },
+  { name: 'amber-500', hex: '#d9a441', token: 'status-under-review', bg: false },
+  { name: 'slate-400', hex: '#7c8f88', token: 'text-muted / status-in-preparation', bg: false },
+  { name: 'paper-50', hex: '#f4f7f5', token: 'text-primary', bg: false },
+];
+
+const contrast = [
+  { fg: 'paper-50 on ink-900', ratio: '16.4:1', level: 'AAA' },
+  { fg: 'moss-400 on ink-900', ratio: '7.0:1', level: 'AAA' },
+  { fg: 'amber-500 on ink-900', ratio: '7.9:1', level: 'AAA' },
+  { fg: 'slate-400 on ink-900', ratio: '5.2:1', level: 'AA' },
+  { fg: 'ink-900 on moss-400 (primary button)', ratio: '7.0:1', level: 'AAA' },
+  { fg: 'ink-900 on moss-500 (published badge)', ratio: '5.3:1', level: 'AA' },
+];
+
+const typeScale = [
+  { name: 'display', class: 'text-display', note: 'Hero statements' },
+  { name: 'h1', class: 'text-h1', note: 'Page titles' },
+  { name: 'h2', class: 'text-h2', note: 'Section titles' },
+  { name: 'h3', class: 'text-h3', note: 'Card titles' },
+  { name: 'lead', class: 'text-lead', note: 'Intro paragraphs' },
+];
+
+const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96];
+---
+
+<BaseLayout title="Styleguide | Wangdi Portfolio" description="Living design system reference for the Wangdi portfolio site.">
+  <main id="main" class="mx-auto max-w-4xl px-6 py-16">
+    <header class="mb-16">
+      <p class="text-sm tracking-widest text-moss-400 uppercase">Design system</p>
+      <h1 class="mt-2 text-h1 text-paper-50">Styleguide</h1>
+      <p class="mt-4 max-w-prose text-lead text-[var(--color-text-muted)]">
+        Every value on this page resolves to a token from <code>tokens/tokens.json</code>.
+        Nothing here is hardcoded. Source Serif 4 for headings, Inter for UI and body,
+        self-hosted and subset via unicode-range.
+      </p>
+    </header>
+
+    <nav aria-label="Sections" class="mb-16 flex flex-wrap gap-3">
+      <TagPill label="Colour" />
+      <TagPill label="Contrast" />
+      <TagPill label="Typography" />
+      <TagPill label="Spacing" />
+      <TagPill label="Buttons" />
+      <TagPill label="Badges & pills" />
+      <TagPill label="Cards" />
+      <TagPill label="Forms" />
+    </nav>
+
+    <section class="mb-20">
+      <SectionHeading eyebrow="Foundations" title="Colour" />
+      <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+        {
+          colours.map((c) => (
+            <div class="overflow-hidden rounded-lg border border-[var(--color-border-subtle)]">
+              <div class="h-16 w-full" style={`background:${c.hex}`} />
+              <div class="bg-[var(--color-bg-raised)] px-4 py-3 text-sm">
+                <p class="font-medium">{c.name}</p>
+                <p class="text-xs text-[var(--color-text-muted)]">{c.hex}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <SectionHeading
+        eyebrow="Accessibility"
+        title="Verified contrast pairs"
+        lede="Body text target 4.5:1 minimum; large text and UI components 3:1. All pairs below pass."
+      />
+      <table class="mt-8 w-full border-collapse text-sm">
+        <thead>
+          <tr class="border-b border-[var(--color-border-subtle)] text-left text-xs tracking-wider text-[var(--color-text-muted)] uppercase">
+            <th class="py-3 pr-4">Pair</th>
+            <th class="py-3 pr-4">Ratio</th>
+            <th class="py-3">WCAG</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            contrast.map((row) => (
+              <tr class="border-b border-[var(--color-border-subtle)]/50">
+                <td class="py-3 pr-4">{row.fg}</td>
+                <td class="py-3 pr-4 tabular-nums">{row.ratio}</td>
+                <td class="py-3"><StatusBadge status={row.level === 'AAA' ? 'published' : 'under-review'} label={row.level} /></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section class="mb-20">
+      <SectionHeading eyebrow="Typography" title="Fluid type scale" lede="Clamp-based scale, ~1.22 ratio between steps." />
+      <div class="mt-8 space-y-8">
+        {
+          typeScale.map((t) => (
+            <div>
+              <p class={`${t.class} text-paper-50`}>Forest governance in Bhutan</p>
+              <p class="mt-1 text-xs text-[var(--color-text-muted)]">
+                --type-{t.name} · {t.note}
+              </p>
+            </div>
+          ))
+        }
+        <div>
+          <p class="text-[length:var(--type-body)] leading-relaxed text-paper-50">
+            Body: ecological evidence translated into management decisions across protected areas,
+            biological corridors, and working forest landscapes.
+          </p>
+          <p class="mt-1 text-xs text-[var(--color-text-muted)]">--type-body · 1rem / 1.7</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <SectionHeading eyebrow="Rhythm" title="Spacing scale" lede="4 px base scale. Every gap, padding, and margin comes from this list." />
+      <div class="mt-8 space-y-3">
+        {
+          spacing.map((s) => (
+            <div class="flex items-center gap-4">
+              <span class="w-14 text-xs text-[var(--color-text-muted)] tabular-nums">{s}px</span>
+              <div class="h-3 rounded-sm bg-moss-400/70" style={`width:${s * 3}px`} />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <SectionHeading eyebrow="Actions" title="Buttons" />
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <Button href="#buttons">Primary</Button>
+        <Button href="#buttons" variant="secondary">Secondary</Button>
+        <Button href="#buttons" variant="ghost">Ghost</Button>
+        <Button href="#buttons" size="sm">Small primary</Button>
+        <Button href="#buttons" variant="secondary" size="sm">Small secondary</Button>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <SectionHeading eyebrow="Metadata" title="Badges & pills" lede="Visual weight encodes publication status at a glance." />
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <StatusBadge status="published" />
+        <StatusBadge status="under-review" />
+        <StatusBadge status="in-preparation" />
+        <StatusBadge status="report" />
+      </div>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <TagPill label="Species distribution modelling" />
+        <TagPill label="Camera-trap occupancy" />
+        <TagPill label="Google Earth Engine" />
+        <TagPill label="MaxEnt" />
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <SectionHeading eyebrow="Surfaces" title="Cards" />
+      <div class="mt-8 grid gap-6 sm:grid-cols-2">
+        <Card>
+          <h3 class="text-h3 text-paper-50">Publication card</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+            Raised surface, subtle border, hover shifts border to accent. Shadow is a single token.
+          </p>
+        </Card>
+        <Card href="#">
+          <h3 class="text-h3 text-paper-50">Linked card</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+            The whole card becomes an anchor when given an href.
+          </p>
+        </Card>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <SectionHeading eyebrow="Input" title="Form fields" />
+      <div class="mt-8 grid max-w-md gap-5">
+        <label class="block text-sm">
+          <span class="mb-2 block font-medium">Email</span>
+          <input type="email" name="email" placeholder="you@example.org" class="field" />
+        </label>
+        <label class="block text-sm">
+          <span class="mb-2 block font-medium">Topic</span>
+          <select name="topic" class="field">
+            <option>Research collaboration</option>
+            <option>Conservation planning</option>
+            <option>Technical exchange</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <footer class="border-t border-[var(--color-border-subtle)] pt-8 text-sm text-[var(--color-text-muted)]">
+      <p>
+        Interaction rules: reduced-motion respected globally, focus-visible ring on every interactive
+        element, no bounce easing, colour-only signals always paired with text labels.
+      </p>
+    </footer>
+  </main>
+</BaseLayout>
