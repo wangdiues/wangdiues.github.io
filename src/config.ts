@@ -97,21 +97,6 @@ export const REPOSITORIES: Repository[] = [
   },
 ];
 
-export const TOOLKIT = [
-  {
-    repo: "pbakaus/impeccable",
-    url: "https://github.com/pbakaus/impeccable",
-    description:
-      "Design guidance for AI coding agents — one skill, 23 commands, and 59 deterministic detector rules that steer generated frontends away from generic AI-slop patterns. This site is designed and reviewed with it.",
-  },
-  {
-    repo: "nextlevelbuilder/ui-ux-pro-max-skill",
-    url: "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
-    description:
-      "AI skill providing design intelligence across platforms — 192 industry reasoning rules, 79 searchable UI styles, curated palettes and font pairings, with stack-specific guidance including Astro.",
-  },
-];
-
 export const FIELD_METHODS = [
   "Camera-trap surveys",
   "Occupancy modelling",

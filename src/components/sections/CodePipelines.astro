@@ -1,6 +1,6 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
-import { GITHUB_PROFILE, REPOSITORIES, TOOLKIT } from '../../config';
+import { GITHUB_PROFILE, REPOSITORIES } from '../../config';
 
 const LANG_COLORS: Record<string, string> = {
   Python: '#3572A5',
@@ -56,32 +56,6 @@ const LANG_COLORS: Record<string, string> = {
                 </>
               )}
             </p>
-          </a>
-        ))
-      }
-    </div>
-
-    <h3 class="mt-14 text-sm font-medium tracking-widest text-moss-400 uppercase">Toolkit</h3>
-    <p class="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
-      Open-source AI design tooling this site is built and reviewed with.
-    </p>
-    <div class="mt-6 grid gap-4 sm:grid-cols-2">
-      {
-        TOOLKIT.map((tool) => (
-          <a
-            href={tool.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex flex-col justify-between rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]/40 p-5 transition-colors hover:border-moss-400/60 hover:bg-[var(--color-bg-raised)]/70"
-          >
-            <div>
-              <p class="font-mono text-sm font-semibold text-paper-50 group-hover:text-moss-400">
-                {tool.repo}
-                <span aria-hidden="true" class="ml-1 inline-block opacity-0 transition-opacity group-hover:opacity-100">↗</span>
-              </p>
-              <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{tool.description}</p>
-            </div>
-            <p class="mt-4 text-xs text-[var(--color-text-muted)]">Third-party project</p>
           </a>
         ))
       }
