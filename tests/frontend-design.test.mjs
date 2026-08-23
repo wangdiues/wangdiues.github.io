@@ -89,17 +89,19 @@ test('shared UI foundations preserve keyboard and reduced-motion access', () => 
   assert.match(navigation, /h-11 w-11/);
 });
 
-test('the hero leads with a sourced stat before the name, and stays semantic and image-optimized', () => {
+test('the hero is concise, portrait-led, semantic, and image-optimized', () => {
   const hero = read('src/components/sections/Hero.astro');
   const homepage = read('src/pages/index.astro');
-  const cameraTrapStudy = read('src/content/case-studies/camera-trap-monitoring.md');
 
-  // The "100+" claim must trace back to real content, not be invented for the hero.
-  assert.match(cameraTrapStudy, /100\+ species/);
-  assert.match(hero, />\s*100</);
-  assert.match(hero, /aria-label="100 or more species documented"/);
-  assert.match(hero, /<h1[^>]*>/);
+  assert.doesNotMatch(hero, /Wangdi · Senior Forestry Officer/);
+  assert.doesNotMatch(hero, /26\.85° N, 89\.38° E/);
+  assert.doesNotMatch(hero, /Not a species list/);
+  assert.doesNotMatch(hero, /I turn field evidence into decisions for living landscapes/);
+  assert.match(hero, /<h1 class="sr-only">Wangdi<\/h1>/);
   assert.match(hero, /import \{ Image \} from 'astro:assets'/);
+  assert.match(hero, /wangdi-profile\.jpg/);
+  assert.match(hero, /alt="Portrait of Wangdi"/);
+  assert.match(hero, /aspect-\[3\/4\]/);
   assert.match(hero, /fetchpriority="high"/);
   assert.match(hero, /sizes="\(min-width: 1024px\)/);
   assert.match(homepage, /title="Wangdi \| Conservation research/);

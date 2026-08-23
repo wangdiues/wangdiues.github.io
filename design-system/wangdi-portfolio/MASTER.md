@@ -11,7 +11,7 @@ one, at the owner's explicit choice, not by default.
 
 ## Direction
 
-- Pattern: stat-led hero (a real number before the name) → identity → measured proof →
+- Pattern: concise portrait-led introduction → measured proof →
   numbered approach → indexed selected work with sticky preview → technical depth → contact.
 - Style: warm, high-contrast dark editorial theme by default, with a genuine second,
   fully-designed light theme reachable via a working toggle — not an inverted palette.
@@ -68,7 +68,7 @@ tightened to 5.10:1+ across both themes; see `tests/frontend-design.test.mjs`.
   `<a href>`, so navigation works with zero JavaScript).
 - A section that must stay legible over photography or a placeholder panel opts into
   `.dark-section`, which restates fixed-dark values so it does not flip with the toggle.
-- Homepage storytelling: stat-led hero → evidence at a glance → about → research
+- Homepage storytelling: portrait-led introduction → evidence at a glance → about → research
   approach (a genuine 3-step sequence, numbered because it is actually ordered) →
   experience → indexed selected work → code → gallery → contact.
 - Project cards explicitly label the applied outcome so readers can scan the

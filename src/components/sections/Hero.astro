@@ -2,33 +2,14 @@
 import { Image } from 'astro:assets';
 import Button from '../ui/Button.astro';
 import TagPill from '../ui/TagPill.astro';
-import portrait from '../../assets/wangdi-dfo-sarpang.jpg';
+import portrait from '../../assets/wangdi-profile.jpg';
 ---
 
-<section class="relative overflow-hidden pb-16 pt-32 sm:pt-36 lg:min-h-[800px] lg:pb-24 lg:pt-40">
+<section class="relative overflow-hidden pb-16 pt-32 sm:pt-36 lg:pb-24 lg:pt-40">
   <div class="site-shell">
-    <div class="hero-enter flex flex-wrap items-center justify-between gap-4 border-b border-[var(--color-text-primary)] pb-5 text-[0.68rem] font-semibold tracking-[0.18em] uppercase">
-      <span>Wangdi · Senior Forestry Officer</span>
-      <span class="text-[var(--color-text-muted)]">Bhutan · 26.85° N, 89.38° E</span>
-    </div>
+    <h1 class="sr-only">Wangdi</h1>
 
-    <p
-      class="hero-enter mt-8 font-heading text-[clamp(3.5rem,2.2rem+6vw,6.5rem)] leading-none tracking-[-0.04em] text-[var(--color-accent)] tabular-nums"
-      aria-label="100 or more species documented"
-    >
-      <span>100</span><span class="text-[0.55em] align-top">+</span>
-    </p>
-    <p class="hero-enter mt-3 max-w-2xl text-[clamp(1.35rem,1.05rem+1vw,1.9rem)] leading-[1.15] text-[var(--color-text-muted)]">
-      Not a species list. A management baseline — a multi-site camera-trap network across
-      Royal Manas, Phibsoo, and Biological Corridor 03 confirmed 100+ species, feeding
-      directly into corridor and management planning.
-    </p>
-
-    <h1 class="hero-enter mt-10 max-w-[13ch] text-balance font-heading text-[clamp(3.5rem,1.25rem+8vw,8.4rem)] font-medium leading-[0.91] tracking-[-0.075em] text-[var(--color-text-primary)]">
-      I turn field evidence into decisions for living landscapes.
-    </h1>
-
-    <div class="mt-12 grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-16">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.72fr)] lg:items-center lg:gap-16">
       <div class="hero-enter">
         <p class="max-w-xl text-lead leading-relaxed text-[var(--color-text-muted)]">
           Biodiversity science, spatial ecology, climate resilience, and public forest governance—translated into plans and monitoring systems that work in Bhutan.
@@ -44,20 +25,16 @@ import portrait from '../../assets/wangdi-dfo-sarpang.jpg';
         </div>
       </div>
 
-      <figure class="hero-enter hero-enter-delay relative overflow-hidden rounded-[var(--radius-lg)] bg-ink-900">
+      <figure class="hero-enter hero-enter-delay relative mx-auto w-full max-w-[32rem] overflow-hidden rounded-[var(--radius-lg)] bg-[var(--color-bg-raised)]">
         <Image
           src={portrait}
-          alt="Wangdi in Department of Forests and Park Services uniform at the Divisional Forest Office, Sarpang"
+          alt="Portrait of Wangdi"
           widths={[640, 960, 1280]}
-          sizes="(min-width: 1024px) 56vw, 100vw"
-          class="aspect-[16/10] h-full w-full object-cover object-center [filter:saturate(0.75)_contrast(1.03)]"
+          sizes="(min-width: 1024px) 32rem, 100vw"
+          class="aspect-[3/4] h-full w-full object-cover object-top"
           loading="eager"
           fetchpriority="high"
         />
-        <figcaption class="media-dark absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-[#120d08]/90 to-transparent p-5 pt-16 text-xs text-paper-50">
-          <span>Department of Forests and Park Services</span>
-          <span class="rounded-full bg-[var(--color-accent-solid)] px-3 py-1.5 font-semibold tracking-wider text-[var(--color-on-accent-solid)] uppercase">Field / policy</span>
-        </figcaption>
       </figure>
     </div>
 
