@@ -1,0 +1,119 @@
+---
+// Ambient node-and-line background, in the spirit of NVIDIA NIM's dark
+// product pages. Fixed behind all content, never intercepts pointer or
+// keyboard interaction. Skips entirely under prefers-reduced-motion, and
+// pauses its animation loop while the tab is hidden so it doesn't burn
+// battery on a portfolio site the way it's fine to on a marketing page.
+---
+
+<canvas id="constellation-canvas" aria-hidden="true"></canvas>
+
+<style>
+  #constellation-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #constellation-canvas {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('constellation-canvas') as HTMLCanvasElement | null;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (canvas && !reducedMotion) {
+    const ctx = canvas.getContext('2d');
+
+    if (ctx) {
+      const NODE_COUNT = 45;
+      const LINK_DISTANCE = 140;
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+
+      type Node = { x: number; y: number; vx: number; vy: number };
+      let nodes: Node[] = [];
+      let width = 0;
+      let height = 0;
+      let running = true;
+      let frameId = 0;
+
+      function makeNodes() {
+        nodes = Array.from({ length: NODE_COUNT }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+        }));
+      }
+
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas!.width = width * dpr;
+        canvas!.height = height * dpr;
+        canvas!.style.width = `${width}px`;
+        canvas!.style.height = `${height}px`;
+        ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+        makeNodes();
+      }
+
+      let resizeTimer = 0;
+      window.addEventListener('resize', () => {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(resize, 150);
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        running = !document.hidden;
+        if (running) frameId = requestAnimationFrame(draw);
+      });
+
+      function draw() {
+        if (!running) return;
+        ctx!.clearRect(0, 0, width, height);
+
+        for (const node of nodes) {
+          node.x += node.vx;
+          node.y += node.vy;
+          if (node.x < 0 || node.x > width) node.vx *= -1;
+          if (node.y < 0 || node.y > height) node.vy *= -1;
+        }
+
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < LINK_DISTANCE) {
+              ctx!.strokeStyle = `rgba(118, 185, 0, ${0.6 * (1 - dist / LINK_DISTANCE)})`;
+              ctx!.lineWidth = 1;
+              ctx!.beginPath();
+              ctx!.moveTo(nodes[i].x, nodes[i].y);
+              ctx!.lineTo(nodes[j].x, nodes[j].y);
+              ctx!.stroke();
+            }
+          }
+        }
+
+        ctx!.fillStyle = 'rgba(118, 185, 0, 0.75)';
+        for (const node of nodes) {
+          ctx!.beginPath();
+          ctx!.arc(node.x, node.y, 1.6, 0, Math.PI * 2);
+          ctx!.fill();
+        }
+
+        frameId = requestAnimationFrame(draw);
+      }
+
+      resize();
+      frameId = requestAnimationFrame(draw);
+      window.addEventListener('pagehide', () => cancelAnimationFrame(frameId));
+    }
+  }
+</script>

@@ -9,24 +9,24 @@ import StatusBadge from '../components/ui/StatusBadge.astro';
 import TagPill from '../components/ui/TagPill.astro';
 
 const colours = [
-  { name: 'paper-50', hex: '#f3f2ea', token: 'bg-base', bg: true },
-  { name: 'raised', hex: '#fbfaf5', token: 'bg-raised', bg: true },
-  { name: 'ink-950', hex: '#10130f', token: 'text-primary / dark band', bg: true },
-  { name: 'ink-800', hex: '#1d231c', token: 'dark raised surface', bg: true },
-  { name: 'ember-400', hex: '#c8ef2b', token: 'action accent', bg: false },
-  { name: 'ember-700', hex: '#536600', token: 'accent text on light', bg: false },
-  { name: 'amber-500', hex: '#795900', token: 'status-under-review', bg: false },
-  { name: 'taupe-700', hex: '#5c6258', token: 'text-muted', bg: false },
-  { name: 'taupe-400', hex: '#aeb5a7', token: 'dark muted text', bg: false },
+  { name: 'ink-900', hex: '#0a0c0b', token: 'bg-base', bg: true },
+  { name: 'ink-800', hex: '#131715', token: 'bg-raised', bg: true },
+  { name: 'ink-950', hex: '#050605', token: 'fixed dark / on-accent text', bg: true },
+  { name: 'paper-50', hex: '#ffffff', token: 'text-primary', bg: false },
+  { name: 'nvidia-green-400', hex: '#8ed400', token: 'accent', bg: false },
+  { name: 'nvidia-green-500', hex: '#76b900', token: 'accent-solid', bg: false },
+  { name: 'tag-blue-400', hex: '#4d94ff', token: 'status-under-review', bg: false },
+  { name: 'tag-purple-400', hex: '#b26eff', token: 'status-in-preparation', bg: false },
+  { name: 'slate-400', hex: '#8f9891', token: 'text-muted', bg: false },
 ];
 
 const contrast = [
-  { fg: 'ink-950 on paper-50', ratio: '16.67:1', level: 'AAA' },
-  { fg: 'taupe-700 on paper-50', ratio: '5.59:1', level: 'AA' },
-  { fg: 'ember-700 on paper-50', ratio: '5.72:1', level: 'AA' },
-  { fg: 'paper-50 on ink-950', ratio: '16.67:1', level: 'AAA' },
-  { fg: 'ink-950 on ember-400', ratio: '14.11:1', level: 'AAA' },
-  { fg: 'paper-50 on ink-800', ratio: '14.28:1', level: 'AAA' },
+  { fg: 'paper-50 on ink-900', ratio: '19.62:1', level: 'AAA' },
+  { fg: 'slate-400 on ink-900', ratio: '6.60:1', level: 'AA' },
+  { fg: 'nvidia-green-400 on ink-900', ratio: '10.80:1', level: 'AAA' },
+  { fg: 'ink-950 on nvidia-green-500', ratio: '8.42:1', level: 'AAA' },
+  { fg: 'text-primary on light bg-base', ratio: '18.54:1', level: 'AAA' },
+  { fg: 'light text-muted on light bg-base', ratio: '6.27:1', level: 'AA' },
 ];
 
 const typeScale = [
@@ -44,7 +44,7 @@ const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96];
   <Nav />
   <main id="main" class="site-shell pb-24 pt-36 sm:pt-40">
     <header class="mb-16">
-      <p class="text-sm tracking-widest text-ember-400 uppercase">Design system</p>
+      <p class="text-sm tracking-widest text-nvidia-green-400 uppercase">Design system</p>
       <h1 class="mt-2 text-h1 text-paper-50">Styleguide</h1>
       <p class="mt-4 max-w-prose text-lead text-[var(--color-text-muted)]">
         Every value on this page resolves to a token from <code>tokens/tokens.json</code>.
@@ -139,7 +139,7 @@ const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96];
           spacing.map((s) => (
             <div class="flex items-center gap-4">
               <span class="w-14 text-xs text-[var(--color-text-muted)] tabular-nums">{s}px</span>
-              <div class="h-3 rounded-sm bg-ember-400/70" style={`width:${s * 3}px`} />
+              <div class="h-3 rounded-sm bg-nvidia-green-400/70" style={`width:${s * 3}px`} />
             </div>
           ))
         }

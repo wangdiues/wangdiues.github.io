@@ -49,7 +49,7 @@ const counts = Object.fromEntries(
         title="Publications, plans, and strategies."
         lede="Peer-reviewed work, manuscripts under review, and institutional planning documents spanning wildlife ecology, forest ecosystems, climate vulnerability, and governance."
       />
-      <p class="font-heading text-5xl text-ember-300 tabular-nums" aria-label={`${publications.length} total outputs`}>
+      <p class="font-heading text-5xl text-nvidia-green-300 tabular-nums" aria-label={`${publications.length} total outputs`}>
         {String(publications.length).padStart(2, '0')}
       </p>
     </div>
@@ -108,20 +108,20 @@ const counts = Object.fromEntries(
               <p class="mt-3 text-xs text-[var(--color-text-muted)]">{pub.data.year}</p>
             </div>
             <div>
-              <p class="text-xs font-medium tracking-wide text-ember-300">{pub.data.venue}</p>
+              <p class="text-xs font-medium tracking-wide text-nvidia-green-300">{pub.data.venue}</p>
               <h2 class="mt-3 max-w-3xl font-heading text-2xl leading-snug text-paper-50">
-                <a href={`/publications/${contentSlug(pub.id)}/`} class="underline-offset-4 group-hover:text-ember-300 hover:underline">
+                <a href={`/publications/${contentSlug(pub.id)}/`} class="underline-offset-4 group-hover:text-nvidia-green-300 hover:underline">
                   {pub.data.title}
                 </a>
               </h2>
               <p class="mt-2 text-sm text-[var(--color-text-muted)]">{pub.data.authors}</p>
               <div class="mt-5 flex flex-wrap gap-4 text-sm">
                 {pub.data.doi && (
-                  <a href={`https://doi.org/${pub.data.doi}`} target="_blank" rel="noopener noreferrer" class="link-arrow text-ember-300 underline-offset-4 hover:underline">
+                  <a href={`https://doi.org/${pub.data.doi}`} target="_blank" rel="noopener noreferrer" class="link-arrow text-nvidia-green-300 underline-offset-4 hover:underline">
                     DOI
                   </a>
                 )}
-                {pub.data.pdf && <a href={pub.data.pdf} class="text-ember-300 underline-offset-4 hover:underline">Download PDF</a>}
+                {pub.data.pdf && <a href={pub.data.pdf} class="text-nvidia-green-300 underline-offset-4 hover:underline">Download PDF</a>}
                 {!pub.data.pdf && !pub.data.doi && pub.data.status === 'report' && <span class="text-[var(--color-text-muted)]">Institutional document — available from DoFPS on request</span>}
                 {!pub.data.pdf && !pub.data.doi && pub.data.status === 'in-preparation' && <span class="text-[var(--color-text-muted)]">Manuscript in preparation</span>}
               </div>
@@ -132,7 +132,7 @@ const counts = Object.fromEntries(
     </ul>
 
     <p class="mt-10 text-sm text-[var(--color-text-muted)]">
-      Follow new outputs via <a href="/rss.xml" class="text-ember-400 underline-offset-4 hover:underline">RSS</a>.
+      Follow new outputs via <a href="/rss.xml" class="text-nvidia-green-400 underline-offset-4 hover:underline">RSS</a>.
     </p>
   </main>
   <Footer />
@@ -152,8 +152,8 @@ const counts = Object.fromEntries(
   function apply(filter: string) {
     for (const b of buttons) {
       b.setAttribute('aria-pressed', String(b.dataset.filter === filter));
-      b.classList.toggle('border-ember-400', b.dataset.filter === filter);
-      b.classList.toggle('text-ember-400', b.dataset.filter === filter);
+      b.classList.toggle('border-nvidia-green-400', b.dataset.filter === filter);
+      b.classList.toggle('text-nvidia-green-400', b.dataset.filter === filter);
     }
     for (const li of items) {
       if (filter === 'all' || li.dataset.status === filter) li.removeAttribute('data-hidden');

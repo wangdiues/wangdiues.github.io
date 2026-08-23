@@ -6,11 +6,14 @@
   --color-ink-900: var(--color-ink-900);
   --color-ink-800: var(--color-ink-800);
   --color-ink-700: var(--color-ink-700);
-  --color-ember-500: var(--color-ember-500);
-  --color-ember-400: var(--color-ember-400);
-  --color-ember-300: var(--color-ember-300);
-  --color-amber-500: var(--color-amber-500);
-  --color-taupe-400: var(--color-taupe-400);
+  --color-nvidia-green-500: var(--color-nvidia-green-500);
+  --color-nvidia-green-400: var(--color-nvidia-green-400);
+  --color-nvidia-green-300: var(--color-nvidia-green-300);
+  --color-tag-blue-500: var(--color-tag-blue-500);
+  --color-tag-blue-400: var(--color-tag-blue-400);
+  --color-tag-purple-500: var(--color-tag-purple-500);
+  --color-tag-purple-400: var(--color-tag-purple-400);
+  --color-slate-400: var(--color-slate-400);
   --color-paper-50: var(--color-paper-50);
   --color-paper-100: var(--color-paper-100);
 
@@ -38,11 +41,14 @@
   --color-ink-600: var(--color-light-ink-600);
   --color-paper-50: var(--color-light-paper-50);
   --color-paper-100: var(--color-light-paper-100);
-  --color-ember-500: var(--color-light-ember-500);
-  --color-ember-400: var(--color-light-ember-400);
-  --color-ember-300: var(--color-light-ember-300);
-  --color-amber-500: var(--color-light-amber-500);
-  --color-taupe-400: var(--color-light-taupe-400);
+  --color-nvidia-green-500: var(--color-light-nvidia-green-500);
+  --color-nvidia-green-400: var(--color-light-nvidia-green-400);
+  --color-nvidia-green-300: var(--color-light-nvidia-green-300);
+  --color-tag-blue-500: var(--color-light-tag-blue-500);
+  --color-tag-blue-400: var(--color-light-tag-blue-400);
+  --color-tag-purple-500: var(--color-light-tag-purple-500);
+  --color-tag-purple-400: var(--color-light-tag-purple-400);
+  --color-slate-400: var(--color-light-slate-400);
   --color-bg-base: var(--color-light-bg-base);
   --color-bg-raised: var(--color-light-bg-raised);
   --color-text-primary: var(--color-light-text-primary);
@@ -58,26 +64,29 @@
 }
 
 .dark-section {
-  --color-ink-900: #1a130b;
-  --color-ink-800: #241a0e;
-  --color-ink-700: #2f2313;
-  --color-ink-600: #3d2e1a;
-  --color-paper-50: #f5eedd;
-  --color-paper-100: #e8dec6;
-  --color-ember-500: #d9701e;
-  --color-ember-400: #e8934a;
-  --color-ember-300: #f0b27a;
-  --color-amber-500: #d8a548;
-  --color-taupe-400: #b3a78f;
+  --color-ink-900: #0a0c0b;
+  --color-ink-800: #131715;
+  --color-ink-700: #232a26;
+  --color-ink-600: #2d352f;
+  --color-paper-50: #ffffff;
+  --color-paper-100: #e9ebe9;
+  --color-nvidia-green-500: #76b900;
+  --color-nvidia-green-400: #8ed400;
+  --color-nvidia-green-300: #a6e639;
+  --color-tag-blue-500: #0066ff;
+  --color-tag-blue-400: #4d94ff;
+  --color-tag-purple-500: #8a2be2;
+  --color-tag-purple-400: #b26eff;
+  --color-slate-400: #8f9891;
   --color-bg-base: var(--color-ink-950);
   --color-bg-raised: var(--color-ink-900);
   --color-text-primary: var(--color-paper-50);
-  --color-text-muted: var(--color-taupe-400);
-  --color-accent: var(--color-ember-400);
-  --color-accent-hover: var(--color-ember-300);
-  --color-accent-solid: var(--color-ember-500);
-  --color-on-accent-solid: #120d08;
-  --color-border-subtle: rgba(245, 238, 221, 0.14);
+  --color-text-muted: var(--color-slate-400);
+  --color-accent: var(--color-nvidia-green-400);
+  --color-accent-hover: var(--color-nvidia-green-300);
+  --color-accent-solid: var(--color-nvidia-green-500);
+  --color-on-accent-solid: #050605;
+  --color-border-subtle: rgba(255, 255, 255, 0.12);
   color-scheme: dark;
 }
 
@@ -129,7 +138,7 @@ body::before {
 }
 
 ::selection {
-  background: var(--color-ember-400);
+  background: var(--color-accent);
   color: var(--color-ink-950);
 }
 
@@ -251,7 +260,7 @@ a[href] {
 }
 
 .field:hover {
-  border-color: var(--color-ember-400);
+  border-color: var(--color-accent);
 }
 
 @media (prefers-reduced-motion: reduce) {

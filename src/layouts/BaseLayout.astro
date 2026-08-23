@@ -3,6 +3,7 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/source-serif-4';
 import '../styles/global.css';
 import CustomCursor from '../components/CustomCursor.astro';
+import ConstellationCanvas from '../components/ConstellationCanvas.astro';
 
 interface Props {
   title: string;
@@ -43,7 +44,7 @@ const analyticsDomain = import.meta.env.PUBLIC_ANALYTICS_DOMAIN;
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#1a130b" />
+    <meta name="theme-color" content="#0a0c0b" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -73,6 +74,7 @@ const analyticsDomain = import.meta.env.PUBLIC_ANALYTICS_DOMAIN;
     >
       Skip to content
     </a>
+    <ConstellationCanvas />
     <CustomCursor />
     <slot />
   </body>

@@ -1,10 +1,10 @@
 ---
 // Trailing multi-ring cursor, adapted from princepal.in's mechanism (a lead
-// ring plus several lagging rings tracing the pointer) into this site's own
-// warm ember/amber gradient rather than his teal/gold. Only activates for
-// fine-pointer devices with no reduced-motion preference — everyone else
-// keeps the native cursor, and nothing here ever blocks a click or a
-// keyboard interaction (every ring is aria-hidden and pointer-events: none).
+// ring plus several lagging rings tracing the pointer) into this site's
+// green/blue/purple accent sweep. Only activates for fine-pointer devices
+// with no reduced-motion preference — everyone else keeps the native
+// cursor, and nothing here ever blocks a click or a keyboard interaction
+// (every ring is aria-hidden and pointer-events: none).
 const RING_COUNT = 6;
 ---
 
@@ -21,9 +21,9 @@ const RING_COUNT = 6;
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <linearGradient id="cursorRingGradient" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="var(--color-amber-500)" />
-        <stop offset="0.55" stop-color="var(--color-ember-500)" />
-        <stop offset="1" stop-color="var(--color-ember-300)" />
+        <stop offset="0" stop-color="var(--color-nvidia-green-400)" />
+        <stop offset="0.5" stop-color="var(--color-tag-blue-400)" />
+        <stop offset="1" stop-color="var(--color-tag-purple-400)" />
       </linearGradient>
     </defs>
   </svg>

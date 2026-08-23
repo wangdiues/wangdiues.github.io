@@ -23,7 +23,7 @@ function tokenValue(tokens, path) {
   return node.value;
 }
 
-test('the princepal-inspired design system is persisted and token-driven, in both themes', () => {
+test('the NVIDIA NIM-inspired design system is persisted and token-driven, in both themes', () => {
   const master = read('design-system/wangdi-portfolio/MASTER.md');
   const tokens = JSON.parse(read('tokens/tokens.json'));
 
@@ -33,14 +33,16 @@ test('the princepal-inspired design system is persisted and token-driven, in bot
   // Dark (default)
   const darkBg = tokenValue(tokens, 'ink.900');
   const darkRaised = tokenValue(tokens, 'ink.800');
-  assert.equal(darkBg, '#1a130b');
-  assert.equal(tokenValue(tokens, 'paper.50'), '#f5eedd');
-  assert.equal(tokenValue(tokens, 'ember.500'), '#d9701e');
+  assert.equal(darkBg, '#0a0c0b');
+  assert.equal(tokenValue(tokens, 'paper.50'), '#ffffff');
+  assert.equal(tokenValue(tokens, 'nvidia-green.500'), '#76b900');
   assert.ok(contrast(tokenValue(tokens, 'paper.50'), darkBg) >= 7);
-  assert.ok(contrast(tokenValue(tokens, 'taupe.400'), darkBg) >= 4.5);
-  assert.ok(contrast(tokenValue(tokens, 'ember.400'), darkBg) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'slate.400'), darkBg) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'nvidia-green.400'), darkBg) >= 4.5);
   assert.ok(contrast(tokenValue(tokens, 'paper.50'), darkRaised) >= 7);
-  assert.ok(contrast(tokenValue(tokens, 'ember.400'), darkRaised) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'nvidia-green.400'), darkRaised) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'tag-blue.400'), darkBg) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'tag-purple.400'), darkBg) >= 4.5);
 
   // Light (toggle) — a genuinely designed second theme, not an inversion trick
   const lightBg = tokenValue(tokens, 'light.bg-base');
@@ -145,6 +147,27 @@ test('career highlights are an accessible, indexed evidence summary linked to th
   assert.match(highlights, /<dd class=/);
   assert.match(highlights, /href="\/cv"/);
   assert.equal((highlights.match(/label:/g) ?? []).length, 8);
+});
+
+test('the constellation canvas is ambient, non-blocking, and respects reduced motion', () => {
+  const canvas = read('src/components/ConstellationCanvas.astro');
+  const layout = read('src/layouts/BaseLayout.astro');
+
+  assert.match(layout, /<ConstellationCanvas \/>/);
+  assert.match(canvas, /pointer-events:\s*none/);
+  assert.match(canvas, /prefers-reduced-motion:\s*reduce\)\s*\{\s*#constellation-canvas\s*\{\s*display:\s*none/);
+  assert.match(canvas, /matchMedia\('\(prefers-reduced-motion: reduce\)'\)\.matches/);
+  assert.match(canvas, /document\.addEventListener\('visibilitychange'/);
+  assert.match(canvas, /aria-hidden="true"/);
+});
+
+test('publication status badges use the three-accent NVIDIA palette with real semantic meaning', () => {
+  const badge = read('src/components/ui/StatusBadge.astro');
+
+  assert.match(badge, /published: 'border-nvidia-green-500\/30 bg-nvidia-green-500\/15/);
+  assert.match(badge, /'under-review': 'border-tag-blue-500\/45 bg-tag-blue-500\/10/);
+  assert.match(badge, /'in-preparation': 'border-tag-purple-500\/45 bg-tag-purple-500\/10/);
+  assert.doesNotMatch(badge, /ember|amber-/);
 });
 
 test('selected work is a hover-preview list where every item is a real, always-focusable link', () => {

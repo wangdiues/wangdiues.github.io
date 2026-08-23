@@ -98,12 +98,12 @@ const panels = studies.map((study) => {
                     aria-hidden="true"
                     class="flex h-full w-full items-center justify-center bg-gradient-to-br from-ink-800 via-ink-900 to-ink-950"
                   >
-                    <span class="font-heading text-[10rem] leading-none text-ember-400/15">{initial}</span>
+                    <span class="font-heading text-[10rem] leading-none text-nvidia-green-400/15">{initial}</span>
                   </div>
                 )}
                 <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/92 via-ink-950/35 to-transparent" />
                 <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
-                  <p class="text-[0.65rem] font-semibold tracking-[0.16em] text-ember-300 uppercase">{study.data.region}</p>
+                  <p class="text-[0.65rem] font-semibold tracking-[0.16em] text-nvidia-green-300 uppercase">{study.data.region}</p>
                   <h3 class="mt-3 text-balance text-xl leading-snug text-paper-50 sm:text-2xl">{study.data.title}</h3>
                   <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-paper-100/85">{study.data.impact}</p>
                   <div class="mt-4 flex flex-wrap gap-2">
@@ -113,7 +113,7 @@ const panels = studies.map((study) => {
                     href={href}
                     data-panel-link
                     tabindex={index === 0 ? undefined : -1}
-                    class="link-arrow mt-5 inline-flex items-center text-sm font-medium text-paper-50 hover:text-ember-300"
+                    class="link-arrow mt-5 inline-flex items-center text-sm font-medium text-paper-50 hover:text-nvidia-green-300"
                   >
                     Read the case study
                   </a>
