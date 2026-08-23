@@ -19,6 +19,8 @@ export async function getStaticPaths() {
 const { pub } = Astro.props;
 const { Content } = await render(pub);
 const citation = formatCitation(pub);
+const titleLength = pub.data.title.length;
+const titleScale = titleLength > 150 ? 'long' : titleLength > 95 ? 'medium' : 'standard';
 
 const allStudies = await getCollection('case-studies');
 const related = relatedCaseStudies(pub, allStudies);
@@ -55,7 +57,7 @@ const jsonld = JSON.stringify({
         <StatusBadge status={pub.data.status} />
         <span class="text-xs tracking-wide text-[var(--color-text-muted)]">{statusLabel[pub.data.status]} · {pub.data.year}</span>
       </div>
-      <h1 class="text-balance mt-5 text-h1 leading-tight tracking-[-0.03em] text-paper-50">{pub.data.title}</h1>
+      <h1 class="publication-title" data-title-scale={titleScale}>{pub.data.title}</h1>
       <p class="mt-5 text-lg text-[var(--color-text-muted)]">{pub.data.authors}</p>
       <p class="mt-2 text-sm text-nvidia-green-300 italic">{pub.data.venue}</p>
       {pub.data.cover && (
@@ -63,7 +65,9 @@ const jsonld = JSON.stringify({
           src={pub.data.cover}
           alt={`Cover of ${pub.data.title}`}
           loading="eager"
-          class="mt-8 w-full rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] object-cover"
+          width="452"
+          height="603"
+          class="mt-8 aspect-[3/4] w-40 rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] object-cover sm:w-48"
         />
       )}
     </header>
@@ -169,3 +173,32 @@ const jsonld = JSON.stringify({
     setTimeout(() => (this.textContent = original), 2000);
   });
 </script>
+
+<style>
+  .publication-title {
+    margin-top: 1.25rem;
+    max-inline-size: 19ch;
+    color: var(--color-text-primary);
+    font-size: clamp(2.4rem, 1.55rem + 3.5vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    overflow-wrap: break-word;
+    text-align: start;
+    text-wrap: balance;
+  }
+
+  .publication-title[data-title-scale='medium'] {
+    max-inline-size: 24ch;
+    font-size: clamp(2.1rem, 1.45rem + 2.9vw, 3.75rem);
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+  }
+
+  .publication-title[data-title-scale='long'] {
+    max-inline-size: 28ch;
+    font-size: clamp(1.875rem, 1.4rem + 2.2vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: pretty;
+  }
+</style>
