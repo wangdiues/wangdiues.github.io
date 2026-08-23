@@ -3,12 +3,15 @@
   "files": [
     { "file": "aquatic-beetles.pdf", "publication": "aquatic-beetles", "rightsBasis": "CC BY-NC publisher version", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 },
     { "file": "bc03-conservation-management-plan.pdf", "publication": "bc03-conservation-management-plan", "rightsBasis": "Public RGoB document", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 3200000 },
+    { "file": "bc03-conservation-management-plan.png", "publication": "bc03-conservation-management-plan", "rightsBasis": "Public RGoB document", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 600000 },
     { "file": "climate-refugia-asian-elephants-cmip6.pdf", "publication": "climate-habitat-elephants", "rightsBasis": "Author-owned submitted manuscript", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 },
     { "file": "climate-refugia-asian-elephants-main.pdf", "publication": "climate-habitat-elephants", "rightsBasis": "Author-owned submitted manuscript", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 },
     { "file": "climate-refugia-asian-elephants-supplementary.pdf", "publication": "climate-habitat-elephants", "rightsBasis": "Author-owned submitted manuscript", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 4800000 },
     { "file": "climate-vulnerability-adaptive-capacity-bhutan.pdf", "publication": "climate-vulnerability-adaptive-capacity", "rightsBasis": "Author-owned draft", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 },
     { "file": "coexistence-strategy-dekiling.pdf", "publication": "coexistence-strategy-dekiling", "rightsBasis": "Public RGoB document", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 4300000 },
+    { "file": "coexistence-strategy-dekiling.png", "publication": "coexistence-strategy-dekiling", "rightsBasis": "Public RGoB document", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 600000 },
     { "file": "coexistence-strategy-gakiling.pdf", "publication": "coexistence-strategy-gakiling", "rightsBasis": "Public RGoB document", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 4500000 },
+    { "file": "coexistence-strategy-gakiling.png", "publication": "coexistence-strategy-gakiling", "rightsBasis": "Public RGoB document", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 600000 },
     { "file": "community-assembly-disturbance-climate-gradient.pdf", "publication": "community-assembly", "rightsBasis": "Author-owned draft", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2200000 },
     { "file": "ecosystem-integrity.pdf", "publication": "ecosystem-integrity", "rightsBasis": "Author-owned submitted manuscript", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 },
     { "file": "elephant-movement-habitat-selection.pdf", "publication": "elephant-movement-habitat-selection", "rightsBasis": "Author-owned draft", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 },
@@ -20,6 +23,7 @@
     { "file": "fundamental-realized-habitat.pdf", "publication": "fundamental-realized-habitat", "rightsBasis": "Author-owned submitted manuscript", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2600000 },
     { "file": "salt-licks.pdf", "publication": "salt-licks", "rightsBasis": "CC BY 4.0 publisher version", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 },
     { "file": "sarpang-forest-division-management-plan.pdf", "publication": "sarpang-forest-division-management-plan", "rightsBasis": "Public RGoB document", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 13000000 },
+    { "file": "sarpang-forest-division-management-plan.png", "publication": "sarpang-forest-division-management-plan", "rightsBasis": "Public RGoB document", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 350000 },
     { "file": "tiger-risk-partitioning.pdf", "publication": "risk-partitioning", "rightsBasis": "Author-owned draft", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 },
     { "file": "vegetation-community-main.pdf", "publication": "vegetation-community", "rightsBasis": "Author-owned submitted manuscript", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 },
     { "file": "wild-edible-medicinal-plants.pdf", "publication": "wild-edible-medicinal-plants", "rightsBasis": "Open-access publisher version", "approvalRef": "docs/RIGHTS.md#per-item-verdicts", "maxBytes": 2000000 }

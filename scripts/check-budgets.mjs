@@ -48,9 +48,9 @@ function checkRegistry({ label, dir, contentDir, manifestFile, contentKey }) {
       if (
         typeof asset.file !== 'string' ||
         basename(asset.file) !== asset.file ||
-        !asset.file.toLowerCase().endsWith('.pdf')
+        !/\.(pdf|png|jpe?g|webp)$/i.test(asset.file)
       ) {
-        failures.push(`${manifestFile}: invalid PDF filename ${JSON.stringify(asset.file)}`);
+        failures.push(`${manifestFile}: invalid asset filename ${JSON.stringify(asset.file)}`);
         continue;
       }
       if (approved.has(asset.file)) {

@@ -58,6 +58,14 @@ const jsonld = JSON.stringify({
       <h1 class="text-balance mt-5 text-h1 leading-tight tracking-[-0.03em] text-paper-50">{pub.data.title}</h1>
       <p class="mt-5 text-lg text-[var(--color-text-muted)]">{pub.data.authors}</p>
       <p class="mt-2 text-sm text-nvidia-green-300 italic">{pub.data.venue}</p>
+      {pub.data.cover && (
+        <img
+          src={pub.data.cover}
+          alt={`Cover of ${pub.data.title}`}
+          loading="eager"
+          class="mt-8 w-full rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] object-cover"
+        />
+      )}
     </header>
 
     <div class="prose mt-10 max-w-none text-[var(--color-text-muted)] [&_p]:mb-5 [&_p]:text-[1.05rem] [&_p]:leading-8">

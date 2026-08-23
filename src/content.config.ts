@@ -19,6 +19,10 @@ const publications = defineCollection({
       .string()
       .regex(/^\/publications\/.+\.pdf$/)
       .optional(),
+    cover: z
+      .string()
+      .regex(/^\/publications\/.+\.(png|jpe?g|webp)$/i)
+      .optional(),
     rightsLicense: z.string().optional(),
     rightsNote: z.string().optional(),
     geo: z.string().optional(),

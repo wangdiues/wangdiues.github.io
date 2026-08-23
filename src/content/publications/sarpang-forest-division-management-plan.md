@@ -7,6 +7,7 @@ date: 2024-01-02
 venue: "Department of Forests & Park Services"
 authors: "Wangdi et al."
 pdf: "/publications/sarpang-forest-division-management-plan.pdf"
+cover: "/publications/sarpang-forest-division-management-plan.png"
 rightsLicense: "Institutional document (RGoB)"
 rightsNote: "Public RGoB document — openly distributed by DoFPS; hosted at owner's direction."
 tags:

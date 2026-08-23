@@ -7,6 +7,7 @@ date: 2025-01-02
 venue: "Divisional Forest Office, Sarpang"
 authors: "Wangdi et al."
 pdf: "/publications/coexistence-strategy-dekiling.pdf"
+cover: "/publications/coexistence-strategy-dekiling.png"
 rightsLicense: "Institutional document (RGoB)"
 rightsNote: "Public RGoB document — openly distributed by DoFPS; hosted at owner's direction."
 tags:

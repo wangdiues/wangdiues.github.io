@@ -104,6 +104,15 @@ const counts = Object.fromEntries(
           >
             <div>
               <p class="mb-3 text-[0.65rem] font-semibold tracking-[0.16em] text-[var(--color-text-muted)]" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+              {pub.data.cover && (
+                <img
+                  src={pub.data.cover}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  class="mb-3 aspect-[4/3] w-full rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] object-cover"
+                />
+              )}
               <StatusBadge status={pub.data.status} />
               <p class="mt-3 text-xs text-[var(--color-text-muted)]">{pub.data.year}</p>
             </div>
