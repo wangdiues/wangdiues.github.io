@@ -4,20 +4,23 @@ import { getCollection } from 'astro:content';
 import SectionHeading from '../ui/SectionHeading.astro';
 import TagPill from '../ui/TagPill.astro';
 import { contentSlug } from '../../lib/content-id';
-import { caseStudyAssets } from '../../data/case-study-assets';
+import { caseStudyAssets, caseStudyPreviewAssets } from '../../data/case-study-assets';
 
 const studies = (await getCollection('case-studies')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
 const panels = studies.map((study) => {
+  const slug = contentSlug(study.id);
   const project = study.data.project;
-  const image = project ? caseStudyAssets[project.assetGroup]?.[project.hero.asset] : undefined;
+  const preview = caseStudyPreviewAssets[slug];
+  const image = project ? caseStudyAssets[project.assetGroup]?.[project.hero.asset] : preview?.image;
   return {
     study,
-    href: `/case-studies/${contentSlug(study.id)}/`,
+    href: `/case-studies/${slug}/`,
     image,
-    alt: project?.hero.alt,
+    alt: project?.hero.alt ?? preview?.alt,
+    objectPosition: preview?.objectPosition,
     initial: study.data.region.replace(/[^A-Za-z]/g, '').charAt(0).toUpperCase() || 'W',
   };
 });
@@ -74,7 +77,7 @@ const panels = studies.map((study) => {
           class="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-text-primary)] bg-[var(--color-bg-raised)]"
         >
           {
-            panels.map(({ study, href, image, alt, initial }, index) => (
+            panels.map(({ study, href, image, alt, objectPosition, initial }, index) => (
               <div
                 data-panel
                 data-index={index}
@@ -92,6 +95,7 @@ const panels = studies.map((study) => {
                     sizes="(min-width: 1024px) 26rem, 90vw"
                     loading={index === 0 ? 'eager' : 'lazy'}
                     class="h-full w-full object-cover"
+                    style={objectPosition ? `object-position: ${objectPosition}` : undefined}
                   />
                 ) : (
                   <div
