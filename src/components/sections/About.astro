@@ -8,15 +8,15 @@ import { FIELD_METHODS, PLATFORMS } from '../../config';
   <div class="site-shell grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
     <div class="lg:sticky lg:top-32 lg:self-start">
       <SectionHeading
-        eyebrow="About"
+        eyebrow="Core practice"
         title="Ecological evidence for practical conservation decisions."
       />
-      <p class="mt-8 hidden max-w-xs border-l border-moss-400/40 pl-5 text-sm leading-relaxed text-[var(--color-text-muted)] lg:block">
+      <p class="mt-8 hidden max-w-xs border-l border-[var(--color-text-primary)] pl-5 text-sm leading-relaxed text-[var(--color-text-muted)] lg:block">
         Field observation, spatial analysis, and public institutions treated as one connected conservation practice.
       </p>
     </div>
     <div class="space-y-6 text-[var(--color-text-muted)]">
-      <p class="font-heading text-2xl leading-snug text-paper-100">
+      <p class="font-heading text-2xl font-medium leading-snug text-[var(--color-text-primary)]">
         I work within Bhutan's forest governance system, combining field implementation, ecological
         analysis, geospatial modelling, protected-area planning, and policy-linked conservation delivery.
       </p>
@@ -33,13 +33,13 @@ import { FIELD_METHODS, PLATFORMS } from '../../config';
         technical depth and applied impact.
       </p>
       <div class="border-t border-[var(--color-border-subtle)] pt-6">
-        <p class="mb-4 text-xs font-semibold tracking-[0.16em] text-paper-50 uppercase">Field & analytical methods</p>
+        <p class="mb-4 text-xs font-semibold tracking-[0.16em] text-[var(--color-text-primary)] uppercase">Field & analytical methods</p>
         <div class="flex flex-wrap gap-2">
           {FIELD_METHODS.map((m) => <TagPill label={m} />)}
         </div>
       </div>
       <div class="border-t border-[var(--color-border-subtle)] pt-6">
-        <p class="mb-4 text-xs font-semibold tracking-[0.16em] text-paper-50 uppercase">Software & platforms</p>
+        <p class="mb-4 text-xs font-semibold tracking-[0.16em] text-[var(--color-text-primary)] uppercase">Software & platforms</p>
         <div class="flex flex-wrap gap-2">
           {PLATFORMS.map((m) => <TagPill label={m} />)}
         </div>

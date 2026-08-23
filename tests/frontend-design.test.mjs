@@ -16,18 +16,65 @@ function contrast(first, second) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-test('the conservation-editorial design system is persisted and token-driven', () => {
+function tokenValue(tokens, path) {
+  const parts = path.split('.');
+  let node = tokens.color;
+  for (const part of parts) node = node[part];
+  return node.value;
+}
+
+test('the princepal-inspired design system is persisted and token-driven, in both themes', () => {
   const master = read('design-system/wangdi-portfolio/MASTER.md');
   const tokens = JSON.parse(read('tokens/tokens.json'));
 
   assert.match(master, /conservation-research portfolio/i);
   assert.match(master, /4\.5:1 minimum contrast/);
-  assert.equal(tokens.color.ink['900'].value, '#081511');
-  assert.equal(tokens.color.moss['400'].value, '#78c99a');
-  assert.equal(tokens.color.slate['400'].value, '#a9b9b1');
-  assert.ok(contrast(tokens.color.paper['50'].value, tokens.color.ink['900'].value) >= 7);
-  assert.ok(contrast(tokens.color.slate['400'].value, tokens.color.ink['900'].value) >= 7);
-  assert.ok(contrast(tokens.color.moss['400'].value, tokens.color.ink['900'].value) >= 7);
+
+  // Dark (default)
+  const darkBg = tokenValue(tokens, 'ink.900');
+  const darkRaised = tokenValue(tokens, 'ink.800');
+  assert.equal(darkBg, '#1a130b');
+  assert.equal(tokenValue(tokens, 'paper.50'), '#f5eedd');
+  assert.equal(tokenValue(tokens, 'ember.500'), '#d9701e');
+  assert.ok(contrast(tokenValue(tokens, 'paper.50'), darkBg) >= 7);
+  assert.ok(contrast(tokenValue(tokens, 'taupe.400'), darkBg) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'ember.400'), darkBg) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'paper.50'), darkRaised) >= 7);
+  assert.ok(contrast(tokenValue(tokens, 'ember.400'), darkRaised) >= 4.5);
+
+  // Light (toggle) — a genuinely designed second theme, not an inversion trick
+  const lightBg = tokenValue(tokens, 'light.bg-base');
+  const lightRaised = tokenValue(tokens, 'light.bg-raised');
+  assert.ok(contrast(tokenValue(tokens, 'light.text-primary'), lightBg) >= 7);
+  assert.ok(contrast(tokenValue(tokens, 'light.text-muted'), lightBg) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'light.accent'), lightBg) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'light.text-muted'), lightRaised) >= 4.5);
+  assert.ok(contrast(tokenValue(tokens, 'light.accent'), lightRaised) >= 4.5);
+});
+
+test('the type pairing keeps the validated serif/sans identity', () => {
+  const tokens = JSON.parse(read('tokens/tokens.json'));
+  assert.match(tokens.font.heading.value, /Source Serif 4/);
+  assert.match(tokens.font.body.value, /Inter/);
+});
+
+test('the light/dark toggle is present, wired, and reversible — an owner-selected mechanism, not optional', () => {
+  const layout = read('src/layouts/BaseLayout.astro');
+  const nav = read('src/components/Nav.astro');
+  const globalStyles = read('src/styles/global.css');
+
+  // No-FOUC init: reads persisted choice, else prefers-color-scheme, defaults dark.
+  assert.match(layout, /dataset\.theme = theme/);
+  assert.match(layout, /prefers-color-scheme: light/);
+  assert.match(nav, /id="theme-toggle"/);
+  assert.doesNotMatch(nav, /display:\s*none/);
+  assert.match(nav, /localStorage\.setItem\('theme'/);
+  assert.match(nav, /prefers-reduced-motion: reduce/);
+
+  // The theme block must actually exist and must not be neutralized by an
+  // unconditional !important layer forcing one theme regardless of data-theme.
+  assert.match(globalStyles, /:root\[data-theme='light'\]/);
+  assert.doesNotMatch(globalStyles, /--color-[\w-]+:[^;]+!important/);
 });
 
 test('shared UI foundations preserve keyboard and reduced-motion access', () => {
@@ -42,11 +89,16 @@ test('shared UI foundations preserve keyboard and reduced-motion access', () => 
   assert.match(navigation, /h-11 w-11/);
 });
 
-test('the redesigned hero remains semantic, responsive, and image optimized', () => {
+test('the hero leads with a sourced stat before the name, and stays semantic and image-optimized', () => {
   const hero = read('src/components/sections/Hero.astro');
   const homepage = read('src/pages/index.astro');
+  const cameraTrapStudy = read('src/content/case-studies/camera-trap-monitoring.md');
 
-  assert.match(hero, /<h1[^>]*>Wangdi<\/h1>/);
+  // The "100+" claim must trace back to real content, not be invented for the hero.
+  assert.match(cameraTrapStudy, /100\+ species/);
+  assert.match(hero, />\s*100</);
+  assert.match(hero, /aria-label="100 or more species documented"/);
+  assert.match(hero, /<h1[^>]*>/);
   assert.match(hero, /import \{ Image \} from 'astro:assets'/);
   assert.match(hero, /fetchpriority="high"/);
   assert.match(hero, /sizes="\(min-width: 1024px\)/);
@@ -63,6 +115,17 @@ test('the homepage explains the evidence-to-action method and foregrounds projec
   assert.match(approach, /Test the evidence/);
   assert.match(approach, /Move evidence into action/);
   assert.match(homepage, /<Approach \/>/);
-  assert.match(projects, /Conservation outcome/);
-  assert.match(projects, /Applied outcome/);
+  assert.match(projects, /study\.data\.impact/);
+  assert.match(projects, /data-work-item/);
+});
+
+test('selected work is a hover-preview list where every item is a real, always-focusable link', () => {
+  const work = read('src/components/sections/CaseStudies.astro');
+
+  assert.match(work, /data-panel/);
+  assert.match(work, /addEventListener\('mouseenter'/);
+  assert.match(work, /addEventListener\('focus'/);
+  // Every list item must be a genuine <a href>, not a script-dependent control —
+  // no roving tabindex needed, and no JS means the list still fully navigates.
+  assert.match(work, /<a\s+[^>]*href=\{href\}[^>]*data-work-item/s);
 });

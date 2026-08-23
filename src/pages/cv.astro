@@ -35,20 +35,20 @@ const groups = [
   <main id="main" class="reading-shell cv pb-24 pt-36 sm:pt-40">
     <header class="border-b border-[var(--color-border-subtle)] pb-8">
       <div class="mb-6 flex items-center gap-4">
-        <span class="h-px w-9 bg-moss-400" aria-hidden="true"></span>
-        <p class="text-xs font-semibold tracking-[0.2em] text-moss-300 uppercase">Curriculum vitae</p>
+        <span class="h-px w-9 bg-ember-400" aria-hidden="true"></span>
+        <p class="text-xs font-semibold tracking-[0.2em] text-ember-300 uppercase">Curriculum vitae</p>
       </div>
       <h1 class="font-heading text-h1 font-semibold tracking-[-0.04em] text-paper-50">Wangdi</h1>
       <p class="mt-2 text-lg text-[var(--color-text-muted)]">Senior Forestry Officer · Conservation Researcher</p>
       <p class="mt-1 text-sm text-[var(--color-text-muted)]">
         Department of Forests &amp; Park Services, Bhutan ·
-        <a href={`https://orcid.org/0009-0007-7726-1742`} class="text-moss-400 underline-offset-4 hover:underline">ORCID 0009-0007-7726-1742</a>
+        <a href={`https://orcid.org/0009-0007-7726-1742`} class="text-ember-400 underline-offset-4 hover:underline">ORCID 0009-0007-7726-1742</a>
       </p>
       <p class="mt-1 text-sm">
         {
           SOCIAL.map((s, i) => (
             <>
-              <a href={s.href} class="text-moss-400 underline-offset-4 hover:underline">{s.value}</a>
+              <a href={s.href} class="text-ember-400 underline-offset-4 hover:underline">{s.value}</a>
               {i < SOCIAL.length - 1 && ' · '}
             </>
           ))
@@ -170,17 +170,17 @@ const groups = [
       <button
         type="button"
         onclick="window.print()"
-        class="min-h-11 rounded-full border border-moss-400 bg-moss-400 px-6 py-2.5 font-medium text-ink-950 hover:bg-moss-300"
+        class="min-h-11 rounded-full border border-ember-400 bg-ember-400 px-6 py-2.5 font-medium text-ink-950 hover:bg-ember-300"
       >
         Print / Save as PDF
       </button>
       <a
         href="/Wangdi_CV_2026.pdf"
-        class="inline-flex min-h-11 items-center rounded-full border border-[var(--color-border-subtle)] px-6 py-2.5 text-sm font-medium text-paper-50 underline-offset-4 hover:border-moss-400 hover:text-moss-300"
+        class="inline-flex min-h-11 items-center rounded-full border border-[var(--color-border-subtle)] px-6 py-2.5 text-sm font-medium text-paper-50 underline-offset-4 hover:border-ember-400 hover:text-ember-300"
       >
         Download CV (PDF)
       </a>
-      <a href="/" class="inline-flex min-h-11 items-center text-sm text-moss-300 underline-offset-4 hover:underline">← Back to portfolio</a>
+      <a href="/" class="inline-flex min-h-11 items-center text-sm text-ember-300 underline-offset-4 hover:underline">← Back to portfolio</a>
     </footer>
   </main>
   <Footer />
@@ -217,7 +217,7 @@ const groups = [
     font-family: var(--font-heading);
     font-size: var(--type-h3);
     margin-bottom: 1rem;
-    color: var(--color-paper-50);
+    color: var(--color-text-primary);
   }
   .cv-section h3 {
     font-size: var(--type-sm);

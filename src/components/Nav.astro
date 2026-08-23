@@ -1,8 +1,8 @@
 ---
 const items = [
   { href: '/#about', label: 'About', section: 'about' },
-  { href: '/#experience', label: 'Experience', section: 'experience' },
   { href: '/#work', label: 'Projects', section: 'work' },
+  { href: '/#experience', label: 'Experience', section: 'experience' },
   { href: '/#code', label: 'Code', section: 'code' },
   { href: '/publications', label: 'Publications', route: '/publications' },
   { href: '/explore', label: 'Map', route: '/explore' },
@@ -13,39 +13,65 @@ const pathname = Astro.url.pathname;
 const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
 ---
 
-<header class="fixed inset-x-0 top-0 z-40 px-3 pt-3 sm:px-5 sm:pt-4">
+<header class="fixed inset-x-0 top-0 z-40 border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-base)]/95 backdrop-blur-xl">
   <nav
     aria-label="Primary"
-    class="site-shell relative flex h-16 items-center justify-between rounded-full border border-[var(--color-border-subtle)] bg-ink-950/88 px-3 shadow-card backdrop-blur-xl sm:px-5"
+    class="site-shell relative flex h-20 items-center justify-between"
   >
-    <a href="/" class="group flex min-h-11 items-center gap-3 rounded-full pr-3 font-heading text-lg font-semibold text-paper-50">
-      <span class="relative flex h-10 w-10 items-center justify-center rounded-full border border-moss-400/50 bg-moss-400/12 text-sm font-bold text-moss-300">
+    <a href="/" class="group order-1 flex min-h-11 items-center gap-3 pr-3 font-heading text-lg font-semibold text-[var(--color-text-primary)]">
+      <span class="relative flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-text-primary)] text-sm font-bold text-[var(--color-bg-base)]">
         W
-        <span class="absolute inset-1 rounded-full border border-moss-400/20" aria-hidden="true"></span>
       </span>
-      <span class="hidden tracking-tight sm:inline">Wangdi</span>
+      <span class="hidden tracking-[-0.03em] sm:inline">Wangdi</span>
       <span class="sr-only">— Home</span>
     </a>
 
-    <button
-      id="nav-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="nav-links"
-      class="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border-subtle)] bg-ink-800 text-paper-50 hover:border-moss-400 hover:text-moss-300 md:hidden"
-    >
-      <span class="sr-only">Open navigation</span>
-      <svg class="nav-open-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
-      </svg>
-      <svg class="nav-close-icon hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
-      </svg>
-    </button>
+    <div class="order-3 flex items-center gap-2">
+      <button
+        id="theme-toggle"
+        type="button"
+        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--color-text-primary)] bg-transparent text-[var(--color-text-primary)] hover:bg-[var(--color-accent-solid)] hover:text-[var(--color-on-accent-solid)]"
+      >
+        <span class="sr-only">Switch to light theme</span>
+        <svg class="theme-icon-dark" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path
+            d="M17.2 11.2A7.5 7.5 0 0 1 8.8 2.8a7.5 7.5 0 1 0 8.4 8.4Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+        <svg class="theme-icon-light hidden" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.5"></circle>
+          <path
+            d="M10 2.5v2M10 15.5v2M17.5 10h-2M4.5 10h-2M15.3 4.7l-1.4 1.4M6.1 13.9l-1.4 1.4M15.3 15.3l-1.4-1.4M6.1 6.1 4.7 4.7"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          ></path>
+        </svg>
+      </button>
+
+      <button
+        id="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-links"
+        class="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-text-primary)] bg-[var(--color-text-primary)] text-[var(--color-bg-base)] md:hidden"
+      >
+        <span class="sr-only">Open navigation</span>
+        <svg class="nav-open-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+        </svg>
+        <svg class="nav-close-icon hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
 
     <ul
       id="nav-links"
-      class="absolute left-0 right-0 top-[calc(100%+0.75rem)] hidden flex-col gap-1 rounded-2xl border border-[var(--color-border-subtle)] bg-ink-950/96 p-3 shadow-card backdrop-blur-xl md:static md:flex md:flex-row md:items-center md:gap-1 md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+      class="absolute left-0 right-0 top-[calc(100%+0.75rem)] order-2 hidden flex-col gap-1 rounded-[var(--radius-lg)] border border-[var(--color-text-primary)] bg-[var(--color-bg-base)] p-3 shadow-card md:static md:flex md:flex-row md:items-center md:gap-0 md:border-0 md:bg-transparent md:p-0 md:shadow-none"
     >
       {
         items.map((item) => (
@@ -55,7 +81,12 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
               data-nav-link
               data-section={item.section}
               aria-current={routeIsCurrent(item.route) ? 'page' : undefined}
-              class="flex min-h-11 items-center rounded-full px-4 text-sm font-medium text-[var(--color-text-muted)] hover:bg-paper-50/6 hover:text-paper-50 md:px-3"
+              class:list={[
+                'flex min-h-11 items-center rounded-full px-4 text-sm font-medium md:px-3',
+                item.label === 'Contact'
+                  ? 'bg-[var(--color-accent-solid)] text-[var(--color-on-accent-solid)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-bg-base)]'
+                  : 'text-[var(--color-text-muted)] hover:bg-[var(--color-accent-solid)] hover:text-[var(--color-on-accent-solid)]',
+              ]}
             >
               {item.label}
             </a>
@@ -69,8 +100,8 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
 <style>
   #nav-links a[aria-current='page'],
   #nav-links a[aria-current='location'] {
-    background: color-mix(in srgb, var(--color-moss-400) 12%, transparent);
-    color: var(--color-moss-300);
+    background: var(--color-text-primary);
+    color: var(--color-bg-base);
   }
 </style>
 
@@ -125,4 +156,56 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
     );
     sections.forEach((section) => observer.observe(section));
   }
+
+  const themeToggle = document.getElementById('theme-toggle');
+  const darkIcon = themeToggle?.querySelector('.theme-icon-dark');
+  const lightIcon = themeToggle?.querySelector('.theme-icon-light');
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  const THEME_COLOR: Record<'dark' | 'light', string> = { dark: '#10130f', light: '#f3f2ea' };
+
+  function currentTheme(): 'dark' | 'light' {
+    return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+  }
+
+  function paintTheme(theme: 'dark' | 'light') {
+    document.documentElement.dataset.theme = theme;
+    darkIcon?.classList.toggle('hidden', theme === 'light');
+    lightIcon?.classList.toggle('hidden', theme === 'dark');
+    themeToggle?.querySelector('.sr-only')?.replaceChildren(
+      document.createTextNode(theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme')
+    );
+    themeColorMeta?.setAttribute('content', THEME_COLOR[theme]);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (_error) {
+      // Private browsing or storage disabled — theme just won't persist.
+    }
+  }
+
+  paintTheme(currentTheme());
+
+  themeToggle?.addEventListener('click', (event) => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const supportsViewTransition = 'startViewTransition' in document;
+
+    if (reduced || !supportsViewTransition) {
+      paintTheme(next);
+      return;
+    }
+
+    const { clientX: x, clientY: y } = event as MouseEvent;
+    const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+
+    const transition = (document as unknown as { startViewTransition: (cb: () => void) => { ready: Promise<void> } }).startViewTransition(
+      () => paintTheme(next)
+    );
+
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`] },
+        { duration: 480, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' }
+      );
+    });
+  });
 </script>

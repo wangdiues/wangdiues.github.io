@@ -9,25 +9,24 @@ import StatusBadge from '../components/ui/StatusBadge.astro';
 import TagPill from '../components/ui/TagPill.astro';
 
 const colours = [
-  { name: 'ink-950', hex: '#06110d', token: 'deep surface', bg: true },
-  { name: 'ink-900', hex: '#081511', token: 'bg-base', bg: true },
-  { name: 'ink-800', hex: '#10251e', token: 'bg-raised', bg: true },
-  { name: 'ink-700', hex: '#173129', token: 'surfaces', bg: true },
-  { name: 'moss-500', hex: '#4fa774', token: 'status-published-bg', bg: false },
-  { name: 'moss-400', hex: '#78c99a', token: 'accent', bg: false },
-  { name: 'moss-300', hex: '#a1deba', token: 'accent-hover / focus-ring', bg: false },
-  { name: 'amber-500', hex: '#d8aa5f', token: 'status-under-review', bg: false },
-  { name: 'slate-400', hex: '#a9b9b1', token: 'text-muted / status-in-preparation', bg: false },
-  { name: 'paper-50', hex: '#f5f2e9', token: 'text-primary', bg: false },
+  { name: 'paper-50', hex: '#f3f2ea', token: 'bg-base', bg: true },
+  { name: 'raised', hex: '#fbfaf5', token: 'bg-raised', bg: true },
+  { name: 'ink-950', hex: '#10130f', token: 'text-primary / dark band', bg: true },
+  { name: 'ink-800', hex: '#1d231c', token: 'dark raised surface', bg: true },
+  { name: 'ember-400', hex: '#c8ef2b', token: 'action accent', bg: false },
+  { name: 'ember-700', hex: '#536600', token: 'accent text on light', bg: false },
+  { name: 'amber-500', hex: '#795900', token: 'status-under-review', bg: false },
+  { name: 'taupe-700', hex: '#5c6258', token: 'text-muted', bg: false },
+  { name: 'taupe-400', hex: '#aeb5a7', token: 'dark muted text', bg: false },
 ];
 
 const contrast = [
-  { fg: 'paper-50 on ink-900', ratio: '16.67:1', level: 'AAA' },
-  { fg: 'moss-400 on ink-900', ratio: '9.43:1', level: 'AAA' },
-  { fg: 'amber-500 on ink-900', ratio: '8.74:1', level: 'AAA' },
-  { fg: 'slate-400 on ink-900', ratio: '9.12:1', level: 'AAA' },
-  { fg: 'ink-900 on moss-400 (primary button)', ratio: '9.43:1', level: 'AAA' },
-  { fg: 'ink-900 on moss-500 (published badge)', ratio: '6.32:1', level: 'AA' },
+  { fg: 'ink-950 on paper-50', ratio: '16.67:1', level: 'AAA' },
+  { fg: 'taupe-700 on paper-50', ratio: '5.59:1', level: 'AA' },
+  { fg: 'ember-700 on paper-50', ratio: '5.72:1', level: 'AA' },
+  { fg: 'paper-50 on ink-950', ratio: '16.67:1', level: 'AAA' },
+  { fg: 'ink-950 on ember-400', ratio: '14.11:1', level: 'AAA' },
+  { fg: 'paper-50 on ink-800', ratio: '14.28:1', level: 'AAA' },
 ];
 
 const typeScale = [
@@ -45,11 +44,11 @@ const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96];
   <Nav />
   <main id="main" class="site-shell pb-24 pt-36 sm:pt-40">
     <header class="mb-16">
-      <p class="text-sm tracking-widest text-moss-400 uppercase">Design system</p>
+      <p class="text-sm tracking-widest text-ember-400 uppercase">Design system</p>
       <h1 class="mt-2 text-h1 text-paper-50">Styleguide</h1>
       <p class="mt-4 max-w-prose text-lead text-[var(--color-text-muted)]">
         Every value on this page resolves to a token from <code>tokens/tokens.json</code>.
-        Nothing here is hardcoded. Source Serif 4 for headings, Inter for UI and body,
+        Nothing here is hardcoded. Inter Variable carries both the oversized editorial headings and the UI/body system,
         self-hosted and subset via unicode-range.
       </p>
     </header>
@@ -140,7 +139,7 @@ const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96];
           spacing.map((s) => (
             <div class="flex items-center gap-4">
               <span class="w-14 text-xs text-[var(--color-text-muted)] tabular-nums">{s}px</span>
-              <div class="h-3 rounded-sm bg-moss-400/70" style={`width:${s * 3}px`} />
+              <div class="h-3 rounded-sm bg-ember-400/70" style={`width:${s * 3}px`} />
             </div>
           ))
         }

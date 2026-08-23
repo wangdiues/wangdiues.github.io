@@ -48,7 +48,7 @@ const jsonld = JSON.stringify({
   </Fragment>
   <Nav />
   <main id="main" class="reading-shell pb-24 pt-36 sm:pt-40">
-    <a href="/publications" class="inline-flex min-h-11 items-center text-sm font-medium text-moss-300 underline-offset-4 hover:underline">← All publications</a>
+    <a href="/publications" class="inline-flex min-h-11 items-center text-sm font-medium text-ember-300 underline-offset-4 hover:underline">← All publications</a>
 
     <header class="mt-8 border-b border-[var(--color-border-subtle)] pb-10">
       <div class="flex flex-wrap items-center gap-3">
@@ -57,7 +57,7 @@ const jsonld = JSON.stringify({
       </div>
       <h1 class="text-balance mt-5 text-h1 leading-tight tracking-[-0.03em] text-paper-50">{pub.data.title}</h1>
       <p class="mt-5 text-lg text-[var(--color-text-muted)]">{pub.data.authors}</p>
-      <p class="mt-2 text-sm text-moss-300 italic">{pub.data.venue}</p>
+      <p class="mt-2 text-sm text-ember-300 italic">{pub.data.venue}</p>
     </header>
 
     <div class="prose mt-10 max-w-none text-[var(--color-text-muted)] [&_p]:mb-5 [&_p]:text-[1.05rem] [&_p]:leading-8">
@@ -71,7 +71,7 @@ const jsonld = JSON.stringify({
             href={`https://doi.org/${pub.data.doi}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex min-h-11 items-center rounded-full border border-moss-400 bg-moss-400 px-5 py-2 font-medium text-ink-950 hover:-translate-y-0.5 hover:bg-moss-300"
+            class="inline-flex min-h-11 items-center rounded-full border border-ember-400 bg-ember-400 px-5 py-2 font-medium text-ink-950 hover:-translate-y-0.5 hover:bg-ember-300"
           >
             View at publisher (DOI)
           </a>
@@ -81,7 +81,7 @@ const jsonld = JSON.stringify({
         pub.data.pdf && (
           <a
             href={pub.data.pdf}
-            class="inline-flex min-h-11 items-center rounded-full border border-[var(--color-border-subtle)] bg-paper-50/[0.03] px-5 py-2 font-medium text-paper-50 hover:-translate-y-0.5 hover:border-moss-400 hover:text-moss-300"
+            class="inline-flex min-h-11 items-center rounded-full border border-[var(--color-border-subtle)] bg-paper-50/[0.03] px-5 py-2 font-medium text-paper-50 hover:-translate-y-0.5 hover:border-ember-400 hover:text-ember-300"
           >
             Download PDF
           </a>
@@ -103,7 +103,7 @@ const jsonld = JSON.stringify({
       <button
         id="copy-citation"
         type="button"
-        class="mt-4 min-h-11 text-sm font-medium text-moss-300 underline-offset-4 hover:underline"
+        class="mt-4 min-h-11 text-sm font-medium text-ember-300 underline-offset-4 hover:underline"
         data-citation={citation}
       >
         Copy citation
@@ -129,7 +129,7 @@ const jsonld = JSON.stringify({
               <li>
                 <a
                   href={`/case-studies/${contentSlug(study.id)}/`}
-                  class="text-moss-400 underline-offset-4 hover:underline"
+                  class="text-ember-400 underline-offset-4 hover:underline"
                 >
                   {study.data.title}
                 </a>

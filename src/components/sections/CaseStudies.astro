@@ -2,20 +2,25 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import SectionHeading from '../ui/SectionHeading.astro';
-import Card from '../ui/Card.astro';
-import { contentSlug } from '../../lib/content-id';
 import TagPill from '../ui/TagPill.astro';
+import { contentSlug } from '../../lib/content-id';
 import { caseStudyAssets } from '../../data/case-study-assets';
 
 const studies = (await getCollection('case-studies')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const featured = studies.find((study) => Boolean(study.data.project));
-const remaining = featured ? studies.filter((study) => study.id !== featured.id) : studies;
-const featuredProject = featured?.data.project;
-const featuredImage = featuredProject
-  ? caseStudyAssets[featuredProject.assetGroup]?.[featuredProject.hero.asset]
-  : undefined;
+
+const panels = studies.map((study) => {
+  const project = study.data.project;
+  const image = project ? caseStudyAssets[project.assetGroup]?.[project.hero.asset] : undefined;
+  return {
+    study,
+    href: `/case-studies/${contentSlug(study.id)}/`,
+    image,
+    alt: project?.hero.alt,
+    initial: study.data.region.replace(/[^A-Za-z]/g, '').charAt(0).toUpperCase() || 'W',
+  };
+});
 ---
 
 <section id="work" class="section-space scroll-mt-24">
@@ -24,75 +29,127 @@ const featuredImage = featuredProject
       <SectionHeading
         eyebrow="Selected work"
         title="Applied programmes with management-level consequences."
-        lede="Field evidence, spatial analysis, and operative outputs — plans, strategies, and monitoring systems designed for use."
+        lede="Field evidence, spatial analysis, and operative outputs — plans, strategies, and monitoring systems designed for use. Hover a title, or tap it to open the full case study."
       />
-      <a href="/publications" class="link-arrow text-sm font-medium text-moss-300 hover:text-moss-400">Browse all research outputs</a>
+      <a href="/publications" class="link-arrow text-sm font-semibold text-[var(--color-text-primary)] hover:text-[var(--color-accent)]">Browse all research outputs</a>
     </div>
 
-    {
-      featured && featuredProject && featuredImage && (
-        <a
-          href={`/case-studies/${contentSlug(featured.id)}/`}
-          class="group mt-14 grid overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] shadow-card lg:grid-cols-[1.08fr_0.92fr]"
-        >
-          <div class="relative min-h-72 overflow-hidden lg:min-h-[30rem]">
-            <Image
-              src={featuredImage}
-              alt={featuredProject.hero.alt}
-              widths={[640, 960, 1280]}
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              loading="lazy"
-              class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/55 via-transparent to-transparent" aria-hidden="true"></div>
-            <span class="absolute left-5 top-5 rounded-full border border-paper-50/20 bg-ink-950/70 px-3 py-1.5 text-[0.65rem] font-semibold tracking-[0.16em] text-paper-50 uppercase backdrop-blur">
-              Featured · 2026
-            </span>
-          </div>
-          <div class="flex flex-col justify-between p-7 sm:p-9 lg:p-10">
-            <div>
-              <p class="text-xs font-semibold tracking-[0.18em] text-moss-300 uppercase">{featured.data.region}</p>
-              <h3 class="mt-5 text-balance text-h2 text-paper-50">{featured.data.title}</h3>
-              <div class="mt-6 border-l border-moss-400/50 pl-4">
-                <p class="text-[0.65rem] font-semibold tracking-[0.16em] text-moss-300 uppercase">Conservation outcome</p>
-                <p class="mt-2 text-base leading-relaxed text-[var(--color-text-muted)]">{featured.data.impact}</p>
-              </div>
-            </div>
-            <div class="mt-10">
-              <div class="flex flex-wrap gap-2">
-                {featured.data.methods.slice(0, 3).map((method) => <TagPill label={method} />)}
-              </div>
-              <p class="mt-8 flex items-center justify-between border-t border-[var(--color-border-subtle)] pt-5 text-sm font-medium text-paper-50">
-                Read the case study
-                <span class="text-moss-300 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-              </p>
-            </div>
-          </div>
-        </a>
-      )
-    }
+    <div class="mt-14 grid gap-10 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-start lg:gap-14">
+      <ul id="work-list" class="border-t border-[var(--color-text-primary)]">
+        {
+          panels.map(({ study, href, initial }, index) => (
+            <li class="border-b border-[var(--color-text-primary)]" data-active={index === 0 ? 'true' : undefined}>
+              <a
+                href={href}
+                data-work-item
+                data-index={index}
+                class="group flex items-baseline justify-between gap-6 py-6 transition-colors"
+              >
+                <span class="flex min-w-0 items-baseline gap-4">
+                  <span
+                    class="shrink-0 font-heading text-sm tabular-nums text-[var(--color-text-muted)] transition-colors group-hover:text-[var(--color-accent)] [[data-active='true']_&]:text-[var(--color-accent)]"
+                    aria-hidden="true"
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span class="truncate font-heading text-xl leading-snug text-[var(--color-text-muted)] transition-colors group-hover:text-[var(--color-text-primary)] sm:text-2xl [[data-active='true']_&]:text-[var(--color-text-primary)]">
+                    {study.data.title}
+                  </span>
+                  <span class="shrink-0 text-[var(--color-text-primary)] opacity-0 transition-opacity group-hover:opacity-100 [[data-active='true']_&]:opacity-100" aria-hidden="true">
+                    ↗
+                  </span>
+                </span>
+                <span class="hidden shrink-0 max-w-[14rem] truncate text-right text-xs font-medium tracking-wide text-[var(--color-text-muted)] uppercase sm:block">
+                  {initial === 'B' ? study.data.region : study.data.region}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
 
-    <div class="mt-6 grid gap-6 md:grid-cols-2">
-      {
-        remaining.map((study, index) => (
-          <Card href={`/case-studies/${contentSlug(study.id)}/`} class="h-full">
-            <div class="flex h-full min-h-72 flex-col">
-              <div class="flex items-start justify-between gap-4">
-                <p class="text-xs font-semibold tracking-[0.16em] text-moss-300 uppercase">{study.data.region}</p>
-                <span class="font-heading text-xl text-[var(--color-text-muted)]" aria-hidden="true">{String(index + 2).padStart(2, '0')}</span>
+      <div class="lg:sticky lg:top-28">
+        <div
+          id="work-preview"
+          class="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-text-primary)] bg-[var(--color-bg-raised)]"
+        >
+          {
+            panels.map(({ study, href, image, alt, initial }, index) => (
+              <div
+                data-panel
+                data-index={index}
+                aria-hidden={index === 0 ? undefined : 'true'}
+                class:list={[
+                  'media-dark absolute inset-0 transition-opacity duration-300',
+                  index === 0 ? 'opacity-100' : 'pointer-events-none opacity-0',
+                ]}
+              >
+                {image ? (
+                  <Image
+                    src={image}
+                    alt={alt ?? ''}
+                    widths={[420, 640, 840]}
+                    sizes="(min-width: 1024px) 26rem, 90vw"
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    class="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    class="flex h-full w-full items-center justify-center bg-gradient-to-br from-ink-800 via-ink-900 to-ink-950"
+                  >
+                    <span class="font-heading text-[10rem] leading-none text-ember-400/15">{initial}</span>
+                  </div>
+                )}
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/92 via-ink-950/35 to-transparent" />
+                <div class="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+                  <p class="text-[0.65rem] font-semibold tracking-[0.16em] text-ember-300 uppercase">{study.data.region}</p>
+                  <h3 class="mt-3 text-balance text-xl leading-snug text-paper-50 sm:text-2xl">{study.data.title}</h3>
+                  <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-paper-100/85">{study.data.impact}</p>
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {study.data.methods.slice(0, 2).map((method) => <TagPill label={method} />)}
+                  </div>
+                  <a
+                    href={href}
+                    data-panel-link
+                    tabindex={index === 0 ? undefined : -1}
+                    class="link-arrow mt-5 inline-flex items-center text-sm font-medium text-paper-50 hover:text-ember-300"
+                  >
+                    Read the case study
+                  </a>
+                </div>
               </div>
-              <h3 class="mt-6 text-balance text-h3 text-paper-50">{study.data.title}</h3>
-              <div class="mt-5 border-l border-moss-400/40 pl-4">
-                <p class="text-[0.62rem] font-semibold tracking-[0.15em] text-moss-300 uppercase">Applied outcome</p>
-                <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{study.data.impact}</p>
-              </div>
-              <div class="mt-auto flex flex-wrap gap-2 border-t border-[var(--color-border-subtle)] pt-5">
-                {study.data.methods.slice(0, 3).map((method) => <TagPill label={method} />)}
-              </div>
-            </div>
-          </Card>
-        ))
-      }
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const list = document.getElementById('work-list');
+  const items = [...document.querySelectorAll<HTMLAnchorElement>('[data-work-item]')];
+  const panels = [...document.querySelectorAll<HTMLElement>('[data-panel]')];
+
+  function activate(index: number) {
+    for (const item of items) {
+      item.closest('li')?.toggleAttribute('data-active', item.dataset.index === String(index));
+    }
+    for (const panel of panels) {
+      const active = panel.dataset.index === String(index);
+      panel.classList.toggle('opacity-100', active);
+      panel.classList.toggle('opacity-0', !active);
+      panel.classList.toggle('pointer-events-none', !active);
+      if (active) panel.removeAttribute('aria-hidden');
+      else panel.setAttribute('aria-hidden', 'true');
+      panel.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => (link.tabIndex = active ? 0 : -1));
+    }
+  }
+
+  items.forEach((item) => {
+    const index = Number(item.dataset.index);
+    item.addEventListener('mouseenter', () => activate(index));
+    item.addEventListener('focus', () => activate(index));
+  });
+</script>

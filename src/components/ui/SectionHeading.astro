@@ -10,9 +10,9 @@ const { eyebrow, title, lede } = Astro.props;
 
 <div class="max-w-3xl">
   <div class="mb-4 flex items-center gap-4">
-    <span class="h-px w-9 bg-moss-400" aria-hidden="true"></span>
-    <p class="text-xs font-semibold tracking-[0.2em] text-moss-300 uppercase">{eyebrow}</p>
+    <span class="h-px w-9 bg-[var(--color-text-primary)]" aria-hidden="true"></span>
+    <p class="text-xs font-semibold tracking-[0.2em] text-[var(--color-text-primary)] uppercase">{eyebrow}</p>
   </div>
-  <h2 class="text-balance text-h2 tracking-[-0.025em] text-paper-50">{title}</h2>
+  <h2 class="text-balance text-h2 tracking-[-0.055em] text-[var(--color-text-primary)]">{title}</h2>
   {lede && <p class="mt-5 max-w-2xl text-lead text-[var(--color-text-muted)]">{lede}</p>}
 </div>

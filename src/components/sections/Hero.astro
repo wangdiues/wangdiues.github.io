@@ -5,72 +5,72 @@ import TagPill from '../ui/TagPill.astro';
 import portrait from '../../assets/wangdi-dfo-sarpang.jpg';
 ---
 
-<section class="relative overflow-hidden pb-20 pt-32 sm:pt-36 lg:min-h-[820px] lg:pb-28 lg:pt-44">
-  <div class="pointer-events-none absolute inset-x-0 top-24 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-moss-400/25 to-transparent" aria-hidden="true"></div>
-  <div class="pointer-events-none absolute right-[-12rem] top-24 h-[34rem] w-[34rem] rounded-full border border-moss-400/10" aria-hidden="true"></div>
-  <div class="pointer-events-none absolute right-[-6rem] top-48 h-[22rem] w-[22rem] rounded-full border border-moss-400/15" aria-hidden="true"></div>
-
-  <div class="site-shell grid items-center gap-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(19rem,0.65fr)] lg:gap-20">
-    <div class="hero-enter relative z-10">
-      <div class="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.68rem] font-semibold tracking-[0.2em] uppercase">
-        <span class="text-moss-300">Bhutan · Field science</span>
-        <span class="h-px w-8 bg-[var(--color-border-subtle)]" aria-hidden="true"></span>
-        <span class="text-[var(--color-text-muted)]">Senior Forestry Officer</span>
-      </div>
-
-      <h1 class="text-balance text-display tracking-[-0.055em] text-paper-50">Wangdi</h1>
-      <p class="mt-3 max-w-2xl font-heading text-[clamp(1.8rem,1.25rem+2vw,3rem)] leading-[1.12] tracking-[-0.025em] text-paper-100">
-        Evidence for living landscapes.
-      </p>
-      <p class="mt-7 max-w-xl text-lead text-[var(--color-text-muted)]">
-        I translate ecological field evidence into biodiversity, climate-resilience, and sustainable forest-management decisions across Bhutan.
-      </p>
-
-      <div class="mt-7 flex flex-wrap gap-2.5" aria-label="Areas of practice">
-        <TagPill label="Forest governance" />
-        <TagPill label="Spatial ecology" />
-        <TagPill label="Climate resilience" />
-      </div>
-
-      <div class="mt-9 flex flex-wrap gap-3">
-        <Button href="/#work">Explore selected work</Button>
-        <Button href="/Wangdi_CV_2026.pdf" variant="secondary" external>View CV</Button>
-      </div>
-
-      <a
-        href="https://www.conservationleadershipprogramme.org/project/bhutans-first-gps-ai-study-great-hornbills/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group mt-10 grid max-w-xl grid-cols-[auto_1fr_auto] items-center gap-4 border-y border-[var(--color-border-subtle)] py-4 text-sm"
-      >
-        <span class="font-heading text-2xl text-amber-500" aria-hidden="true">2026</span>
-        <span>
-          <strong class="block font-medium text-paper-50">CLP Future Conservationist Team Award</strong>
-          <span class="mt-0.5 block text-[var(--color-text-muted)]">Team Leader · Connected Skies</span>
-        </span>
-        <span class="text-moss-300 transition-transform group-hover:translate-x-1" aria-hidden="true">↗</span>
-        <span class="sr-only">Opens in a new tab</span>
-      </a>
+<section class="relative overflow-hidden pb-16 pt-32 sm:pt-36 lg:min-h-[800px] lg:pb-24 lg:pt-40">
+  <div class="site-shell">
+    <div class="hero-enter flex flex-wrap items-center justify-between gap-4 border-b border-[var(--color-text-primary)] pb-5 text-[0.68rem] font-semibold tracking-[0.18em] uppercase">
+      <span>Wangdi · Senior Forestry Officer</span>
+      <span class="text-[var(--color-text-muted)]">Bhutan · 26.85° N, 89.38° E</span>
     </div>
 
-    <figure class="hero-enter hero-enter-delay relative mx-auto w-full max-w-md lg:mr-0">
-      <div class="absolute -inset-3 rounded-[1.75rem] border border-moss-400/12" aria-hidden="true"></div>
-      <div class="relative overflow-hidden rounded-[1.35rem] border border-[var(--color-border-subtle)] bg-ink-800 shadow-card">
+    <p
+      class="hero-enter mt-8 font-heading text-[clamp(3.5rem,2.2rem+6vw,6.5rem)] leading-none tracking-[-0.04em] text-[var(--color-accent)] tabular-nums"
+      aria-label="100 or more species documented"
+    >
+      <span>100</span><span class="text-[0.55em] align-top">+</span>
+    </p>
+    <p class="hero-enter mt-3 max-w-2xl text-[clamp(1.35rem,1.05rem+1vw,1.9rem)] leading-[1.15] text-[var(--color-text-muted)]">
+      Not a species list. A management baseline — a multi-site camera-trap network across
+      Royal Manas, Phibsoo, and Biological Corridor 03 confirmed 100+ species, feeding
+      directly into corridor and management planning.
+    </p>
+
+    <h1 class="hero-enter mt-10 max-w-[13ch] text-balance font-heading text-[clamp(3.5rem,1.25rem+8vw,8.4rem)] font-medium leading-[0.91] tracking-[-0.075em] text-[var(--color-text-primary)]">
+      I turn field evidence into decisions for living landscapes.
+    </h1>
+
+    <div class="mt-12 grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-16">
+      <div class="hero-enter">
+        <p class="max-w-xl text-lead leading-relaxed text-[var(--color-text-muted)]">
+          Biodiversity science, spatial ecology, climate resilience, and public forest governance—translated into plans and monitoring systems that work in Bhutan.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-2" aria-label="Areas of practice">
+          <TagPill label="Forest governance" />
+          <TagPill label="Spatial ecology" />
+          <TagPill label="Climate resilience" />
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href="/#work">View selected work</Button>
+          <Button href="/Wangdi_CV_2026.pdf" variant="secondary" external>View CV ↗</Button>
+        </div>
+      </div>
+
+      <figure class="hero-enter hero-enter-delay relative overflow-hidden rounded-[var(--radius-lg)] bg-ink-900">
         <Image
           src={portrait}
-          alt="Wangdi in Department of Forests and Park Services uniform at the gate of the Divisional Forest Office, Sarpang"
-          widths={[420, 640, 840]}
-          sizes="(min-width: 1024px) 390px, 90vw"
-          class="aspect-[4/5] h-full w-full object-cover object-center [filter:saturate(0.82)_contrast(0.98)]"
+          alt="Wangdi in Department of Forests and Park Services uniform at the Divisional Forest Office, Sarpang"
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1024px) 56vw, 100vw"
+          class="aspect-[16/10] h-full w-full object-cover object-center [filter:saturate(0.75)_contrast(1.03)]"
           loading="eager"
           fetchpriority="high"
         />
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/75 via-transparent to-transparent" aria-hidden="true"></div>
-        <figcaption class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-xs">
-          <span class="max-w-[15rem] leading-relaxed text-paper-100">Department of Forests and Park Services · Bhutan</span>
-          <span class="rounded-full border border-paper-50/20 bg-ink-950/60 px-3 py-1.5 font-semibold tracking-wider text-moss-300 uppercase backdrop-blur">Field / policy</span>
+        <figcaption class="media-dark absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-[#120d08]/90 to-transparent p-5 pt-16 text-xs text-paper-50">
+          <span>Department of Forests and Park Services</span>
+          <span class="rounded-full bg-[var(--color-accent-solid)] px-3 py-1.5 font-semibold tracking-wider text-[var(--color-on-accent-solid)] uppercase">Field / policy</span>
         </figcaption>
-      </div>
-    </figure>
+      </figure>
+    </div>
+
+    <a
+      href="https://www.conservationleadershipprogramme.org/project/bhutans-first-gps-ai-study-great-hornbills/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group mt-12 grid gap-3 border-y border-[var(--color-text-primary)] py-5 text-sm sm:grid-cols-[7rem_1fr_auto] sm:items-center"
+    >
+      <span class="text-xs font-semibold tracking-[0.16em] uppercase">Recognition</span>
+      <span><strong class="font-semibold">CLP Future Conservationist Team Award 2026</strong> · Team Leader, Connected Skies</span>
+      <span class="text-2xl transition-transform group-hover:translate-x-1" aria-hidden="true">↗</span>
+      <span class="sr-only">Opens in a new tab</span>
+    </a>
   </div>
 </section>

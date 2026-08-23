@@ -34,15 +34,15 @@ const layersJson = JSON.stringify(LAYERS);
           <legend class="sr-only">Toggle map layers</legend>
           {
             LAYERS.length === 0 && (
-              <p class="rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-ink-900 p-4 text-sm text-[var(--color-text-muted)]">
+              <p class="rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-4 text-sm text-[var(--color-text-muted)]">
                 No layers published yet. Data preparation is under DoFPS disclosure review —
                 cleared layers will appear here with full source notes.
               </p>
             )
           }
         </fieldset>
-        <details class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-ink-900 p-4">
-          <summary class="min-h-11 text-sm font-medium text-moss-300">View layer data as table</summary>
+        <details class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)] p-4">
+          <summary class="min-h-11 text-sm font-medium text-ember-300">View layer data as table</summary>
           <div id="layer-tables" class="mt-4 space-y-6 text-sm">
             <p class="text-[var(--color-text-muted)]">
               Every approved map attribute is available in paginated tables for screen readers
@@ -123,7 +123,7 @@ const layersJson = JSON.stringify(LAYERS);
     const head = document.createElement('thead');
     const headerRow = document.createElement('tr');
     for (const field of layer.publicFields) {
-      const cell = text('th', field.label, 'border-b border-white/20 px-2 py-1 font-medium text-paper-50');
+      const cell = text('th', field.label, 'border-b border-black/20 px-2 py-1 font-medium text-paper-50');
       cell.scope = 'col';
       headerRow.append(cell);
     }
@@ -153,7 +153,7 @@ const layersJson = JSON.stringify(LAYERS);
       for (const feature of geojson.features.slice(start, end)) {
         const row = document.createElement('tr');
         for (const field of layer.publicFields) {
-          row.append(text('td', displayValue(feature.properties?.[field.key]), 'border-b border-white/10 px-2 py-1 align-top'));
+          row.append(text('td', displayValue(feature.properties?.[field.key]), 'border-b border-black/10 px-2 py-1 align-top'));
         }
         body.append(row);
       }
@@ -232,27 +232,27 @@ const layersJson = JSON.stringify(LAYERS);
             id: `${layer.id}-fill`,
             type: 'fill',
             source: layer.id,
-            paint: { 'fill-color': '#63b385', 'fill-opacity': 0.25 },
+            paint: { 'fill-color': '#c8ef2b', 'fill-opacity': 0.25 },
           });
           map.addLayer({
             id: `${layer.id}-line`,
             type: 'line',
             source: layer.id,
-            paint: { 'line-color': '#8ccaa4', 'line-width': 1.5 },
+            paint: { 'line-color': '#536600', 'line-width': 1.5 },
           });
         } else if (layer.geometry === 'line') {
           map.addLayer({
             id: `${layer.id}-line`,
             type: 'line',
             source: layer.id,
-            paint: { 'line-color': '#8ccaa4', 'line-width': 2 },
+            paint: { 'line-color': '#536600', 'line-width': 2 },
           });
         } else {
           map.addLayer({
             id: `${layer.id}-point`,
             type: 'circle',
             source: layer.id,
-            paint: { 'circle-color': '#63b385', 'circle-radius': 5 },
+            paint: { 'circle-color': '#536600', 'circle-radius': 5 },
           });
         }
         checkbox.disabled = false;

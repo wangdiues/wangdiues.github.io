@@ -10,15 +10,15 @@ interface Props {
 
 const { href, variant = 'primary', size = 'md', external = false, download, class: className = '' } = Astro.props;
 
-const base = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-full border font-medium transition duration-200 active:translate-y-px';
+const base = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-full border font-semibold transition duration-200 active:scale-[0.98]';
 const sizes = {
   sm: 'px-4 py-2 text-sm',
   md: 'px-6 py-2.5 text-sm sm:text-base',
 } as const;
 const variants = {
-  primary: 'border-moss-400 bg-moss-400 text-ink-950 shadow-[0_10px_30px_rgba(120,201,154,0.18)] hover:-translate-y-0.5 hover:border-moss-300 hover:bg-moss-300',
-  secondary: 'border-[var(--color-border-subtle)] bg-paper-50/[0.03] text-paper-50 hover:-translate-y-0.5 hover:border-moss-400 hover:text-moss-300',
-  ghost: 'border-transparent px-2 text-[var(--color-text-muted)] underline-offset-4 hover:text-paper-50 hover:underline',
+  primary: 'border-[var(--color-accent-solid)] bg-[var(--color-accent-solid)] text-[var(--color-on-accent-solid)] hover:border-[var(--color-accent-hover)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-bg-base)]',
+  secondary: 'border-[var(--color-text-primary)] bg-transparent text-[var(--color-text-primary)] hover:bg-[var(--color-accent-solid)] hover:text-ink-950',
+  ghost: 'border-transparent px-2 text-[var(--color-text-muted)] underline-offset-4 hover:text-[var(--color-text-primary)] hover:underline',
 } as const;
 ---
 

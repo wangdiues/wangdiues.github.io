@@ -7,10 +7,10 @@ interface Props {
 const { status, label } = Astro.props;
 
 const styles: Record<Props['status'], string> = {
-  published: 'border-moss-400/30 bg-moss-400/15 font-semibold text-moss-300',
+  published: 'border-ember-400/30 bg-ember-400/15 font-semibold text-ember-300',
   'under-review': 'border-amber-500/45 bg-amber-500/10 text-amber-500',
-  'in-preparation': 'border-slate-400/35 bg-paper-50/[0.03] text-slate-400',
-  report: 'border-paper-50/25 bg-paper-50/[0.05] text-paper-50',
+  'in-preparation': 'border-[var(--color-border-subtle)] bg-transparent text-[var(--color-text-muted)]',
+  report: 'border-[var(--color-text-primary)]/30 bg-transparent text-[var(--color-text-primary)]',
 };
 
 const labels: Record<Props['status'], string> = {
