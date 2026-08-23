@@ -19,6 +19,11 @@ export const SOCIAL = [
     value: "@wangdiues",
     href: "https://github.com/wangdiues",
   },
+  {
+    label: "Website",
+    value: "wangdiues.netlify.app",
+    href: "https://wangdiues.netlify.app/",
+  },
 ];
 
 export type Repository = {
