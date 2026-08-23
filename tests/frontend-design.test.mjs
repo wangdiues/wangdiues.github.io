@@ -128,6 +128,19 @@ test('the homepage explains the evidence-to-action method and foregrounds projec
   assert.match(projects, /data-work-item/);
 });
 
+test('career highlights are an accessible, indexed evidence summary linked to the full CV', () => {
+  const homepage = read('src/pages/index.astro');
+  const highlights = read('src/components/sections/CareerHighlights.astro');
+
+  assert.match(homepage, /<CareerHighlights \/>/);
+  assert.match(highlights, /<section id="highlights"/);
+  assert.match(highlights, /<dl class=/);
+  assert.match(highlights, /<dt class=/);
+  assert.match(highlights, /<dd class=/);
+  assert.match(highlights, /href="\/cv"/);
+  assert.equal((highlights.match(/label:/g) ?? []).length, 8);
+});
+
 test('selected work is a hover-preview list where every item is a real, always-focusable link', () => {
   const work = read('src/components/sections/CaseStudies.astro');
 

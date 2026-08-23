@@ -71,9 +71,11 @@ tightened to 5.10:1+ across both themes; see `tests/frontend-design.test.mjs`.
 - The portrait-led hero layers identity, professional specializations, recognition,
   affiliation/contact, and a readable professional profile before its practice tags and CTAs;
   it must not collapse those elements into one undifferentiated paragraph.
-- Homepage storytelling: portrait-led introduction → evidence at a glance → about → research
-  approach (a genuine 3-step sequence, numbered because it is actually ordered) →
-  experience → indexed selected work → code → gallery → contact.
+- Career highlights use an indexed, border-led evidence matrix with one outcome per entry and
+  a direct route to the detailed on-site CV; the matrix stacks without hover dependencies.
+- Homepage storytelling: portrait-led introduction → evidence at a glance → research
+  approach (a genuine 3-step sequence, numbered because it is actually ordered) → about →
+  career highlights → indexed selected work → experience → code → gallery → contact.
 - Project cards explicitly label the applied outcome so readers can scan the
   consequence before opening the full case study.
 - Long-form pages retain a narrow reading measure and use consistent article surfaces.

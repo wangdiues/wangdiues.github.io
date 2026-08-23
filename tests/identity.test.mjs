@@ -28,6 +28,8 @@ test('the portfolio consistently uses the mononym Wangdi', () => {
 
 test('the website reflects the current 2026 CV profile', () => {
   const hero = readFileSync('src/components/sections/Hero.astro', 'utf8');
+  const highlights = readFileSync('src/components/sections/CareerHighlights.astro', 'utf8');
+  const cvPage = readFileSync('src/pages/cv.astro', 'utf8');
   const currentRole = readFileSync('src/content/experience/nwfp-section.md', 'utf8');
   const teaching = readFileSync('src/content/experience/adjunct-lecturer.md', 'utf8');
   const project = readFileSync('src/content/case-studies/connected-skies-great-hornbills.md', 'utf8');
@@ -41,6 +43,17 @@ test('the website reflects the current 2026 CV profile', () => {
   assert.match(teaching, /August 2026 - December 2026/);
   assert.match(project, /role: Team Leader/);
   assert.match(project, /Future Conservationist Award/);
+  assert.match(highlights, /Nu\. 35 million/);
+  assert.match(highlights, /75 contact hours/);
+  assert.match(highlights, /Royal Manas National Park/);
+  assert.match(highlights, /Biological Corridor 03/);
+  assert.match(highlights, /species distribution modelling/);
+  assert.match(cvPage, /Bachelor of Science \(Honours\) in Forestry — First Class/);
+  assert.match(cvPage, /Overall grade 79%/);
+  assert.match(cvPage, /GeoPandas and ArcPy/);
+  assert.match(cvPage, /Professional Development &amp; Certifications/);
+  assert.match(cvPage, /Claude Code in Action \(7 May 2026\)/);
+  assert.match(cvPage, /SAF-Madanjeet Singh Scholarship/);
 
   if (existsSync('static/Wangdi_CV_2026.pdf')) {
     assert.deepEqual(

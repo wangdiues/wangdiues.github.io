@@ -28,6 +28,65 @@ const groups = [
   group('In preparation', inPrep),
   group('Management plans & strategies', reports),
 ];
+
+const technicalExpertise = [
+  {
+    label: 'Geospatial & Remote Sensing',
+    detail: 'QGIS, ArcGIS, Google Earth Engine, and Python with GeoPandas and ArcPy.',
+  },
+  {
+    label: 'Data Analysis & Modelling',
+    detail: 'R, Python, SPSS, machine learning, multivariate analysis, and environmental data visualisation.',
+  },
+  {
+    label: 'Ecological & Field Methods',
+    detail:
+      'Species distribution modelling, camera-trap data analysis, occupancy modelling, climate modelling, forest inventory, environmental monitoring, acoustic monitoring, and AI-assisted species identification.',
+  },
+  {
+    label: 'Professional Strengths',
+    detail:
+      'Project management, budget administration, team leadership, stakeholder engagement, scientific and grant writing, environmental impact assessment, conservation planning, and climate adaptation.',
+  },
+];
+
+const professionalDevelopment = [
+  {
+    label: 'Conservation, Biodiversity & Climate Change',
+    detail:
+      'Advanced professional training through ICIMOD, UNDP, and IUCN in climate-change adaptation, ecosystem restoration, collaborative conservation planning, biodiversity assessment, and IUCN Red List assessment methodologies.',
+  },
+  {
+    label: 'Remote Sensing, GIS & Earth Observation',
+    detail:
+      'Professional training through NASA ARSET, EO College, and ISRO/NRSC in satellite remote sensing, GIS-based spatial planning, environmental monitoring, forest-fire detection, active-fire monitoring, and burnt-area mapping.',
+  },
+  {
+    label: 'Data Science, Geospatial Analytics & Modelling',
+    detail:
+      'Applied training in R, Python, QGIS, Google Earth Engine, statistical modelling, machine learning, spatial analysis, and environmental data visualisation for forestry, biodiversity, and natural-resource management.',
+  },
+  {
+    label: 'Ecological & Conservation Analytics',
+    detail:
+      'Specialised training in species distribution modelling, camera-trap analysis, biodiversity monitoring, ecological data management, and spatial conservation planning.',
+  },
+  {
+    label: 'Emerging Technologies & Digital Applications',
+    detail:
+      'Training in drone operations for emergency response, full-stack web development, digital data-management systems, Google Workspace administration, and technology-enabled environmental monitoring.',
+  },
+  {
+    label: 'Sustainability, Economics & Management',
+    detail:
+      'Professional development in environmental, social and governance principles, production-cost estimation, resource planning, and sustainability-oriented decision-making.',
+  },
+  {
+    label: 'AI & Developer Tools',
+    detail:
+      'Anthropic Certificates of Completion in Claude 101 (3 May 2026), Claude Code 101 (3 May 2026), and Claude Code in Action (7 May 2026), covering generative AI, AI-assisted coding, and developer workflows.',
+  },
+];
 ---
 
 <BaseLayout title="Curriculum Vitae | Wangdi" description="Curriculum vitae of Wangdi — forestry, biodiversity research, GIS, and forest governance.">
@@ -57,7 +116,7 @@ const groups = [
     </header>
 
     <section class="cv-section">
-      <h2>Awards</h2>
+      <h2>Honours &amp; Awards</h2>
       <ul>
         <li>
           Conservation Leadership Programme (CLP) Future Conservationist Team Award — 2026 · Team
@@ -76,7 +135,38 @@ const groups = [
         <li>
           Thesis: Analysis of Physical and Chemical Properties of Natural Salt Licks and Determination of Animal Presence
         </li>
+        <li>
+          Methods: ecological field surveys, wildlife sign assessment, camera-trap monitoring, soil and mineral analysis, biodiversity data collection, statistical analysis, scientific writing, and interpretation of species–environment relationships.
+        </li>
       </ul>
+    </section>
+
+    <section class="cv-section">
+      <h2>Technical Expertise</h2>
+      <dl class="cv-detail-list">
+        {
+          technicalExpertise.map((item) => (
+            <div>
+              <dt>{item.label}</dt>
+              <dd>{item.detail}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section class="cv-section">
+      <h2>Professional Development &amp; Certifications</h2>
+      <dl class="cv-detail-list">
+        {
+          professionalDevelopment.map((item) => (
+            <div>
+              <dt>{item.label}</dt>
+              <dd>{item.detail}</dd>
+            </div>
+          ))
+        }
+      </dl>
     </section>
 
     <section class="cv-section">
@@ -233,5 +323,28 @@ const groups = [
   ul {
     list-style: disc;
     padding-left: 1.25rem;
+  }
+  .cv-detail-list {
+    border-top: 1px solid var(--color-border-subtle);
+  }
+  .cv-detail-list > div {
+    display: grid;
+    gap: 0.35rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding: 1rem 0;
+  }
+  .cv-detail-list dt {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+  .cv-detail-list dd {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  @media (min-width: 640px) {
+    .cv-detail-list > div {
+      grid-template-columns: minmax(11rem, 0.72fr) minmax(0, 1.28fr);
+      gap: 1.5rem;
+    }
   }
 </style>

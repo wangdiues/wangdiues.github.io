@@ -1,0 +1,84 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const highlights = [
+  {
+    label: '2026 CLP Award',
+    detail:
+      'Team Leader and recipient of the CLP Future Conservationist Team Award for Connected Skies.',
+  },
+  {
+    label: 'Merit Promotion',
+    detail: 'Promoted to Senior Forestry Officer effective 1 January 2026.',
+  },
+  {
+    label: 'University Teaching',
+    detail:
+      'Appointed Adjunct Lecturer at the College of Natural Resources, Royal University of Bhutan, for Forest Mensuration (MEN201), comprising 75 contact hours.',
+  },
+  {
+    label: 'Programme Leadership',
+    detail: 'Managed conservation programmes and annual budgets exceeding Nu. 35 million.',
+  },
+  {
+    label: 'Landscape Conservation',
+    detail:
+      'Served as IKI Living Landscape focal officer and contributed to Bhutan for Life implementation in Sarpang.',
+  },
+  {
+    label: 'Biodiversity Monitoring',
+    detail:
+      'Established camera-trap monitoring across Royal Manas National Park, Phibsoo Wildlife Sanctuary, and Biological Corridor 03, documenting 100+ species.',
+  },
+  {
+    label: 'Technical Planning',
+    detail:
+      'Led climate vulnerability, human–elephant coexistence, corridor, divisional management, and biodiversity planning outputs.',
+  },
+  {
+    label: 'Spatial Science',
+    detail:
+      'Applied GIS, remote sensing, and species distribution modelling to conservation planning and decision-making.',
+  },
+];
+---
+
+<section id="highlights" class="section-space scroll-mt-24 border-y border-[var(--color-border-subtle)]">
+  <div class="site-shell">
+    <div class="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+      <div class="lg:sticky lg:top-32 lg:self-start">
+        <SectionHeading
+          eyebrow="Career highlights"
+          title="Evidence of leadership across science, policy, and practice."
+        />
+        <p class="mt-6 max-w-sm text-sm leading-relaxed text-[var(--color-text-muted)]">
+          Selected milestones from public service, conservation delivery, research, and university teaching.
+        </p>
+        <a
+          href="/cv"
+          class="link-arrow mt-7 inline-flex min-h-11 items-center font-semibold text-[var(--color-accent)] hover:text-[var(--color-text-primary)]"
+        >
+          Explore full CV
+        </a>
+      </div>
+
+      <dl class="grid border-l border-t border-[var(--color-text-primary)] sm:grid-cols-2">
+        {
+          highlights.map((highlight, index) => (
+            <div class="min-h-52 border-b border-r border-[var(--color-text-primary)] p-6 sm:p-7">
+              <dt class="flex items-start justify-between gap-5 text-xs font-semibold tracking-[0.14em] text-[var(--color-accent)] uppercase">
+                <span>{highlight.label}</span>
+                <span class="text-xs tabular-nums text-[var(--color-text-muted)]" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </dt>
+              <dd class="mt-8 font-heading text-xl leading-snug text-[var(--color-text-primary)] sm:text-2xl">
+                {highlight.detail}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>
