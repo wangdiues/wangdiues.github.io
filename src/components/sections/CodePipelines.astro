@@ -1,64 +1,106 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
-import { GITHUB_PROFILE, REPOSITORIES } from '../../config';
+import ResearchCard from '../ui/ResearchCard.astro';
+import ResearchIcon from '../icons/ResearchIcon.astro';
+import TagPill from '../ui/TagPill.astro';
+import { GITHUB_PROFILE } from '../../config';
+import { RESEARCH_DOMAINS, TECH_ECOSYSTEM, domainRepos } from '../../data/research-domains';
 
-const LANG_COLORS: Record<string, string> = {
-  Python: '#3572A5',
-  R: '#198CE7',
-  HTML: '#E34C26',
-  JavaScript: '#F1E05A',
-  TypeScript: '#3178C6',
-};
+const domainsWithRepos = RESEARCH_DOMAINS.map((domain) => ({
+  domain,
+  repos: domainRepos(domain),
+}));
+
+const allRepos = domainsWithRepos.flatMap((d) => d.repos);
+
+// Every number below is computed from research-domains.ts / config.ts at
+// build time — none are hardcoded.
+const frameworkTags = new Set(
+  allRepos.flatMap((repo) => repo.tags.filter((tag) => tag !== repo.language))
+);
+const platformLanguages = new Set(allRepos.map((repo) => repo.language).filter(Boolean));
+
+const stats = [
+  { value: String(allRepos.length), label: 'Open-source repositories' },
+  { value: String(RESEARCH_DOMAINS.length), label: 'Research domains' },
+  { value: String(frameworkTags.size), label: 'Analytical frameworks' },
+  { value: String(platformLanguages.size), label: 'Programming platforms' },
+];
 ---
 
-<section id="code" class="dark-section section-space scroll-mt-24 bg-ink-950" aria-label="Open research code and pipelines">
+<section id="code" class="section-space scroll-mt-24" aria-label="Open science and reproducible research">
   <div class="site-shell">
-    <SectionHeading
-      eyebrow="Code & pipelines"
-      title="Reproducible analysis, in the open."
-    />
+    <SectionHeading eyebrow="Open science" title="Open Science & Reproducible Research" />
     <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]">
-      The analytical pipelines behind my publications and assessments are public — camera-trap
-      ecology, movement modelling, SDMs, forest carbon, bioclimatics, and vegetation analysis.
-      Browse everything on
+      Analytical workflows supporting ecological assessments, publications, and conservation decisions.
+      All pipelines are developed using open-source tools to promote transparency, reproducibility, and
+      collaboration.
       <a
         href={GITHUB_PROFILE}
         target="_blank"
         rel="noopener noreferrer"
-        class="link-arrow text-ember-300 underline-offset-4 hover:underline">GitHub</a
+        class="link-arrow text-[var(--color-accent)] underline-offset-4 hover:underline">Browse everything on GitHub</a
       >.
     </p>
-    <div class="mt-12 grid border-l border-t border-[var(--color-border-subtle)] sm:grid-cols-2">
+
+    <div class="mt-10 grid grid-cols-2 border-l border-t border-[var(--color-border-subtle)] lg:grid-cols-4">
       {
-        REPOSITORIES.map((repo) => (
-          <a
-            href={`${GITHUB_PROFILE}/${repo.name}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex min-h-48 flex-col justify-between border-b border-r border-[var(--color-border-subtle)] bg-ink-950 p-6 hover:bg-ink-800"
-          >
-            <div>
-              <p class="font-mono text-sm font-semibold text-paper-50 group-hover:text-ember-300">
-                {repo.name}
-                <span aria-hidden="true" class="ml-1 inline-block opacity-0 transition-opacity group-hover:opacity-100">↗</span>
-              </p>
-              <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">{repo.description}</p>
-            </div>
-            <p class="mt-6 flex items-center gap-2 border-t border-[var(--color-border-subtle)] pt-4 text-xs text-[var(--color-text-muted)]">
-              {repo.language && (
-                <>
-                  <span
-                    aria-hidden="true"
-                    class="inline-block h-2.5 w-2.5 rounded-full"
-                    style={`background: ${LANG_COLORS[repo.language] ?? 'var(--color-text-muted)'}`}
-                  />
-                  {repo.language}
-                </>
-              )}
+        stats.map((stat) => (
+          <div class="border-b border-r border-[var(--color-border-subtle)] p-5 sm:p-6">
+            <p class="font-heading text-4xl font-medium tracking-[-0.03em] text-[var(--color-accent)] tabular-nums sm:text-5xl">
+              {stat.value}
             </p>
-          </a>
+            <p class="mt-2 text-xs leading-snug text-[var(--color-text-muted)] sm:text-sm">{stat.label}</p>
+          </div>
         ))
       }
+    </div>
+
+    <div class="mt-16 space-y-14">
+      {
+        domainsWithRepos.map(({ domain, repos }) =>
+          repos.length > 0 && (
+            <div>
+              <div class="flex items-start gap-4">
+                <ResearchIcon name={domain.icon} class="mt-1 h-7 w-7 shrink-0 text-[var(--color-accent)]" />
+                <div>
+                  <h3 class="font-heading text-xl text-[var(--color-text-primary)] sm:text-2xl">{domain.title}</h3>
+                  <p class="mt-1 max-w-2xl text-sm text-[var(--color-text-muted)]">{domain.blurb}</p>
+                </div>
+              </div>
+              <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {repos.map((repo) => (
+                  <ResearchCard
+                    icon={domain.icon}
+                    name={repo.name}
+                    description={repo.description}
+                    tags={repo.tags}
+                    href={repo.href}
+                  />
+                ))}
+              </div>
+            </div>
+          )
+        )
+      }
+    </div>
+
+    <div class="mt-16 border-t border-[var(--color-border-subtle)] pt-10">
+      <p class="text-xs font-semibold tracking-[0.2em] text-[var(--color-text-muted)] uppercase">Technology ecosystem</p>
+      <div class="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        {
+          TECH_ECOSYSTEM.map((group) => (
+            <div>
+              <p class="text-sm font-medium text-[var(--color-text-primary)]">{group.label}</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <TagPill label={item} />
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
