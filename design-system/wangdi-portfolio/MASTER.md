@@ -35,6 +35,9 @@ A calm, authoritative conservation-research portfolio rooted in Bhutan. The inte
 - Navigation is a floating, translucent field bar with a fully operable mobile menu.
 - Buttons use clear filled, outlined, and text treatments with visible focus and at least 44px height.
 - Cards use hierarchy, indexing, and restrained elevation; hover is never the only signal.
+- Homepage storytelling follows: precise purpose → evidence at a glance → research approach → experience → outcome-led selected work.
+- Method sequences use semantic ordered lists and concise evidence-to-action language rather than decorative process diagrams.
+- Project cards explicitly label the applied outcome so readers can scan the consequence before opening the full case study.
 - Section headings pair a numbered/label eyebrow with a strong editorial title and optional lede.
 - Long-form pages retain a narrow reading measure and use consistent article surfaces.
 - Local images use `astro:assets`; below-fold images remain lazy-loaded.

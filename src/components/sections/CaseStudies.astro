@@ -53,7 +53,10 @@ const featuredImage = featuredProject
             <div>
               <p class="text-xs font-semibold tracking-[0.18em] text-moss-300 uppercase">{featured.data.region}</p>
               <h3 class="mt-5 text-balance text-h2 text-paper-50">{featured.data.title}</h3>
-              <p class="mt-5 text-base leading-relaxed text-[var(--color-text-muted)]">{featured.data.impact}</p>
+              <div class="mt-6 border-l border-moss-400/50 pl-4">
+                <p class="text-[0.65rem] font-semibold tracking-[0.16em] text-moss-300 uppercase">Conservation outcome</p>
+                <p class="mt-2 text-base leading-relaxed text-[var(--color-text-muted)]">{featured.data.impact}</p>
+              </div>
             </div>
             <div class="mt-10">
               <div class="flex flex-wrap gap-2">
@@ -79,7 +82,10 @@ const featuredImage = featuredProject
                 <span class="font-heading text-xl text-[var(--color-text-muted)]" aria-hidden="true">{String(index + 2).padStart(2, '0')}</span>
               </div>
               <h3 class="mt-6 text-balance text-h3 text-paper-50">{study.data.title}</h3>
-              <p class="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">{study.data.impact}</p>
+              <div class="mt-5 border-l border-moss-400/40 pl-4">
+                <p class="text-[0.62rem] font-semibold tracking-[0.15em] text-moss-300 uppercase">Applied outcome</p>
+                <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{study.data.impact}</p>
+              </div>
               <div class="mt-auto flex flex-wrap gap-2 border-t border-[var(--color-border-subtle)] pt-5">
                 {study.data.methods.slice(0, 3).map((method) => <TagPill label={method} />)}
               </div>

@@ -52,3 +52,17 @@ test('the redesigned hero remains semantic, responsive, and image optimized', ()
   assert.match(hero, /sizes="\(min-width: 1024px\)/);
   assert.match(homepage, /title="Wangdi \| Conservation research/);
 });
+
+test('the homepage explains the evidence-to-action method and foregrounds project outcomes', () => {
+  const approach = read('src/components/sections/Approach.astro');
+  const homepage = read('src/pages/index.astro');
+  const projects = read('src/components/sections/CaseStudies.astro');
+
+  assert.match(approach, /<ol[^>]*>/);
+  assert.match(approach, /Observe the system/);
+  assert.match(approach, /Test the evidence/);
+  assert.match(approach, /Move evidence into action/);
+  assert.match(homepage, /<Approach \/>/);
+  assert.match(projects, /Conservation outcome/);
+  assert.match(projects, /Applied outcome/);
+});

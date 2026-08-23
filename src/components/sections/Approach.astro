@@ -1,0 +1,64 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const stages = [
+  {
+    number: '01',
+    title: 'Observe the system',
+    description:
+      'Frame the management question first, then design field monitoring around species, habitats, people, and the decisions the evidence must support.',
+    detail: 'Field ecology · monitoring design · local knowledge',
+  },
+  {
+    number: '02',
+    title: 'Test the evidence',
+    description:
+      'Combine spatial analysis, ecological modelling, and reproducible workflows to distinguish useful signals from assumptions and uncertainty.',
+    detail: 'GIS · statistics · modelling · open pipelines',
+  },
+  {
+    number: '03',
+    title: 'Move evidence into action',
+    description:
+      'Translate findings into management plans, monitoring protocols, policy inputs, and community-led conservation that can be used in practice.',
+    detail: 'Plans · protocols · governance · stewardship',
+  },
+];
+---
+
+<section id="approach" class="section-space border-y border-[var(--color-border-subtle)] bg-ink-950/38">
+  <div class="site-shell">
+    <div class="grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+      <SectionHeading
+        eyebrow="Research approach"
+        title="From field signal to management decision."
+        lede="Every programme follows one connected line of reasoning: observe carefully, test transparently, and make the result usable."
+      />
+      <blockquote class="max-w-lg border-l border-moss-400/50 pl-5 text-sm leading-relaxed text-[var(--color-text-muted)] lg:justify-self-end">
+        <p class="font-heading text-xl leading-snug text-paper-100">
+          “Conservation evidence matters when it reaches the people making decisions.”
+        </p>
+      </blockquote>
+    </div>
+
+    <ol class="mt-12 grid overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border-subtle)] md:grid-cols-3">
+      {
+        stages.map((stage) => (
+          <li class="group relative min-h-80 border-b border-[var(--color-border-subtle)] bg-ink-900 p-6 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 sm:p-7">
+            <div class="flex items-center justify-between gap-4">
+              <span class="font-heading text-4xl font-semibold tracking-tight text-moss-300" aria-hidden="true">
+                {stage.number}
+              </span>
+              <span class="h-px flex-1 bg-gradient-to-r from-moss-400/35 to-transparent" aria-hidden="true"></span>
+            </div>
+            <h3 class="mt-10 text-h3 text-paper-50">{stage.title}</h3>
+            <p class="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">{stage.description}</p>
+            <p class="absolute inset-x-6 bottom-6 border-t border-[var(--color-border-subtle)] pt-4 text-[0.65rem] font-semibold tracking-[0.13em] text-moss-300 uppercase sm:inset-x-7">
+              {stage.detail}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
