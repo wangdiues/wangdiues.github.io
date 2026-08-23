@@ -32,7 +32,12 @@
     const ctx = canvas.getContext('2d');
 
     if (ctx) {
-      const NODE_COUNT = 45;
+      // Density is tuned against a mobile viewport (~390x844, 45 nodes) so
+      // larger screens get proportionally more nodes instead of the same
+      // fixed count spread thin across a much bigger canvas.
+      const NODE_DENSITY = 45 / (390 * 844);
+      const MIN_NODES = 45;
+      const MAX_NODES = 220;
       const LINK_DISTANCE = 140;
       const dpr = Math.min(devicePixelRatio || 1, 2);
 
@@ -44,7 +49,10 @@
       let frameId = 0;
 
       function makeNodes() {
-        nodes = Array.from({ length: NODE_COUNT }, () => ({
+        const nodeCount = Math.round(
+          Math.min(MAX_NODES, Math.max(MIN_NODES, width * height * NODE_DENSITY))
+        );
+        nodes = Array.from({ length: nodeCount }, () => ({
           x: Math.random() * width,
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * 0.25,
