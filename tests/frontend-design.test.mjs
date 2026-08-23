@@ -159,6 +159,13 @@ test('the constellation canvas is ambient, non-blocking, and respects reduced mo
   assert.match(canvas, /matchMedia\('\(prefers-reduced-motion: reduce\)'\)\.matches/);
   assert.match(canvas, /document\.addEventListener\('visibilitychange'/);
   assert.match(canvas, /aria-hidden="true"/);
+
+  // body has no stacking context of its own by default, so a z-index: -1
+  // canvas (or the grid decor) paints BEHIND body's own opaque background
+  // instead of above it — confirmed live: the canvas drew real pixels but
+  // nothing appeared on screen until body got a stacking-context trigger.
+  const globalStyles = read('src/styles/global.css');
+  assert.match(globalStyles, /body\s*\{[^}]*isolation:\s*isolate/);
 });
 
 test('publication status badges use the three-accent NVIDIA palette with real semantic meaning', () => {

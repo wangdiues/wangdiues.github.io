@@ -107,6 +107,10 @@ body {
   overflow-x: clip;
   background: var(--color-bg-base);
   transition: background-color 260ms ease;
+  /* Establishes body's own stacking context so z-index: -1 descendants (the
+     constellation canvas, the grid decor below) paint above body's own
+     background instead of being hidden behind it. */
+  isolation: isolate;
 }
 
 body::before {
