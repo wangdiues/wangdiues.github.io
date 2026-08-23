@@ -89,7 +89,7 @@ test('shared UI foundations preserve keyboard and reduced-motion access', () => 
   assert.match(navigation, /h-11 w-11/);
 });
 
-test('the hero is concise, portrait-led, semantic, and image-optimized', () => {
+test('the hero is professionally structured, portrait-led, semantic, and image-optimized', () => {
   const hero = read('src/components/sections/Hero.astro');
   const homepage = read('src/pages/index.astro');
 
@@ -97,7 +97,14 @@ test('the hero is concise, portrait-led, semantic, and image-optimized', () => {
   assert.doesNotMatch(hero, /26\.85° N, 89\.38° E/);
   assert.doesNotMatch(hero, /Not a species list/);
   assert.doesNotMatch(hero, /I turn field evidence into decisions for living landscapes/);
-  assert.match(hero, /<h1 class="sr-only">Wangdi<\/h1>/);
+  assert.match(hero, /<h1[^>]*>[\s\S]*Wangdi[\s\S]*<\/h1>/);
+  assert.match(hero, /Senior Forestry Officer/);
+  assert.match(hero, /Biodiversity, Climate &amp; Forest Governance/);
+  assert.match(hero, /Community-Based NWFP Management/);
+  assert.match(hero, /2026 CLP Future Conservationist Team Award Winner/);
+  assert.match(hero, /Meritorious Promotion/);
+  assert.match(hero, /Professional Profile/);
+  assert.match(hero, /ResearchGate/);
   assert.match(hero, /import \{ Image \} from 'astro:assets'/);
   assert.match(hero, /wangdi-profile\.jpg/);
   assert.match(hero, /alt="Portrait of Wangdi"/);

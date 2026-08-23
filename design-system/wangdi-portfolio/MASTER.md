@@ -68,6 +68,9 @@ tightened to 5.10:1+ across both themes; see `tests/frontend-design.test.mjs`.
   `<a href>`, so navigation works with zero JavaScript).
 - A section that must stay legible over photography or a placeholder panel opts into
   `.dark-section`, which restates fixed-dark values so it does not flip with the toggle.
+- The portrait-led hero layers identity, professional specializations, recognition,
+  affiliation/contact, and a readable professional profile before its practice tags and CTAs;
+  it must not collapse those elements into one undifferentiated paragraph.
 - Homepage storytelling: portrait-led introduction → evidence at a glance → about → research
   approach (a genuine 3-step sequence, numbered because it is actually ordered) →
   experience → indexed selected work → code → gallery → contact.

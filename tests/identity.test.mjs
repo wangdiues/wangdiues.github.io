@@ -32,9 +32,11 @@ test('the website reflects the current 2026 CV profile', () => {
   const teaching = readFileSync('src/content/experience/adjunct-lecturer.md', 'utf8');
   const project = readFileSync('src/content/case-studies/connected-skies-great-hornbills.md', 'utf8');
 
-  assert.match(hero, /<h1 class="sr-only">Wangdi<\/h1>/);
+  assert.match(hero, /<h1[^>]*>[\s\S]*Wangdi[\s\S]*<\/h1>/);
   assert.match(hero, /wangdi-profile\.jpg/);
-  assert.doesNotMatch(hero, /Senior Forestry Officer/);
+  assert.match(hero, /Senior Forestry Officer/);
+  assert.match(hero, /Forest Resources Planning &amp; Management Division/);
+  assert.match(hero, /Adjunct Lecturer/);
   assert.match(currentRole, /March 2026 - Present/);
   assert.match(teaching, /August 2026 - December 2026/);
   assert.match(project, /role: Team Leader/);
