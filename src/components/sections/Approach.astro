@@ -44,7 +44,7 @@ const stages = [
     <ol class="mt-12 grid border-l border-t border-[var(--color-text-primary)] md:grid-cols-3">
       {
         stages.map((stage) => (
-          <li class="group relative min-h-80 border-b border-r border-[var(--color-text-primary)] p-6 transition-colors hover:bg-[var(--color-accent-solid)] sm:p-7">
+          <li class="group flex min-h-80 flex-col border-b border-r border-[var(--color-text-primary)] p-6 transition-colors hover:bg-[var(--color-accent-solid)] sm:p-7">
             <div class="flex items-center justify-between gap-4">
               <span class="font-heading text-4xl font-medium tracking-[-0.05em] text-[var(--color-text-primary)]" aria-hidden="true">
                 {stage.number}
@@ -53,7 +53,7 @@ const stages = [
             </div>
             <h3 class="mt-10 text-h3 text-[var(--color-text-primary)]">{stage.title}</h3>
             <p class="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">{stage.description}</p>
-            <p class="absolute inset-x-6 bottom-6 border-t border-[var(--color-text-primary)]/25 pt-4 text-[0.65rem] font-semibold tracking-[0.13em] text-[var(--color-text-primary)] uppercase sm:inset-x-7">
+            <p class="mt-auto border-t border-[var(--color-text-primary)]/25 pt-4 text-[0.65rem] font-semibold tracking-[0.13em] text-[var(--color-text-primary)] uppercase">
               {stage.detail}
             </p>
           </li>

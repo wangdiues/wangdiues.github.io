@@ -3,7 +3,7 @@ const items = [
   { href: '/#about', label: 'About', section: 'about' },
   { href: '/#work', label: 'Projects', section: 'work' },
   { href: '/#experience', label: 'Experience', section: 'experience' },
-  { href: '/#code', label: 'Code', section: 'code' },
+  { href: '/#code', label: 'Open Science & Reproducible Research', section: 'code' },
   { href: '/publications', label: 'Publications', route: '/publications' },
   { href: '/explore', label: 'Map', route: '/explore' },
   { href: '/#contact', label: 'Contact', section: 'contact' },
@@ -57,7 +57,7 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
         type="button"
         aria-expanded="false"
         aria-controls="nav-links"
-        class="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-text-primary)] bg-[var(--color-text-primary)] text-[var(--color-bg-base)] md:hidden"
+        class="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-text-primary)] bg-[var(--color-text-primary)] text-[var(--color-bg-base)] xl:hidden"
       >
         <span class="sr-only">Open navigation</span>
         <svg class="nav-open-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -71,7 +71,7 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
 
     <ul
       id="nav-links"
-      class="absolute left-0 right-0 top-[calc(100%+0.75rem)] order-2 hidden flex-col gap-1 rounded-[var(--radius-lg)] border border-[var(--color-text-primary)] bg-[var(--color-bg-base)] p-3 shadow-card md:static md:flex md:flex-row md:items-center md:gap-0 md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+      class="absolute left-0 right-0 top-[calc(100%+0.75rem)] order-2 hidden flex-col gap-1 rounded-[var(--radius-lg)] border border-[var(--color-text-primary)] bg-[var(--color-bg-base)] p-3 shadow-card xl:static xl:flex xl:flex-row xl:items-center xl:gap-0 xl:border-0 xl:bg-transparent xl:p-0 xl:shadow-none"
     >
       {
         items.map((item) => (
@@ -82,7 +82,7 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
               data-section={item.section}
               aria-current={routeIsCurrent(item.route) ? 'page' : undefined}
               class:list={[
-                'flex min-h-11 items-center rounded-full px-4 text-sm font-medium md:px-3',
+                'flex min-h-11 items-center rounded-full px-4 text-sm font-medium xl:px-3',
                 item.label === 'Contact'
                   ? 'bg-[var(--color-accent-solid)] text-[var(--color-on-accent-solid)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-bg-base)]'
                   : 'text-[var(--color-text-muted)] hover:bg-[var(--color-accent-solid)] hover:text-[var(--color-on-accent-solid)]',
@@ -121,7 +121,7 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
 
   toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
   links?.addEventListener('click', (event) => {
-    if ((event.target as HTMLElement).closest('a') && window.matchMedia('(max-width: 767px)').matches) {
+    if ((event.target as HTMLElement).closest('a') && window.matchMedia('(max-width: 1279px)').matches) {
       setMenu(false);
     }
   });
@@ -161,7 +161,7 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
   const darkIcon = themeToggle?.querySelector('.theme-icon-dark');
   const lightIcon = themeToggle?.querySelector('.theme-icon-light');
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-  const THEME_COLOR: Record<'dark' | 'light', string> = { dark: '#10130f', light: '#f3f2ea' };
+  const THEME_COLOR: Record<'dark' | 'light', string> = { dark: '#0a0c0b', light: '#ffffff' };
 
   function currentTheme(): 'dark' | 'light' {
     return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';

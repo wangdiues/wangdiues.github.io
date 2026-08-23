@@ -87,6 +87,9 @@ test('shared UI foundations preserve keyboard and reduced-motion access', () => 
   assert.match(navigation, /aria-expanded="false"/);
   assert.match(navigation, /event\.key === 'Escape'/);
   assert.match(navigation, /h-11 w-11/);
+  assert.match(navigation, /Open Science & Reproducible Research/);
+  assert.match(navigation, /xl:hidden/);
+  assert.match(navigation, /max-width: 1279px/);
 });
 
 test('the hero is professionally structured, portrait-led, semantic, and image-optimized', () => {
@@ -123,6 +126,9 @@ test('the homepage explains the evidence-to-action method and foregrounds projec
   assert.match(approach, /Observe the system/);
   assert.match(approach, /Test the evidence/);
   assert.match(approach, /Move evidence into action/);
+  assert.match(approach, /flex min-h-80 flex-col/);
+  assert.match(approach, /mt-auto border-t/);
+  assert.doesNotMatch(approach, /absolute inset-x-6 bottom-6/);
   assert.match(homepage, /<Approach \/>/);
   assert.match(projects, /study\.data\.impact/);
   assert.match(projects, /data-work-item/);
