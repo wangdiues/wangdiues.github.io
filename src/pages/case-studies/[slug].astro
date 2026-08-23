@@ -20,6 +20,8 @@ export async function getStaticPaths() {
 
 const { study } = Astro.props;
 const { Content } = await render(study);
+const titleLength = study.data.title.length;
+const titleScale = titleLength > 80 ? 'long' : titleLength > 55 ? 'medium' : 'standard';
 const project = study.data.project;
 const assetGroup = project ? caseStudyAssets[project.assetGroup] : undefined;
 
@@ -80,7 +82,7 @@ const galleryItems = project
               <span class="sr-only"> (opens in a new tab)</span>
             </a>
             <p class="mt-7 text-xs tracking-widest text-nvidia-green-400 uppercase">{study.data.region}</p>
-            <h1 class="text-balance mt-4 text-h1 tracking-[-0.03em] text-paper-50">{study.data.title}</h1>
+            <h1 class="project-title" data-title-scale={titleScale}>{study.data.title}</h1>
             <p class="mt-5 max-w-3xl text-lead text-[var(--color-text-muted)]">{study.data.focus}</p>
           </div>
 
@@ -202,7 +204,7 @@ const galleryItems = project
       <main id="main" class="reading-shell pb-24 pt-36 sm:pt-40">
         <a href="/#work" class="inline-flex min-h-11 items-center text-sm font-medium text-nvidia-green-300 underline-offset-4 hover:underline">← All field work</a>
         <p class="mt-8 text-xs tracking-widest text-nvidia-green-400 uppercase">{study.data.region}</p>
-        <h1 class="mt-3 text-h1 text-paper-50">{study.data.title}</h1>
+        <h1 class="project-title" data-title-scale={titleScale}>{study.data.title}</h1>
         <p class="mt-4 text-lead text-[var(--color-text-muted)]">{study.data.focus}</p>
 
         <div class="surface-panel mt-10 rounded-[var(--radius-lg)] p-6">
@@ -225,3 +227,32 @@ const galleryItems = project
   }
   <Footer />
 </BaseLayout>
+
+<style>
+  .project-title {
+    margin-top: 1rem;
+    max-inline-size: 19ch;
+    color: var(--color-text-primary);
+    font-size: clamp(2.4rem, 1.55rem + 3.5vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    overflow-wrap: break-word;
+    text-align: start;
+    text-wrap: balance;
+  }
+
+  .project-title[data-title-scale='medium'] {
+    max-inline-size: 23ch;
+    font-size: clamp(2.1rem, 1.45rem + 2.9vw, 3.75rem);
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+  }
+
+  .project-title[data-title-scale='long'] {
+    max-inline-size: 27ch;
+    font-size: clamp(1.95rem, 1.42rem + 2.4vw, 3.35rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    text-wrap: pretty;
+  }
+</style>
