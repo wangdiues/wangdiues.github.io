@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curriculum Vitae | Wangdi</title>
+<meta name="description" content="Curriculum vitae of Wangdi — forestry, biodiversity research, GIS, and forest governance.">
+<script src="./support.js"></script>
+<style>
+  .resume-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #16241b;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .resume-toolbar a,
+  .resume-toolbar button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 1.1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: #f5f5f0;
+  }
+  .resume-toolbar .primary {
+    background: #76b900;
+    border-color: #76b900;
+    color: #111;
+  }
+  .resume-toolbar .primary:hover { background: #8fd400; }
+  .resume-toolbar a:hover:not(.primary) { border-color: #76b900; color: #76b900; }
+  @media print {
+    .resume-toolbar { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="resume-toolbar no-print">
+  <button type="button" class="primary" onclick="window.print()">Print / Save as PDF</button>
+  <a href="/cv">← Back to CV page</a>
+  <a href="/">Portfolio home</a>
+</div>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-f311d4d9-faee-4488-bdb2-a5cdbd0b3b99/styles.css">
+  <script src="_ds/organic-f311d4d9-faee-4488-bdb2-a5cdbd0b3b99/_ds_bundle.js"></script>
+  <script src="./doc-page.js"></script>
+  <style>
+    doc-page:not(:defined) { visibility: hidden; }
+    .section-h { font-size: 21px; color: var(--color-accent-700); margin: 0 0 var(--space-3); padding-bottom: var(--space-2); border-bottom: 2px solid var(--color-accent-200); }
+    .section { margin-bottom: var(--space-8); break-inside: avoid-page; }
+    .role { margin-bottom: var(--space-6); break-inside: avoid-page; }
+    .role-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-1); }
+    .role-title { font-family: var(--font-heading); font-weight: 400; font-size: 17px; margin: 0; color: var(--color-text); }
+    .role-org { font-size: 13.5px; color: var(--color-accent-700); margin-bottom: var(--space-2); }
+    .role-date { font-size: 12.5px; color: var(--color-neutral-700); background: var(--color-accent-2-100); padding: 3px 12px; border-radius: 999px; white-space: nowrap; }
+    ul.bullets { margin: 0; padding-left: 18px; }
+    ul.bullets li { margin-bottom: 6px; font-size: 14px; line-height: 1.55; }
+    .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+    .highlight-card { background: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); break-inside: avoid-page; }
+    .highlight-card .k { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent-700); font-weight: 600; margin-bottom: 4px; }
+    .highlight-card .v { font-size: 13.5px; line-height: 1.45; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .contact-row { display: flex; flex-wrap: wrap; gap: var(--space-4); font-size: 13.5px; }
+    .pub-item, .ms-item { font-size: 13.5px; line-height: 1.5; margin-bottom: 8px; padding-left: 16px; position: relative; }
+    .pub-item::before, .ms-item::before { content: "•"; color: var(--color-accent); position: absolute; left: 0; }
+    .cert-block { margin-bottom: var(--space-3); break-inside: avoid-page; }
+    .cert-block .cert-h { font-weight: 600; font-size: 13.5px; color: var(--color-accent-2-800); margin-bottom: 2px; }
+    .cert-block p { font-size: 13.5px; margin: 0; }
+    .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .ref-card { background: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-4); break-inside: avoid-page; }
+    .ref-card .name { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+    .ref-card .meta { font-size: 12.5px; color: var(--color-neutral-700); line-height: 1.5; }
+  </style>
+</helmet>
+<doc-page margin="0.7in">
+  <header style="display:flex; gap:var(--space-6); align-items:center; margin-bottom:var(--space-6);">
+    <div style="width:104px; height:104px; border-radius:50%; overflow:hidden; flex-shrink:0; box-shadow:var(--shadow-md);" class="washed">
+      <img src="assets/wangdi-photo.jpg" alt="Wangdi" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+    <div style="flex:1; min-width:0;">
+      <h1 style="font-size:38px; margin-bottom:2px;">Wangdi</h1>
+      <p style="font-size:15px; color:var(--color-accent-700); font-weight:600; margin-bottom:6px;">Senior Forestry Officer · Biodiversity, Climate &amp; Forest Governance</p>
+      <div class="contact-row" style="color:var(--color-neutral-700); margin-bottom:8px;">
+        <span>wangdiues@gmail.com</span>
+        <span>LinkedIn</span>
+        <span>ResearchGate</span>
+        <span>Department of Forests &amp; Park Services, Bhutan</span>
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-accent">2026 CLP Future Conservationist Team Award</span>
+        <span class="tag tag-accent-2">Meritorious Promotion, RCSC</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2 class="section-h">Professional Profile</h2>
+    <p style="font-size:14px; line-height:1.65;">Public-sector forestry, biodiversity, and environmental management professional with five years of progressive experience in Bhutan's forest governance system. Currently serving as Senior Forestry Officer in the NWFP Section, Forest Resources Planning &amp; Management Division, following a merit-based promotion within the first four years of service. Expertise spans biodiversity conservation, climate-responsive forest management, NWFP governance, GIS and remote sensing, ecological research, and policy-linked environmental planning. Team Leader and recipient of the 2026 Conservation Leadership Programme (CLP) Future Conservationist Team Award for <em>Connected Skies: Bhutan's First GPS-AI Study Empowering Communities to Protect Great Hornbills</em>. Also appointed as an Adjunct Lecturer at the College of Natural Resources, Royal University of Bhutan, to deliver Forest Mensuration (MEN201).</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Career Highlights</h2>
+    <div class="highlight-grid">
+      <div class="highlight-card"><div class="k">2026 CLP Award</div><div class="v">Team Leader and recipient of the CLP Future Conservationist Team Award for Connected Skies.</div></div>
+      <div class="highlight-card"><div class="k">Merit Promotion</div><div class="v">Promoted to Senior Forestry Officer effective 1 January 2026.</div></div>
+      <div class="highlight-card"><div class="k">University Teaching</div><div class="v">Appointed Adjunct Lecturer at CNR, RUB, for Forest Mensuration (MEN201), 75 contact hours.</div></div>
+      <div class="highlight-card"><div class="k">Programme Leadership</div><div class="v">Managed conservation programmes and annual budgets exceeding Nu. 35 million.</div></div>
+      <div class="highlight-card"><div class="k">Landscape Conservation</div><div class="v">IKI Living Landscape focal officer and contributor to Bhutan for Life implementation in Sarpang.</div></div>
+      <div class="highlight-card"><div class="k">Biodiversity Monitoring</div><div class="v">Established camera-trap monitoring across RMNP, PWS, and Biological Corridor 03, documenting 100+ species.</div></div>
+      <div class="highlight-card"><div class="k">Technical Planning</div><div class="v">Led climate vulnerability, human-elephant coexistence, corridor, divisional management, and biodiversity planning outputs.</div></div>
+      <div class="highlight-card"><div class="k">Spatial Science</div><div class="v">Applied GIS, remote sensing, and species distribution modelling to conservation planning and decision-making.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Professional Experience</h2>
+    <div class="role">
+      <div class="role-head"><h3 class="role-title">Senior Forestry Officer</h3><span class="role-date">Mar 2026 – Present</span></div>
+      <div class="role-org">NWFP Section, Forest Resources Planning &amp; Management Division · Department of Forests &amp; Park Services</div>
+      <ul class="bullets">
+        <li>Administer national-level non-wood forest product (NWFP) allocation processes, utilization permits, quotas, and royalty-related documentation to support equitable resource distribution, sustainable utilization, and regulatory compliance.</li>
+        <li>Monitor harvesting and utilization trends and contribute to NWFP management plans, sustainable harvesting guidelines, and national forestry policy and planning processes.</li>
+        <li>Support resource assessments and inventories of commercially and ecologically important NWFP species and provide technical guidance on species identification, data collection, sustainable harvesting, and compliance monitoring.</li>
+        <li>Promote community-based NWFP management by supporting local groups in sustainable resource use, participatory management, institutional strengthening, and linking forest conservation with rural livelihoods and income-generation opportunities.</li>
+        <li>Contribute to the development of a forest-based bioeconomy by supporting sustainable commercialization, value-chain development, value addition, market linkages, and responsible private-sector engagement for NWFPs.</li>
+        <li>Support initiatives that connect biodiversity conservation, sustainable forest management, rural enterprise development, and livelihood diversification, particularly for forest-dependent communities.</li>
+        <li>Prepare technical inputs for forestry planning documents, annual reports, management guidelines, policy processes, and cross-agency coordination.</li>
+        <li>Liaise with divisional forest offices, community groups, government agencies, research institutions, and private-sector stakeholders on NWFP implementation, reporting, sustainable resource management, market development, and field-level issues.</li>
+      </ul>
+    </div>
+    <div class="role">
+      <div class="role-head"><h3 class="role-title">Forestry / Biodiversity Officer — Head, Nature Conservation Section</h3><span class="role-date">Jan 2022 – Feb 2026</span></div>
+      <div class="role-org">Divisional Forest Office, Sarpang · Department of Forests &amp; Park Services</div>
+      <ul class="bullets">
+        <li>Meritorious promotion by the Royal Civil Service Commission effective 1 January 2026.</li>
+        <li>Served as focal officer for the IKI Living Landscape Project and supported Bhutan for Life conservation interventions, including biodiversity monitoring and field coordination.</li>
+        <li>Managed annual conservation budgets exceeding Nu. 35 million.</li>
+        <li>Established and maintained a camera-trap monitoring network across Royal Manas National Park, Phibsoo Wildlife Sanctuary, and Biological Corridor 03, documenting 100+ species.</li>
+        <li>Conducted biodiversity assessments across multiple forest ecosystems and elevational gradients.</li>
+        <li>Led preparation of a Conflict-to-Coexistence Strategy for human-elephant conflict mitigation and applied GIS, remote sensing, and species distribution modelling for corridor and habitat planning.</li>
+        <li>Developed the Conservation Management Plan for Biological Corridor 03 and prepared the Divisional Forest Office Management Plan for Sarpang Forest Division.</li>
+        <li>Led the Climate Change Vulnerability and Capacity Assessment for Sarpang Forest Division.</li>
+        <li>Developed the Environmental and Social Safeguards Management Plan for divisional development activities and authored the Biodiversity Status Report for Sarpang Forest Division.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Academic &amp; Teaching Experience</h2>
+    <div class="role">
+      <div class="role-head"><h3 class="role-title">Adjunct Lecturer — Forest Mensuration (MEN201)</h3><span class="role-date">Aug 2026 – Dec 2026</span></div>
+      <div class="role-org">College of Natural Resources, Royal University of Bhutan · FO Year 2 · 75 contact hours</div>
+      <ul class="bullets">
+        <li>Appointed to deliver Forest Mensuration (MEN201) in accordance with the approved curriculum, academic schedule, and University regulations.</li>
+        <li>Responsible for lectures and practical instruction, student attendance and assessment records, examinations and assessments, and submission of required academic documentation.</li>
+        <li>Teach core forest mensuration concepts and applied measurement methods for undergraduate Forestry students.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Education</h2>
+    <div class="role">
+      <div class="role-head"><h3 class="role-title">Bachelor of Science (Honours) in Forestry — First Class</h3><span class="role-date">Jul 2017 – Jun 2021</span></div>
+      <div class="role-org">College of Natural Resources, Royal University of Bhutan · Overall Grade: 79%</div>
+      <p style="font-size:13.5px; margin:0 0 4px;"><strong>Thesis:</strong> Analysis of Physical and Chemical Properties of Natural Salt Licks and Determination of Animal Presence.</p>
+      <p style="font-size:13.5px; margin:0;"><strong>Methods:</strong> Ecological field surveys, wildlife sign assessment, camera-trap monitoring, soil and mineral analysis, biodiversity data collection, statistical analysis, scientific writing, and interpretation of species-environment relationships.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Selected Conservation &amp; Research Project</h2>
+    <div class="role">
+      <div class="role-head"><h3 class="role-title">Connected Skies: Bhutan's First GPS-AI Study Empowering Communities to Protect Great Hornbills</h3></div>
+      <div class="role-org">Team Leader · 2026 Conservation Leadership Programme Future Conservationist Team Award</div>
+      <ul class="bullets">
+        <li>Lead a multidisciplinary conservation project combining GPS-GSM tracking, AI-assisted bioacoustic monitoring, field ecology, and community engagement for Great Hornbill conservation in south-central Bhutan.</li>
+        <li>Study movement routes, home ranges, seasonal habitat use, nesting and feeding areas, and potential connectivity bottlenecks to inform evidence-based conservation action.</li>
+        <li>Coordinate project implementation, field research, stakeholder engagement, and community-based conservation activities.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Selected Publications</h2>
+    <div class="pub-item">Wangdi, et al. (2021). Analysis of Physical and Chemical Properties of Natural Salt Licks and Determination of Animal Presence. <em>Journal of Renewable Natural Resources Bhutan.</em></div>
+    <div class="pub-item">Wangdi, et al. (2021). Diversity of Aquatic Beetles along Altitudinal Gradients and Water Quality Parameters. <em>Journal of Renewable Natural Resources Bhutan.</em></div>
+    <div class="pub-item">Orong, K., Dorjee, S., &amp; Wangdi. (2026). Wild Edible and Medicinal Plants: A Case Study of Community Perceptions, Gendered Roles, and Pathways for Sustainable Management in Yagang and Gengu Villages, Darla Gewog, Chhukha. <em>Bhutan Journal of Natural Resources &amp; Development.</em></div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Manuscripts in Preparation / Under Review</h2>
+    <div class="ms-item">Separating Fundamental from Realized Habitat: A Transferable Dual-Model Framework for Quantifying Anthropogenic Constraints on Species Distributions in Human-Dominated Landscapes.</div>
+    <div class="ms-item">Vegetation Community Composition and Species-Environment Relationships Along an Elevational Gradient in South-Central Bhutan.</div>
+    <div class="ms-item">Climate Refugia Reveal a Lowland Protection Gap and Rising Conflict Exposure for Asian Elephants in Bhutan.</div>
+    <div class="ms-item">Climate Change Vulnerability and Adaptive Capacity of Rural Communities in South Central Bhutan: An Integrated Socio-Ecological Assessment.</div>
+    <div class="ms-item">Tiger Occupancy and Large Ungulate Distribution Along a Human Pressure Gradient in South-Central Bhutan: A Hierarchical Detection-Occupancy Approach.</div>
+    <div class="ms-item">Spatiotemporal Risk Partitioning Among Tigers, Prey, and Human Activity in South-Central Bhutan.</div>
+    <div class="ms-item">Community Assembly and Environmental Filtering Along a Disturbance-Climate Gradient in a Himalayan Tiger Landscape.</div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Technical Expertise</h2>
+    <div style="display:grid; gap:var(--space-3);">
+      <div><div class="cert-h" style="color:var(--color-accent-700); font-size:13px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Geospatial &amp; Remote Sensing</div><div class="tag-row"><span class="tag tag-outline">QGIS</span><span class="tag tag-outline">ArcGIS</span><span class="tag tag-outline">Google Earth Engine</span><span class="tag tag-outline">Python (GeoPandas &amp; ArcPy)</span></div></div>
+      <div><div class="cert-h" style="color:var(--color-accent-700); font-size:13px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Data Analysis &amp; Modelling</div><div class="tag-row"><span class="tag tag-outline">R</span><span class="tag tag-outline">Python</span><span class="tag tag-outline">SPSS</span><span class="tag tag-outline">Machine Learning</span><span class="tag tag-outline">Multivariate Analysis</span></div></div>
+      <div><div class="cert-h" style="color:var(--color-accent-700); font-size:13px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Ecological &amp; Field Methods</div><div class="tag-row"><span class="tag tag-outline">Species Distribution Modelling</span><span class="tag tag-outline">Camera-Trap Analysis</span><span class="tag tag-outline">Occupancy Modelling</span><span class="tag tag-outline">Climate Modelling</span><span class="tag tag-outline">Forest Inventory</span><span class="tag tag-outline">Acoustic Monitoring</span><span class="tag tag-outline">AI Species ID</span></div></div>
+      <div><div class="cert-h" style="color:var(--color-accent-700); font-size:13px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Professional Strengths</div><div class="tag-row"><span class="tag tag-outline">Project Management</span><span class="tag tag-outline">Budget Administration</span><span class="tag tag-outline">Team Leadership</span><span class="tag tag-outline">Stakeholder Engagement</span><span class="tag tag-outline">Scientific &amp; Grant Writing</span><span class="tag tag-outline">EIA</span><span class="tag tag-outline">Conservation Planning</span><span class="tag tag-outline">Climate Adaptation</span></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Professional Development &amp; Certifications</h2>
+    <div class="cert-block"><div class="cert-h">Conservation, Biodiversity &amp; Climate Change</div><p>Advanced professional training through ICIMOD, UNDP, and IUCN in climate change adaptation, ecosystem restoration, collaborative conservation planning, biodiversity assessment, and IUCN Red List assessment methodologies.</p></div>
+    <div class="cert-block"><div class="cert-h">Remote Sensing, GIS &amp; Earth Observation</div><p>Professional training and certifications through NASA ARSET, EO College, and ISRO/NRSC covering satellite remote sensing, GIS-based spatial planning, environmental monitoring, forest-fire detection, active-fire monitoring, and burnt-area mapping using satellite datasets.</p></div>
+    <div class="cert-block"><div class="cert-h">Data Science, Geospatial Analytics &amp; Modelling</div><p>Applied training in R, Python, QGIS, Google Earth Engine, statistical modelling, machine learning, spatial data analysis, and environmental data visualization, with applications to forestry, biodiversity, and natural-resource management.</p></div>
+    <div class="cert-block"><div class="cert-h">Ecological &amp; Conservation Analytics</div><p>Specialized training in species distribution modelling, camera-trap data analysis, biodiversity monitoring, ecological data management, and spatial conservation planning.</p></div>
+    <div class="cert-block"><div class="cert-h">Emerging Technologies &amp; Digital Applications</div><p>Training in drone operations for emergency response, full-stack web development, digital data-management systems, Google Workspace administration, and technology-enabled environmental monitoring.</p></div>
+    <div class="cert-block"><div class="cert-h">Sustainability, Economics &amp; Management</div><p>Professional development in Environmental, Social and Governance (ESG) principles, production-cost estimation, resource planning, and sustainability-oriented decision-making.</p></div>
+    <div class="cert-block"><div class="cert-h">AI &amp; Developer Tools</div><p>Anthropic Certificates of Completion in Claude 101 (3 May 2026), Claude Code 101 (3 May 2026), and Claude Code in Action (7 May 2026), covering practical applications of generative AI, AI-assisted coding, and developer workflows.</p></div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Honours &amp; Awards</h2>
+    <ul class="bullets">
+      <li>Conservation Leadership Programme (CLP) Future Conservationist Team Award — 2026 · Team Leader, Connected Skies.</li>
+      <li>Meritorious Promotion, Royal Civil Service Commission — effective 1 January 2026.</li>
+      <li>SAF-Madanjeet Singh Scholarship Recipient — merit-based full scholarship (2017–2021).</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-h">Professional Engagement</h2>
+    <ul class="bullets">
+      <li>Conservation Practitioner, Bhutan for Life Program.</li>
+      <li>Royal Civil Service Commission (RCSC) — public service appointment and career progression framework.</li>
+    </ul>
+  </section>
+
+  <section class="section" style="margin-bottom:0;">
+    <h2 class="section-h">References</h2>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <div class="name">Dr. Bhagat Suberi</div>
+        <div class="meta">Lecturer, College of Natural Resources<br>Royal University of Bhutan<br>+975-17554382<br>bsuberi.cnr@rub.edu.bt</div>
+      </div>
+      <div class="ref-card">
+        <div class="name">Mr. Sangay Dorjee</div>
+        <div class="meta">Executive Specialist III, Forest Resources Planning &amp; Management Division<br>Department of Forests and Park Services<br>+975-17131897<br>sangaydorjee@moenr.gov.bt</div>
+      </div>
+    </div>
+  </section>
+</doc-page>
+</x-dc>
+</body>
+</html>
