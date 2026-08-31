@@ -1,0 +1,36 @@
+---
+// Thin convenience wrapper around VideoBackground: pick a slug from the
+// SITE_VIDEOS manifest instead of spelling out mp4/webm/poster paths on
+// every page. Falls through the same optional brightness/contrast/scrim
+// overrides as VideoBackground for the rare page that needs a different
+// treatment than the site default.
+import VideoBackground from './VideoBackground.astro';
+import { SITE_VIDEOS, type SiteVideoSlug } from '../data/site-video-backgrounds';
+
+interface Props {
+  video: SiteVideoSlug;
+  objectPosition?: string;
+  brightness?: number;
+  contrast?: number;
+  saturate?: number;
+  overlayTop?: number;
+  overlayMid?: number;
+  overlayBottom?: number;
+}
+
+const { video, objectPosition, brightness, contrast, saturate, overlayTop, overlayMid, overlayBottom } = Astro.props;
+const entry = SITE_VIDEOS[video];
+---
+
+<VideoBackground
+  mp4={entry.mp4}
+  webm={entry.webm}
+  poster={entry.poster}
+  objectPosition={objectPosition ?? entry.objectPosition}
+  brightness={brightness}
+  contrast={contrast}
+  saturate={saturate}
+  overlayTop={overlayTop}
+  overlayMid={overlayMid}
+  overlayBottom={overlayBottom}
+/>

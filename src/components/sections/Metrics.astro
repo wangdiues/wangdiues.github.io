@@ -13,19 +13,19 @@ const metrics = [
 ];
 ---
 
-<section class="dark-section bg-ink-950 text-paper-50" aria-label="Research output at a glance">
-  <div class="site-shell py-14 sm:py-16">
-    <div class="mb-9 flex items-center justify-between gap-4 border-b border-paper-50/25 pb-5">
-      <p class="text-[0.68rem] font-semibold tracking-[0.2em] uppercase">Measured impact</p>
-      <p class="text-xs text-paper-100/70">Evidence, outputs, and monitoring reach</p>
+<section class="section-space !py-14 sm:!py-16" aria-label="Research output at a glance">
+  <div class="site-shell">
+    <div class="mb-9 flex items-center justify-between gap-4 border-b border-[var(--color-border-subtle)] pb-5">
+      <p class="eyebrow">Measured impact</p>
+      <p class="text-xs text-[var(--color-text-muted)]">Evidence, outputs, and monitoring reach</p>
     </div>
-    <div class="grid grid-cols-2 border-l border-paper-50/25 lg:grid-cols-4">
+    <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
     {
       metrics.map((m, index) => (
-        <div class="relative min-h-44 border-b border-r border-paper-50/25 p-5 lg:border-b-0 sm:p-6">
-          <span class="absolute right-4 top-4 text-[0.65rem] tracking-widest text-paper-100/55" aria-hidden="true">0{index + 1}</span>
-          <p class="font-heading text-5xl font-medium tracking-[-0.055em] text-nvidia-green-400 tabular-nums sm:text-6xl">{m.value}</p>
-          <p class="mt-5 max-w-48 text-xs leading-relaxed text-paper-100/75 sm:text-sm">{m.label}</p>
+        <div class="glass-panel relative min-h-44 rounded-[var(--radius-lg)] p-5 sm:p-6">
+          <span class="absolute right-4 top-4 text-[0.65rem] tracking-widest text-[var(--color-text-muted)]" aria-hidden="true">0{index + 1}</span>
+          <p class="stat-value text-5xl sm:text-6xl">{m.value}</p>
+          <p class="mt-5 max-w-48 text-xs leading-relaxed text-[var(--color-text-muted)] sm:text-sm">{m.label}</p>
         </div>
       ))
     }

@@ -150,6 +150,9 @@ _archive/
 /content/
 /static/
 
+# Raw stock footage source files (compressed versions live in public/video)
+/background_Videos/
+
 # Impeccable (ephemeral design-review artifacts)
 .impeccable/config.local.json
 .impeccable/*.png

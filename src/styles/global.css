@@ -57,6 +57,14 @@
   --color-accent-hover: var(--color-light-accent-hover);
   --color-accent-solid: var(--color-light-accent-solid);
   --color-on-accent-solid: var(--color-light-on-accent-solid);
+  --color-accent-gold: var(--color-light-accent-gold);
+  --color-accent-gold-hover: var(--color-light-accent-gold-hover);
+  --color-accent-gold-solid: var(--color-light-accent-gold-solid);
+  --color-on-accent-gold-solid: var(--color-light-on-accent-gold-solid);
+  --color-glass-bg: var(--color-light-glass-bg);
+  --color-glass-bg-strong: var(--color-light-glass-bg-strong);
+  --color-glass-border: var(--color-light-glass-border);
+  --color-glass-highlight: var(--color-light-glass-highlight);
   --color-border-subtle: var(--color-light-border-subtle);
   --color-focus-ring: var(--color-light-focus-ring);
   --decor-grid-line: color-mix(in srgb, var(--color-light-text-primary) 4%, transparent);
@@ -86,6 +94,14 @@
   --color-accent-hover: var(--color-nvidia-green-300);
   --color-accent-solid: var(--color-nvidia-green-500);
   --color-on-accent-solid: #050605;
+  --color-accent-gold: #f0c465;
+  --color-accent-gold-hover: #f7db94;
+  --color-accent-gold-solid: #d9a441;
+  --color-on-accent-gold-solid: #050605;
+  --color-glass-bg: rgba(255, 255, 255, 0.06);
+  --color-glass-bg-strong: rgba(255, 255, 255, 0.1);
+  --color-glass-border: rgba(255, 255, 255, 0.14);
+  --color-glass-highlight: rgba(255, 255, 255, 0.22);
   --color-border-subtle: rgba(255, 255, 255, 0.12);
   color-scheme: dark;
 }
@@ -153,6 +169,7 @@ h4 {
   font-family: var(--font-heading);
   line-height: var(--leading-tight);
   font-weight: 600;
+  color: var(--color-text-primary);
 }
 
 p,
@@ -220,6 +237,83 @@ a[href] {
   border: 1px solid var(--color-border-subtle);
   background: color-mix(in srgb, var(--color-bg-raised) 88%, transparent);
   box-shadow: var(--shadow-card);
+}
+
+/* Glassmorphism system — restrained frosted panels that keep any video or
+   photography behind them visible rather than blocking it out. Compose with
+   a radius utility (e.g. rounded-[var(--radius-lg)]) and padding on the
+   consuming element; this class only owns the glass "material". */
+.glass-panel {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--color-glass-border);
+  background: var(--color-glass-bg);
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-glass-highlight), transparent);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Higher-opacity variant for panels that need stronger legibility (long-form
+   text over busy footage) without losing the glass read entirely. */
+.glass-panel-strong {
+  background: var(--color-glass-bg-strong);
+}
+
+/* Lighter blur for compact chrome (nav pills, tags) where a full 16px blur
+   would look heavier than the element itself. */
+.glass-panel-sm {
+  backdrop-filter: blur(var(--glass-blur-sm));
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+}
+
+.glass-panel-hover {
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.glass-panel-hover:hover,
+.glass-panel-hover:focus-visible {
+  background: var(--color-glass-bg-strong);
+  border-color: var(--color-accent-gold);
+  transform: translateY(-2px);
+}
+
+/* Typography system helpers -------------------------------------------- */
+
+/* Small tracked kicker/overline labels — always warm gold, the "highlight"
+   register that sits between muted body copy and full-weight headings. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--type-xs);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+/* Large numerals used for stats/metrics — gold, heading font, tabular so
+   columns of figures line up. */
+.stat-value {
+  font-family: var(--font-heading);
+  color: var(--color-accent-gold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .link-arrow::after {

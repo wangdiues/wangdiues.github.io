@@ -35,7 +35,7 @@ test('the website reflects the current 2026 CV profile', () => {
   const project = readFileSync('src/content/case-studies/connected-skies-great-hornbills.md', 'utf8');
 
   assert.match(hero, /<h1[^>]*>[\s\S]*Wangdi[\s\S]*<\/h1>/);
-  assert.match(hero, /wangdi-profile\.jpg/);
+  assert.match(hero, /wangdi-profile-cutout-hd\.png/);
   assert.match(hero, /Senior Forestry Officer/);
   assert.match(hero, /Forest Resources Planning &amp; Management Division/);
   assert.match(hero, /Adjunct Lecturer/);
@@ -56,9 +56,14 @@ test('the website reflects the current 2026 CV profile', () => {
   assert.match(cvPage, /SAF-Madanjeet Singh Scholarship/);
 
   if (existsSync('static/Wangdi_CV_2026.pdf')) {
-    assert.deepEqual(
-      readFileSync('public/Wangdi_CV_2026.pdf'),
-      readFileSync('static/Wangdi_CV_2026.pdf')
+    // Use Buffer#equals (fast byte-for-byte comparison) rather than assert.deepEqual,
+    // which builds a full diff for mismatched Buffers and can hang for a long time
+    // on large binary content.
+    const publicCv = readFileSync('public/Wangdi_CV_2026.pdf');
+    const staticCv = readFileSync('static/Wangdi_CV_2026.pdf');
+    assert.ok(
+      publicCv.equals(staticCv),
+      'public/Wangdi_CV_2026.pdf should be byte-identical to the local static/ source copy'
     );
   }
 

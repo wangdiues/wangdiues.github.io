@@ -7,6 +7,9 @@ import StatusBadge from '../../components/ui/StatusBadge.astro';
 import TagPill from '../../components/ui/TagPill.astro';
 import { formatCitation, splitAuthors, relatedCaseStudies } from '../../lib/citation';
 import { contentSlug } from '../../lib/content-id';
+import { SITE_VIDEOS } from '../../data/site-video-backgrounds';
+
+const bg = SITE_VIDEOS['valley-vista'];
 
 export async function getStaticPaths() {
   const publications = await getCollection('publications');
@@ -44,7 +47,15 @@ const jsonld = JSON.stringify({
 });
 ---
 
-<BaseLayout title={`${pub.data.title} | Wangdi`} description={pub.body?.slice(0, 155)}>
+<BaseLayout
+  title={`${pub.data.title} | Wangdi`}
+  description={pub.body?.slice(0, 155)}
+  background="video"
+  videoSrc={bg.mp4}
+  videoWebm={bg.webm}
+  videoPoster={bg.poster}
+  videoObjectPosition={bg.objectPosition}
+>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={jsonld} />
   </Fragment>

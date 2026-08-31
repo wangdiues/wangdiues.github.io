@@ -8,6 +8,7 @@ import ProjectGallery from '../../components/case-studies/ProjectGallery.astro';
 import Button from '../../components/ui/Button.astro';
 import TagPill from '../../components/ui/TagPill.astro';
 import { caseStudyAssets } from '../../data/case-study-assets';
+import { caseStudyVideoBackgrounds } from '../../data/case-study-video-backgrounds';
 import { contentSlug } from '../../lib/content-id';
 
 export async function getStaticPaths() {
@@ -41,12 +42,20 @@ const galleryItems = project
       return { image, alt: item.alt, caption: item.caption };
     })
   : [];
+
+const slug = contentSlug(study.id);
+const videoBackground = caseStudyVideoBackgrounds[slug];
 ---
 
 <BaseLayout
   title={`${study.data.title} | Wangdi`}
   description={study.data.focus}
   image={heroImage?.src}
+  background={videoBackground ? 'video' : 'constellation'}
+  videoSrc={videoBackground?.mp4}
+  videoWebm={videoBackground?.webm}
+  videoPoster={videoBackground?.poster}
+  videoObjectPosition={videoBackground?.objectPosition}
 >
   <Nav />
   {

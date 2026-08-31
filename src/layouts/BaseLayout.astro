@@ -4,17 +4,41 @@ import '@fontsource-variable/source-serif-4';
 import '../styles/global.css';
 import CustomCursor from '../components/CustomCursor.astro';
 import ConstellationCanvas from '../components/ConstellationCanvas.astro';
+import VideoBackground from '../components/VideoBackground.astro';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  background?: 'constellation' | 'video';
+  videoSrc?: string;
+  videoWebm?: string;
+  videoPoster?: string;
+  videoObjectPosition?: string;
+  /** Optional per-page overrides of the global --video-* tokens, forwarded to VideoBackground. */
+  videoBrightness?: number;
+  videoContrast?: number;
+  videoSaturate?: number;
+  videoOverlayTop?: number;
+  videoOverlayMid?: number;
+  videoOverlayBottom?: number;
 }
 
 const {
   title,
   description = 'Research portfolio of Wangdi — biodiversity, climate science, GIS, and forest governance in Bhutan.',
   image = '/og.png',
+  background = 'constellation',
+  videoSrc = '/video/hero-sunrise.mp4',
+  videoWebm = '/video/hero-sunrise.webm',
+  videoPoster = '/video/hero-sunrise-poster.jpg',
+  videoObjectPosition = '50% 50%',
+  videoBrightness,
+  videoContrast,
+  videoSaturate,
+  videoOverlayTop,
+  videoOverlayMid,
+  videoOverlayBottom,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -74,7 +98,24 @@ const analyticsDomain = import.meta.env.PUBLIC_ANALYTICS_DOMAIN;
     >
       Skip to content
     </a>
-    <ConstellationCanvas />
+    {
+      background === 'video' ? (
+        <VideoBackground
+          mp4={videoSrc}
+          webm={videoWebm}
+          poster={videoPoster}
+          objectPosition={videoObjectPosition}
+          brightness={videoBrightness}
+          contrast={videoContrast}
+          saturate={videoSaturate}
+          overlayTop={videoOverlayTop}
+          overlayMid={videoOverlayMid}
+          overlayBottom={videoOverlayBottom}
+        />
+      ) : (
+        <ConstellationCanvas />
+      )
+    }
     <CustomCursor />
     <slot />
   </body>

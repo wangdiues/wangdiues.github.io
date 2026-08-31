@@ -111,9 +111,9 @@ test('the hero is professionally structured, portrait-led, semantic, and image-o
   assert.match(hero, /Professional Profile/);
   assert.match(hero, /ResearchGate/);
   assert.match(hero, /import \{ Image \} from 'astro:assets'/);
-  assert.match(hero, /wangdi-profile\.jpg/);
+  assert.match(hero, /wangdi-profile-cutout-hd\.png/);
   assert.match(hero, /alt="Portrait of Wangdi"/);
-  assert.match(hero, /aspect-\[3\/4\]/);
+  assert.match(hero, /object-fit:\s*cover/);
   assert.match(hero, /fetchpriority="high"/);
   assert.match(hero, /sizes="\(min-width: 1024px\)/);
   assert.match(homepage, /title="Wangdi \| Conservation research/);

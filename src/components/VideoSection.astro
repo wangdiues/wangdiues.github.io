@@ -1,0 +1,200 @@
+---
+// Section-scoped (not fixed/full-page) video background for use within a
+// page's content flow — e.g. a full-bleed band partway down a page, with
+// slotted content (glass panels, headings, etc.) rendered on top.
+//
+// Unlike VideoBackground (always the single fixed layer behind an entire
+// page), a VideoSection never loads or plays until it nears the viewport,
+// and pauses again once scrolled away, so pages can afford more than one
+// without paying full video cost up front. Respects prefers-reduced-motion
+// by never loading/playing video at all — the poster stands in as a static
+// image. Same --video-* token system as VideoBackground, plus its own
+// configurable scrim strength.
+interface Props {
+  mp4: string;
+  webm: string;
+  poster: string;
+  objectPosition?: string;
+  /** Minimum block height of the section; accepts any CSS length/clamp(). */
+  minHeight?: string;
+  brightness?: number;
+  contrast?: number;
+  saturate?: number;
+  overlayTop?: number;
+  overlayMid?: number;
+  overlayBottom?: number;
+  class?: string;
+}
+
+const {
+  mp4,
+  webm,
+  poster,
+  objectPosition = '50% 50%',
+  minHeight = '70vh',
+  brightness,
+  contrast,
+  saturate,
+  overlayTop,
+  overlayMid,
+  overlayBottom,
+  class: className,
+} = Astro.props;
+
+const styleVars = [
+  `--vs-poster: url('${poster}')`,
+  `--vs-object-position: ${objectPosition}`,
+  `--vs-min-height: ${minHeight}`,
+  brightness !== undefined ? `--vs-brightness: ${brightness}` : '',
+  contrast !== undefined ? `--vs-contrast: ${contrast}` : '',
+  saturate !== undefined ? `--vs-saturate: ${saturate}` : '',
+  overlayTop !== undefined ? `--vs-overlay-top: ${overlayTop}` : '',
+  overlayMid !== undefined ? `--vs-overlay-mid: ${overlayMid}` : '',
+  overlayBottom !== undefined ? `--vs-overlay-bottom: ${overlayBottom}` : '',
+]
+  .filter(Boolean)
+  .join('; ');
+---
+
+<div class:list={['video-section', className]} style={styleVars} data-video-section>
+  <div class="video-section-media" data-video-media>
+    <video
+      class="video-section-video"
+      muted
+      loop
+      playsinline
+      preload="none"
+      poster={poster}
+      data-mp4={mp4}
+      data-webm={webm}
+    ></video>
+  </div>
+  <div class="video-section-scrim"></div>
+  <div class="video-section-content"><slot /></div>
+</div>
+
+<style>
+  .video-section {
+    position: relative;
+    isolation: isolate;
+    min-block-size: var(--vs-min-height);
+    overflow: hidden;
+  }
+
+  .video-section-media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    background: var(--vs-poster) center / cover no-repeat;
+    background-position: var(--vs-object-position);
+  }
+
+  .video-section-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--vs-object-position);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    filter: brightness(var(--vs-brightness, var(--video-brightness)))
+      contrast(var(--vs-contrast, var(--video-contrast)))
+      saturate(var(--vs-saturate, var(--video-saturate)));
+  }
+
+  .video-section-video[data-active='true'] {
+    opacity: 1;
+  }
+
+  .video-section-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-bg-base) calc(var(--vs-overlay-top, var(--video-overlay-top)) * 100%), transparent) 0%,
+        color-mix(in srgb, var(--color-bg-base) calc(var(--vs-overlay-mid, var(--video-overlay-mid)) * 100%), transparent) 45%,
+        color-mix(in srgb, var(--color-bg-base) calc(var(--vs-overlay-bottom, var(--video-overlay-bottom)) * 100%), transparent) 100%
+      );
+  }
+
+  .video-section-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-section-video {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function activate(video: HTMLVideoElement) {
+    if (video.dataset.loaded !== 'true') {
+      const webm = video.dataset.webm;
+      const mp4 = video.dataset.mp4;
+      if (webm) {
+        const sourceWebm = document.createElement('source');
+        sourceWebm.src = webm;
+        sourceWebm.type = 'video/webm';
+        video.appendChild(sourceWebm);
+      }
+      if (mp4) {
+        const sourceMp4 = document.createElement('source');
+        sourceMp4.src = mp4;
+        sourceMp4.type = 'video/mp4';
+        video.appendChild(sourceMp4);
+      }
+      video.preload = 'auto';
+      video.load();
+      video.dataset.loaded = 'true';
+    }
+    video.dataset.active = 'true';
+    video.play().catch(() => {});
+  }
+
+  function deactivate(video: HTMLVideoElement) {
+    video.dataset.active = 'false';
+    video.pause();
+  }
+
+  if (!REDUCED_MOTION) {
+    const sections = document.querySelectorAll<HTMLElement>('[data-video-section]');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const video = entry.target.querySelector<HTMLVideoElement>('.video-section-video');
+          if (!video) continue;
+          if (entry.isIntersecting) {
+            activate(video);
+          } else {
+            deactivate(video);
+          }
+        }
+      },
+      { rootMargin: '200px 0px' }
+    );
+
+    for (const section of sections) observer.observe(section);
+
+    document.addEventListener('visibilitychange', () => {
+      for (const section of sections) {
+        const video = section.querySelector<HTMLVideoElement>('.video-section-video');
+        if (!video) continue;
+        if (document.hidden) {
+          video.pause();
+        } else if (video.dataset.active === 'true') {
+          video.play().catch(() => {});
+        }
+      }
+    });
+  }
+</script>

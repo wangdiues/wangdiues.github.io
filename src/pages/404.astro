@@ -1,9 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/ui/Button.astro';
+import { SITE_VIDEOS } from '../data/site-video-backgrounds';
+
+const bg = SITE_VIDEOS['river-flow'];
 ---
 
-<BaseLayout title="Page not found | Wangdi">
+<BaseLayout
+  title="Page not found | Wangdi"
+  background="video"
+  videoSrc={bg.mp4}
+  videoWebm={bg.webm}
+  videoPoster={bg.poster}
+  videoObjectPosition={bg.objectPosition}
+>
   <main id="main" class="site-shell flex min-h-screen flex-col items-center justify-center py-20 text-center">
     <div class="mb-6 flex items-center gap-4 text-xs font-semibold tracking-[0.2em] text-nvidia-green-300 uppercase">
       <span class="h-px w-9 bg-nvidia-green-400" aria-hidden="true"></span>

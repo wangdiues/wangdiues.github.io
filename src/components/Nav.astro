@@ -13,7 +13,7 @@ const pathname = Astro.url.pathname;
 const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
 ---
 
-<header class="fixed inset-x-0 top-0 z-40 border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-base)]/95 backdrop-blur-xl">
+<header id="site-header" class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-transparent transition-[background-color,border-color,backdrop-filter,box-shadow] duration-300">
   <nav
     aria-label="Primary"
     class="site-shell relative flex h-20 items-center justify-between"
@@ -71,7 +71,7 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
 
     <ul
       id="nav-links"
-      class="absolute left-0 right-0 top-[calc(100%+0.75rem)] order-2 hidden flex-col gap-1 rounded-[var(--radius-lg)] border border-[var(--color-text-primary)] bg-[var(--color-bg-base)] p-3 shadow-card xl:static xl:flex xl:flex-row xl:items-center xl:gap-0 xl:border-0 xl:bg-transparent xl:p-0 xl:shadow-none"
+      class="absolute left-0 right-0 top-[calc(100%+0.75rem)] order-2 hidden flex-col gap-1 rounded-[var(--radius-lg)] p-3 xl:static xl:flex xl:flex-row xl:items-center xl:gap-0 xl:p-0"
     >
       {
         items.map((item) => (
@@ -82,10 +82,10 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
               data-section={item.section}
               aria-current={routeIsCurrent(item.route) ? 'page' : undefined}
               class:list={[
-                'flex min-h-11 items-center rounded-full px-4 text-sm font-medium xl:px-3',
+                'flex min-h-11 items-center rounded-full px-4 text-sm font-medium transition duration-200 xl:px-3',
                 item.label === 'Contact'
-                  ? 'bg-[var(--color-accent-solid)] text-[var(--color-on-accent-solid)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-bg-base)]'
-                  : 'text-[var(--color-text-muted)] hover:bg-[var(--color-accent-solid)] hover:text-[var(--color-on-accent-solid)]',
+                  ? 'nav-cta bg-[var(--color-accent-gold-solid)] text-[var(--color-on-accent-gold-solid)] hover:bg-[var(--color-accent-solid)] hover:text-[var(--color-on-accent-solid)]'
+                  : 'text-[var(--color-text-primary)]/85 hover:bg-[var(--color-glass-bg-strong)] hover:text-[var(--color-accent-gold)]',
               ]}
             >
               {item.label}
@@ -98,14 +98,42 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
 </header>
 
 <style>
-  #nav-links a[aria-current='page'],
-  #nav-links a[aria-current='location'] {
-    background: var(--color-text-primary);
-    color: var(--color-bg-base);
+  #site-header.is-scrolled {
+    border-color: var(--color-glass-border);
+    background: var(--color-glass-bg-strong);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--shadow-glass);
+  }
+
+  @media (max-width: 1279px) {
+    #nav-links {
+      border: 1px solid var(--color-glass-border);
+      background: var(--color-glass-bg-strong);
+      box-shadow: var(--shadow-glass);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+    }
+  }
+
+  #nav-links a[aria-current='page']:not(.nav-cta),
+  #nav-links a[aria-current='location']:not(.nav-cta) {
+    background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+    color: var(--color-accent);
   }
 </style>
 
 <script>
+  const header = document.getElementById('site-header');
+  const SCROLL_THRESHOLD = 24;
+
+  function syncHeaderScrollState() {
+    header?.classList.toggle('is-scrolled', window.scrollY > SCROLL_THRESHOLD);
+  }
+
+  syncHeaderScrollState();
+  window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
+
   const toggle = document.getElementById('nav-toggle');
   const links = document.getElementById('nav-links');
   const openIcon = toggle?.querySelector('.nav-open-icon');

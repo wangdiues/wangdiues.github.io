@@ -28,7 +28,7 @@ const images = Object.entries(
       {
         images.map(({ image, meta }, i) => (
           <figure class:list={[
-            'group overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border-subtle)] bg-[var(--color-bg-raised)]',
+            'glass-panel glass-panel-sm group overflow-hidden rounded-[var(--radius-md)]',
             i % 9 === 0 && 'col-span-2 row-span-2',
           ]}>
             <div class:list={[i % 9 === 0 ? 'aspect-square' : 'aspect-[4/3]']}>

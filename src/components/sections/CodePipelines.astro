@@ -43,11 +43,11 @@ const stats = [
       >.
     </p>
 
-    <div class="mt-10 grid grid-cols-2 border-l border-t border-[var(--color-border-subtle)] lg:grid-cols-4">
+    <div class="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
       {
         stats.map((stat) => (
-          <div class="border-b border-r border-[var(--color-border-subtle)] p-5 sm:p-6">
-            <p class="font-heading text-4xl font-medium tracking-[-0.03em] text-[var(--color-accent)] tabular-nums sm:text-5xl">
+          <div class="glass-panel rounded-[var(--radius-md)] p-5 sm:p-6">
+            <p class="stat-value text-4xl sm:text-5xl">
               {stat.value}
             </p>
             <p class="mt-2 text-xs leading-snug text-[var(--color-text-muted)] sm:text-sm">{stat.label}</p>

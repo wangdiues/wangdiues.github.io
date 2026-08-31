@@ -6,6 +6,9 @@ import Footer from '../../components/Footer.astro';
 import SectionHeading from '../../components/ui/SectionHeading.astro';
 import StatusBadge from '../../components/ui/StatusBadge.astro';
 import { contentSlug } from '../../lib/content-id';
+import { SITE_VIDEOS } from '../../data/site-video-backgrounds';
+
+const bg = SITE_VIDEOS['river-flow'];
 
 const publications = (await getCollection('publications')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -40,6 +43,11 @@ const counts = Object.fromEntries(
 <BaseLayout
   title="Publications | Wangdi"
   description="Peer-reviewed publications, manuscripts under review, management plans, and conservation strategies by Wangdi."
+  background="video"
+  videoSrc={bg.mp4}
+  videoWebm={bg.webm}
+  videoPoster={bg.poster}
+  videoObjectPosition={bg.objectPosition}
 >
   <Nav />
   <main id="main" class="site-shell pb-24 pt-36 sm:pt-40">
@@ -182,7 +190,7 @@ const counts = Object.fromEntries(
     b.addEventListener('click', () => {
       const filter = b.dataset.filter ?? 'all';
       apply(filter);
-      const url = new URL(location);
+      const url = new URL(location.href);
       if (filter === 'all') url.searchParams.delete('status');
       else url.searchParams.set('status', filter);
       history.replaceState(null, '', url);

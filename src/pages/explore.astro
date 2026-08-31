@@ -5,13 +5,24 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 import TagPill from '../components/ui/TagPill.astro';
+import { SITE_VIDEOS } from '../data/site-video-backgrounds';
 
 const layersJson = JSON.stringify(LAYERS);
+const bg = SITE_VIDEOS['aerial-canopy'];
 ---
 
 <BaseLayout
   title="Research Map | Wangdi"
   description="Interactive research map — protected-area connectivity, habitat modelling outputs, and survey footprints, published under DoFPS data-disclosure rules."
+  background="video"
+  videoSrc={bg.mp4}
+  videoWebm={bg.webm}
+  videoPoster={bg.poster}
+  videoObjectPosition={bg.objectPosition}
+  videoOverlayTop={0.92}
+  videoOverlayMid={0.85}
+  videoOverlayBottom={0.94}
+  videoSaturate={0.55}
 >
   <Nav />
   <main id="main" class="site-shell pb-24 pt-36 sm:pt-40">
@@ -226,7 +237,7 @@ const layersJson = JSON.stringify(LAYERS);
       await waitForMapLoad(map);
 
       for (const { layer, geojson, checkbox } of loaded) {
-        map.addSource(layer.id, { type: 'geojson', data: geojson });
+        map.addSource(layer.id, { type: 'geojson', data: geojson as unknown as GeoJSON.FeatureCollection });
         if (layer.geometry === 'polygon') {
           map.addLayer({
             id: `${layer.id}-fill`,

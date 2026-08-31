@@ -4,6 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { SOCIAL, FIELD_METHODS, PLATFORMS, REPOSITORIES, GITHUB_PROFILE } from '../config';
+import { SITE_VIDEOS } from '../data/site-video-backgrounds';
+
+const bg = SITE_VIDEOS['forest-mist'];
 
 const jobs = (await getCollection('experience')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -89,7 +92,15 @@ const professionalDevelopment = [
 ];
 ---
 
-<BaseLayout title="Curriculum Vitae | Wangdi" description="Curriculum vitae of Wangdi — forestry, biodiversity research, GIS, and forest governance.">
+<BaseLayout
+  title="Curriculum Vitae | Wangdi"
+  description="Curriculum vitae of Wangdi — forestry, biodiversity research, GIS, and forest governance."
+  background="video"
+  videoSrc={bg.mp4}
+  videoWebm={bg.webm}
+  videoPoster={bg.poster}
+  videoObjectPosition={bg.objectPosition}
+>
   <Nav />
   <main id="main" class="reading-shell cv pb-24 pt-36 sm:pt-40">
     <header class="border-b border-[var(--color-border-subtle)] pb-8">
@@ -195,7 +206,7 @@ const professionalDevelopment = [
               {job.data.location} · {job.data.range}
             </p>
             <ul>
-              {job.body
+              {(job.body ?? '')
                 .split('\n')
                 .filter((line) => line.trim().startsWith('- '))
                 .map((line) => (
@@ -287,6 +298,7 @@ const professionalDevelopment = [
     :global(body) {
       background: #fff !important;
     }
+    :global(.video-background),
     :global(body > header),
     :global(body > footer),
     .no-print {

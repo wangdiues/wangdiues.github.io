@@ -62,11 +62,11 @@ const highlights = [
         </a>
       </div>
 
-      <dl class="grid border-l border-t border-[var(--color-text-primary)] sm:grid-cols-2">
+      <dl class="grid gap-3 sm:grid-cols-2 sm:gap-4">
         {
           highlights.map((highlight, index) => (
-            <div class="min-h-52 border-b border-r border-[var(--color-text-primary)] p-6 sm:p-7">
-              <dt class="flex items-start justify-between gap-5 text-xs font-semibold tracking-[0.14em] text-[var(--color-accent)] uppercase">
+            <div class="glass-panel min-h-52 rounded-[var(--radius-lg)] p-6 sm:p-7">
+              <dt class="flex items-start justify-between gap-5 text-xs font-semibold tracking-[0.14em] text-[var(--color-accent-gold)] uppercase">
                 <span>{highlight.label}</span>
                 <span class="text-xs tabular-nums text-[var(--color-text-muted)]" aria-hidden="true">
                   {String(index + 1).padStart(2, '0')}

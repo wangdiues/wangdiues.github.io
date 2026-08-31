@@ -4,7 +4,7 @@ import { SOCIAL } from '../../config';
 ---
 
 <section id="contact" class="section-space scroll-mt-24 border-t border-[var(--color-border-subtle)]">
-  <div class="dark-section site-shell grid overflow-hidden rounded-[var(--radius-lg)] bg-ink-950 lg:grid-cols-[1.1fr_0.9fr]">
+  <div class="glass-panel glass-panel-strong site-shell grid overflow-hidden rounded-[var(--radius-lg)] lg:grid-cols-[1.1fr_0.9fr]">
     <div class="p-7 sm:p-10 lg:p-12">
       <SectionHeading
         eyebrow="Contact"
@@ -15,7 +15,7 @@ import { SOCIAL } from '../../config';
       </p>
     </div>
     <dl
-      class="divide-y divide-[var(--color-border-subtle)] border-t border-[var(--color-border-subtle)] px-7 sm:px-10 lg:border-l lg:border-t-0 lg:px-10 lg:py-6"
+      class="divide-y divide-[var(--color-glass-border)] border-t border-[var(--color-glass-border)] px-7 sm:px-10 lg:border-l lg:border-t-0 lg:px-10 lg:py-6"
     >
       {
         SOCIAL.map((s) => (
@@ -28,7 +28,7 @@ import { SOCIAL } from '../../config';
                 href={s.href}
                 target={s.href.startsWith('http') ? '_blank' : undefined}
                 rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                class="link-arrow break-words font-medium text-paper-50 underline-offset-4 hover:text-nvidia-green-300 hover:underline"
+                class="link-arrow break-words font-medium text-[var(--color-text-primary)] underline-offset-4 hover:text-[var(--color-accent-gold)] hover:underline"
               >
                 {s.value}
               </a>

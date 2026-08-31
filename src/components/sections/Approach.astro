@@ -26,7 +26,7 @@ const stages = [
 ];
 ---
 
-<section id="approach" class="section-space border-y border-[var(--color-text-primary)]">
+<section id="approach" class="section-space border-y border-[var(--color-border-subtle)]">
   <div class="site-shell">
     <div class="grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end">
       <SectionHeading
@@ -34,26 +34,26 @@ const stages = [
         title="From field signal to management decision."
         lede="Every programme follows one connected line of reasoning: observe carefully, test transparently, and make the result usable."
       />
-      <blockquote class="max-w-lg border-l border-[var(--color-text-primary)] pl-5 text-sm leading-relaxed text-[var(--color-text-muted)] lg:justify-self-end">
+      <blockquote class="max-w-lg border-l border-[var(--color-accent-gold)] pl-5 text-sm leading-relaxed text-[var(--color-text-muted)] lg:justify-self-end">
         <p class="font-heading text-xl font-medium leading-snug text-[var(--color-text-primary)]">
           “Conservation evidence matters when it reaches the people making decisions.”
         </p>
       </blockquote>
     </div>
 
-    <ol class="mt-12 grid border-l border-t border-[var(--color-text-primary)] md:grid-cols-3">
+    <ol class="mt-12 grid gap-3 md:grid-cols-3 md:gap-4">
       {
         stages.map((stage) => (
-          <li class="group flex min-h-80 flex-col border-b border-r border-[var(--color-text-primary)] p-6 transition-colors hover:bg-[var(--color-accent-solid)] sm:p-7">
+          <li class="glass-panel glass-panel-hover group flex min-h-80 flex-col rounded-[var(--radius-lg)] p-6 sm:p-7">
             <div class="flex items-center justify-between gap-4">
-              <span class="font-heading text-4xl font-medium tracking-[-0.05em] text-[var(--color-text-primary)]" aria-hidden="true">
+              <span class="stat-value text-4xl" aria-hidden="true">
                 {stage.number}
               </span>
-              <span class="h-px flex-1 bg-[var(--color-text-primary)]/25" aria-hidden="true"></span>
+              <span class="h-px flex-1 bg-[var(--color-border-subtle)]" aria-hidden="true"></span>
             </div>
             <h3 class="mt-10 text-h3 text-[var(--color-text-primary)]">{stage.title}</h3>
             <p class="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">{stage.description}</p>
-            <p class="mt-auto border-t border-[var(--color-text-primary)]/25 pt-4 text-[0.65rem] font-semibold tracking-[0.13em] text-[var(--color-text-primary)] uppercase">
+            <p class="mt-auto border-t border-[var(--color-border-subtle)] pt-4 text-[0.65rem] font-semibold tracking-[0.13em] text-[var(--color-accent)] uppercase">
               {stage.detail}
             </p>
           </li>

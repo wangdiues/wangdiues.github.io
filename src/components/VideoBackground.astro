@@ -1,0 +1,119 @@
+---
+// Fixed, muted, looping video background. Sits behind all content like
+// ConstellationCanvas does elsewhere, but shows footage instead of the
+// animated node graph. Heavily scrimmed and desaturated so any clip reads
+// as ambient texture for a dark portfolio rather than a bright travel clip,
+// and never intercepts pointer or keyboard interaction. Falls back to a
+// static poster frame under prefers-reduced-motion so nothing autoplays.
+//
+// Brightness/contrast/saturation and scrim strength all read from the
+// global --video-* design tokens (tokens/tokens.json -> tokens.css) by
+// default, so tuning the look site-wide only requires editing tokens.
+// Per-instance overrides are optional and only apply when passed.
+interface Props {
+  mp4: string;
+  webm: string;
+  poster: string;
+  objectPosition?: string;
+  /** Optional per-instance overrides of the global --video-* tokens (0-1 opacity / filter multipliers). */
+  brightness?: number;
+  contrast?: number;
+  saturate?: number;
+  overlayTop?: number;
+  overlayMid?: number;
+  overlayBottom?: number;
+}
+
+const {
+  mp4,
+  webm,
+  poster,
+  objectPosition = '50% 50%',
+  brightness,
+  contrast,
+  saturate,
+  overlayTop,
+  overlayMid,
+  overlayBottom,
+} = Astro.props;
+
+const styleVars = [
+  `--vb-poster: url('${poster}')`,
+  `--vb-object-position: ${objectPosition}`,
+  brightness !== undefined ? `--vb-brightness: ${brightness}` : '',
+  contrast !== undefined ? `--vb-contrast: ${contrast}` : '',
+  saturate !== undefined ? `--vb-saturate: ${saturate}` : '',
+  overlayTop !== undefined ? `--vb-overlay-top: ${overlayTop}` : '',
+  overlayMid !== undefined ? `--vb-overlay-mid: ${overlayMid}` : '',
+  overlayBottom !== undefined ? `--vb-overlay-bottom: ${overlayBottom}` : '',
+]
+  .filter(Boolean)
+  .join('; ');
+---
+
+<div class="video-background" aria-hidden="true" style={styleVars}>
+  <video autoplay muted loop playsinline preload="auto" poster={poster}>
+    <source src={webm} type="video/webm" />
+    <source src={mp4} type="video/mp4" />
+  </video>
+  <div class="scrim"></div>
+</div>
+
+<style>
+  .video-background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .video-background video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--vb-object-position);
+    filter: brightness(var(--vb-brightness, var(--video-brightness)))
+      contrast(var(--vb-contrast, var(--video-contrast)))
+      saturate(var(--vb-saturate, var(--video-saturate)));
+  }
+
+  .video-background .scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-bg-base) calc(var(--vb-overlay-top, var(--video-overlay-top)) * 100%), transparent) 0%,
+        color-mix(in srgb, var(--color-bg-base) calc(var(--vb-overlay-mid, var(--video-overlay-mid)) * 100%), transparent) 45%,
+        color-mix(in srgb, var(--color-bg-base) calc(var(--vb-overlay-bottom, var(--video-overlay-bottom)) * 100%), transparent) 100%
+      );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-background video {
+      display: none;
+    }
+
+    .video-background {
+      background: var(--vb-poster) center / cover no-repeat;
+      background-position: var(--vb-object-position);
+    }
+  }
+</style>
+
+<script>
+  const videos = document.querySelectorAll<HTMLVideoElement>('.video-background video');
+
+  document.addEventListener('visibilitychange', () => {
+    for (const video of videos) {
+      if (document.hidden) {
+        video.pause();
+      } else {
+        video.play().catch(() => {});
+      }
+    }
+  });
+</script>
