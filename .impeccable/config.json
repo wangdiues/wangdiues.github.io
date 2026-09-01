@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/styles/global.css"
+        ],
+        "createdAt": "2026-08-31T13:13:20.833Z",
+        "reason": "Pre-existing body::before grid backdrop, part of the site's documented NVIDIA-product-page dark theme (see ConstellationCanvas.astro comment); predates this session's video-background task and out of its scope"
+      }
+    ]
+  }
+}

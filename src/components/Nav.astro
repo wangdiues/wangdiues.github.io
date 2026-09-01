@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/wangdi-logo.png';
+
 const items = [
   { href: '/#about', label: 'About', section: 'about' },
   { href: '/#work', label: 'Projects', section: 'work' },
@@ -19,11 +22,8 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
     class="site-shell relative flex h-20 items-center justify-between"
   >
     <a href="/" class="group order-1 flex min-h-11 items-center gap-3 pr-3 font-heading text-lg font-semibold text-[var(--color-text-primary)]">
-      <span class="relative flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-text-primary)] text-sm font-bold text-[var(--color-bg-base)]">
-        W
-      </span>
-      <span class="hidden tracking-[-0.03em] sm:inline">Wangdi</span>
-      <span class="sr-only">— Home</span>
+      <Image src={logo} alt="Wangdi" width={44} height={44} class="h-11 w-11 object-contain" />
+      <span class="sr-only">Wangdi — Home</span>
     </a>
 
     <div class="order-3 flex items-center gap-2">
