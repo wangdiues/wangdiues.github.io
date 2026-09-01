@@ -21,7 +21,7 @@ const heroVideo = {
 
   <div class="site-shell">
     <div class="hero-enter">
-      <div class="hero-top grid gap-4 lg:grid-cols-[1fr_1fr] lg:items-stretch">
+      <div class="hero-top grid gap-4 lg:grid-cols-[1.55fr_0.6fr] lg:items-stretch">
         <div class="hero-headline lg:flex lg:h-full lg:flex-col">
           <p class="eyebrow badge-label glass-panel glass-panel-sm inline-flex rounded-full px-4 py-2">
             <span class="h-px w-8 bg-current" aria-hidden="true"></span>
@@ -36,55 +36,44 @@ const heroVideo = {
             Biodiversity, Climate &amp; Forest Governance
           </p>
 
-          <div class="profile-card mt-5 lg:flex-1">
-            <ul class="flex flex-wrap gap-x-3 gap-y-2 text-sm" aria-label="Professional specializations">
-              <li>Community-Based NWFP Management</li>
-              <li aria-hidden="true" class="hero-dot">·</li>
-              <li>Forest Bioeconomy</li>
-              <li aria-hidden="true" class="hero-dot">·</li>
-              <li>Rural Livelihoods</li>
-              <li aria-hidden="true" class="hero-dot">·</li>
-              <li>GIS</li>
-              <li aria-hidden="true" class="hero-dot">·</li>
-              <li>Remote Sensing</li>
-              <li aria-hidden="true" class="hero-dot">·</li>
-              <li>Ecological Modelling</li>
-              <li aria-hidden="true" class="hero-dot">·</li>
-              <li>Conservation Research</li>
+          <div class="profile-card mt-4 lg:flex-1">
+            <ul class="flex flex-wrap gap-2" aria-label="Professional specializations">
+              <li class="hero-chip">Community-Based NWFP Management</li>
+              <li class="hero-chip">Forest Bioeconomy</li>
+              <li class="hero-chip">Rural Livelihoods</li>
+              <li class="hero-chip">GIS</li>
+              <li class="hero-chip">Remote Sensing</li>
+              <li class="hero-chip">Ecological Modelling</li>
+              <li class="hero-chip">Conservation Research</li>
             </ul>
 
-            <ul class="hero-divider mt-6 pt-6 text-sm">
-              <li class="pb-4">
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="min-w-56 flex-1">
                 <a
                   href="https://www.conservationleadershipprogramme.org/project/bhutans-first-gps-ai-study-great-hornbills/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="hero-link font-semibold"
+                  class="hero-award-badge"
                 >
                   2026 CLP Future Conservationist Team Award Winner
                   <span class="sr-only"> (opens in a new tab)</span>
                 </a>
               </li>
-              <li class="hero-divider pt-4">
-                <strong class="hero-heading font-semibold">Meritorious Promotion</strong>, Royal Civil Service Commission · 2026
+              <li class="min-w-56 flex-1">
+                <span class="hero-award-badge hero-award-badge-static">
+                  Meritorious Promotion · RCSC 2026
+                </span>
               </li>
             </ul>
 
-            <div class="hero-divider mt-6 pt-6">
-              <p class="hero-heading text-sm font-semibold">
-                Department of Forests &amp; Park Services
-              </p>
-              <nav class="mt-3" aria-label="Professional contact links">
-                <ul class="flex flex-wrap divide-x divide-[rgba(244,201,93,0.25)] text-sm">
-                  <li class="pr-3">
-                    <a href="mailto:wangdiues@gmail.com" class="hero-link">wangdiues@gmail.com</a>
-                  </li>
-                  <li class="px-3">
-                    <a href="https://www.linkedin.com/in/wangdiues/" target="_blank" rel="noopener noreferrer" class="hero-link">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
-                  </li>
-                  <li class="pl-3">
-                    <a href="https://www.researchgate.net/profile/Wangdi-Wangdi-3" target="_blank" rel="noopener noreferrer" class="hero-link">ResearchGate<span class="sr-only"> (opens in a new tab)</span></a>
-                  </li>
+            <div class="hero-contact-row mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
+              <span class="hero-heading font-semibold">Department of Forests &amp; Park Services</span>
+              <span class="hero-contact-sep" aria-hidden="true">·</span>
+              <nav aria-label="Professional contact links">
+                <ul class="flex flex-wrap gap-x-3">
+                  <li><a href="mailto:wangdiues@gmail.com" class="hero-link">wangdiues@gmail.com</a></li>
+                  <li><a href="https://www.linkedin.com/in/wangdiues/" target="_blank" rel="noopener noreferrer" class="hero-link">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
+                  <li><a href="https://www.researchgate.net/profile/Wangdi-Wangdi-3" target="_blank" rel="noopener noreferrer" class="hero-link">ResearchGate<span class="sr-only"> (opens in a new tab)</span></a></li>
                 </ul>
               </nav>
             </div>
@@ -104,14 +93,14 @@ const heroVideo = {
         </figure>
       </div>
 
-      <div class="profile-card mt-10">
+      <div class="hero-bio-card mt-6">
         <p class="section-subtitle">Professional Profile</p>
         <p class="hero-body-text mt-4 text-base sm:text-lg">
           Public-sector forestry, biodiversity, and environmental management professional with five years of progressive experience in Bhutan's forest governance system. Currently serving as Senior Forestry Officer in the NWFP Section, Forest Resources Planning &amp; Management Division, following a merit-based promotion within the first four years of service. Expertise spans biodiversity conservation, climate-responsive forest management, NWFP governance, GIS and remote sensing, ecological research, and policy-linked environmental planning. Team Leader and recipient of the 2026 Conservation Leadership Programme (CLP) Future Conservationist Team Award for Connected Skies: Bhutan's First GPS-AI Study Empowering Communities to Protect Great Hornbills. Also appointed as an Adjunct Lecturer at the College of Natural Resources, Royal University of Bhutan, to deliver Forest Mensuration (MEN201).
         </p>
       </div>
 
-      <div class="mt-7 flex flex-wrap items-center gap-3">
+      <div class="mt-6 flex flex-wrap items-center gap-3">
         <TagPill label="Forest governance" />
         <TagPill label="Spatial ecology" />
         <TagPill label="Climate resilience" />
@@ -175,7 +164,7 @@ const heroVideo = {
   .hero .hero-portrait-frame {
     display: block;
     width: 100%;
-    max-width: 20.8rem; /* 26rem - 1/5 */
+    max-width: 15rem;
     margin-inline: auto;
     aspect-ratio: 4 / 5;
     background: rgba(255, 255, 255, 0.07);
@@ -201,7 +190,7 @@ const heroVideo = {
       margin-inline: 0;
       aspect-ratio: auto;
       height: 100%;
-      min-height: clamp(19.2rem, 36.8vw, 27.2rem);
+      min-height: clamp(12rem, 20vw, 16rem);
     }
   }
 
@@ -216,27 +205,71 @@ const heroVideo = {
 
   /* PROFILE CARD — a plain full-width block (not sharing a grid column with
      the portrait any more), so it uses the whole site-shell content width
-     instead of a constrained left column. */
+     instead of a constrained left column. Holds the scannable facts: chips,
+     award badges, and the contact row. */
   .hero .profile-card {
     background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
-    padding: 2.5rem;
+    padding: 1.5rem;
   }
 
-  /* Subtle golden dividers between the card's sub-sections, instead of a
-     plain white-ish rule. */
-  .hero .hero-divider {
-    border-top: 1px solid rgba(244, 201, 93, 0.25);
+  /* Specialization chips — small glass pills matching the TagPill language
+     used elsewhere on the page, instead of a dot-separated run-on line. */
+  .hero .hero-chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #f7f3ea;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  /* Award badges — compact pills instead of two stacked, divider-separated
+     list items. */
+  .hero .hero-award-badge {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.35;
+    white-space: normal;
+    text-align: left;
+    color: var(--color-accent-gold);
+    background: color-mix(in srgb, var(--color-accent-gold) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent-gold) 35%, transparent);
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  a.hero-award-badge:hover {
+    color: var(--color-accent-gold-hover);
+    background: color-mix(in srgb, var(--color-accent-gold) 20%, transparent);
+  }
+
+  .hero .hero-award-badge-static {
+    color: #f7f3ea;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .hero .hero-contact-sep {
+    color: var(--color-accent-gold);
   }
 
   /* 3a. Accent/badge text — warm golden-yellow, used selectively (labels,
      links, separators), never for full paragraphs. */
   .hero .badge-label,
   .hero .section-subtitle {
-    color: #f4c95d;
+    color: var(--color-accent-gold);
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -249,45 +282,47 @@ const heroVideo = {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   }
 
-  .hero {
-    /* WANGDI */
-    --wangdi-gold-dark: #8c6200;
-    --wangdi-gold: #c99300;
-    --wangdi-gold-light: #f0c52c;
-    --wangdi-gold-highlight: #ffd866;
-
-    /* Biodiversity, Climate & Forest Governance */
-    --tagline-gold-dark: #a87400;
-    --tagline-gold: #d9a900;
-    --tagline-gold-light: #f0c52c;
-  }
-
+  /* Gold accents pull from the site's shared --color-accent-gold* tokens
+     (tokens.css) instead of a Hero-local hardcoded palette, so the Hero's
+     gold matches the rest of the site exactly. Title uses the darker/muted
+     -solid step, subtitle the brighter default step, preserving their
+     original relative contrast. */
   .hero .hero-title {
-    color: var(--wangdi-gold);
+    color: var(--color-accent-gold-solid);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   }
 
   /* 3c. Body text — warm off-white, not dark/muted grey. */
   .hero .profile-card p,
   .hero .profile-card li,
+  .hero .hero-bio-card p,
   .hero .hero-body-text {
     color: #f7f3ea;
     line-height: 1.6;
   }
 
+  /* BIO CARD — same warm-glass language as .profile-card but lighter and
+     less opaque, so the long-form paragraph reads as its own "read this for
+     depth" tier rather than more of the scannable card above it. Runs the
+     full site-shell width, below both the headline and the portrait. */
+  .hero .hero-bio-card {
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+  }
+
   /* 3d. Links — gold, brightening on hover. */
   .hero .hero-link {
-    color: #f4c95d;
+    color: var(--color-accent-gold);
     text-decoration: underline;
     transition: color 0.2s ease;
   }
 
   .hero .hero-link:hover {
-    color: #ffd76a;
-  }
-
-  .hero .hero-dot {
-    color: #f4c95d;
+    color: var(--color-accent-gold-hover);
   }
 
   /* The small eyebrow pill and tag pills still sit directly on the
@@ -300,7 +335,7 @@ const heroVideo = {
   }
 
   .hero .hero-subtitle {
-    color: var(--tagline-gold);
+    color: var(--color-accent-gold);
     text-shadow:
       0 1px 14px rgba(0, 0, 0, 0.45),
       0 1px 3px rgba(0, 0, 0, 0.6);
