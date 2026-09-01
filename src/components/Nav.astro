@@ -22,7 +22,9 @@ const routeIsCurrent = (route?: string) => route && pathname.startsWith(route);
     class="site-shell relative flex h-20 items-center justify-between"
   >
     <a href="/" class="group order-1 flex min-h-11 items-center gap-3 pr-3 font-heading text-lg font-semibold text-[var(--color-text-primary)]">
-      <Image src={logo} alt="Wangdi" width={44} height={44} class="h-11 w-11 object-contain" />
+      <span class="glass-panel glass-panel-sm glass-panel-hover flex h-12 w-12 shrink-0 items-center justify-center rounded-full p-1.5">
+        <Image src={logo} alt="Wangdi" width={40} height={40} class="h-full w-full object-contain" />
+      </span>
       <span class="sr-only">Wangdi — Home</span>
     </a>
 
